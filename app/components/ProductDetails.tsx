@@ -197,7 +197,7 @@ export default function ProductDetails() {
                       >
                         <div className="flex gap-3 border border-gray-200 rounded-lg p-2 hover:border-[#AB8E66] hover:shadow-md transition-all">
                           {/* Product Image */}
-                          <div className="relative w-20 h-20 flex-shrink-0 bg-gray-50 rounded overflow-hidden">
+                          <div className="relative w-20 h-20 bg-gray-50 rounded overflow-hidden">
                             <div className="absolute top-1 left-1 z-10">
                               <span className="bg-[#AB8E66] text-white text-[10px] font-semibold px-1.5 py-0.5 rounded">
                                 New
@@ -328,7 +328,7 @@ export default function ProductDetails() {
                       <button
                         key={index}
                         onClick={() => setSelectedImage(index)}
-                        className={`flex-shrink-0 w-20 h-20 border-2 rounded overflow-hidden transition-all ${
+                        className={` w-20 h-20 border-2 rounded overflow-hidden transition-all ${
                           selectedImage === index
                             ? 'border-[#AB8E66] ring-2 ring-[#AB8E66] ring-offset-1'
                             : 'border-gray-200 hover:border-gray-300'
