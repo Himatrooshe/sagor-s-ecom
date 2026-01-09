@@ -27,9 +27,6 @@ export default function SmoothScrolling({ children }: { children: React.ReactNod
       gestureOrientation: 'vertical',
       smoothWheel: true,
       wheelMultiplier: 1,
-      smoothTouch: false,
-      touchMultiplier: 2,
-      infinite: false,
     });
 
     lenisRef.current = lenis;
