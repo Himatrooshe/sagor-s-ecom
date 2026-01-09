@@ -15,31 +15,24 @@ interface Product {
 const products: Product[] = [
   {
     id: 1,
-    name: 'Glorious Eau',
-    originalPrice: '$65',
-    discountedPrice: '$45',
-    image: 'https://images.unsplash.com/photo-1594035910387-fea47794261f?w=300&h=400&fit=crop',
+    name: 'Blue DE Chanel 30ML',
+    originalPrice: '$120',
+    discountedPrice: '$95',
+    image: 'https://res.cloudinary.com/dp0la6xmd/image/upload/v1767873198/2025_12_22_09_09_IMG_2288_t3eyhk.png',
   },
   {
     id: 2,
-    name: 'Bibliotheque',
-    originalPrice: '$65',
-    discountedPrice: '$45',
-    image: 'https://images.unsplash.com/photo-1541643600914-78b084683601?w=300&h=400&fit=crop',
+    name: 'Vempire Blood 30ML',
+    originalPrice: '$85',
+    discountedPrice: '$68',
+    image: 'https://res.cloudinary.com/dp0la6xmd/image/upload/v1767873197/2025_12_23_21_45_IMG_2324_rw1hzh.png',
   },
   {
     id: 3,
-    name: 'Dunas De Un',
-    originalPrice: '$65',
+    name: 'Crocs Classic Clogs',
+    originalPrice: '$55',
     discountedPrice: '$45',
-    image: 'https://images.unsplash.com/photo-1606760227091-3dd870d97f1d?w=300&h=400&fit=crop',
-  },
-  {
-    id: 4,
-    name: 'Cuerpo Eau',
-    originalPrice: '$65',
-    discountedPrice: '$45',
-    image: 'https://images.unsplash.com/photo-1594035910387-fea47794261f?w=300&h=400&fit=crop',
+    image: 'https://res.cloudinary.com/dp0la6xmd/image/upload/v1767873196/shoe_h0j8oy.jpg',
   },
 ];
 
@@ -95,7 +88,7 @@ export default function DealOfTheDay() {
           <h2 className="text-2xl md:text-3xl font-bold text-black uppercase mb-3">
             DEAL OF THE DAY
           </h2>
-          <div className="w-16 h-1 bg-[#AB8E66] mx-auto"></div>
+          <div className="w-16 h-1 bg-[#00A7E1] mx-auto"></div>
         </div>
 
         {/* Product Cards Grid */}
@@ -106,11 +99,11 @@ export default function DealOfTheDay() {
               <Link
                 key={product.id}
                 href={`/product/${productSlug}`}
-                className="group border border-[#AB8E66] bg-white rounded-lg overflow-hidden hover:shadow-lg transition-shadow relative block"
+                className="group border border-[#00A7E1] bg-white rounded-lg overflow-hidden hover:shadow-lg transition-shadow relative block"
               >
               {/* New Badge */}
               <div className="absolute top-3 left-3 z-10">
-                <span className="bg-[#AB8E66] text-black text-xs font-semibold px-3 py-1 rounded">
+                <span className="bg-[#00A7E1] text-black text-xs font-semibold px-3 py-1 rounded">
                   New
                 </span>
               </div>
@@ -125,10 +118,10 @@ export default function DealOfTheDay() {
                 />
 
                 {/* Hover Overlay with Icons */}
-                <div className="absolute inset-0 bg-[#AB8E66]/80 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-4 z-20">
+                <div className="absolute inset-0 bg-[#00A7E1]/80 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-4 z-20">
                   <button className="bg-white/90 hover:bg-white rounded-full p-3 transition-colors">
                     <svg
-                      className="w-5 h-5 text-[#AB8E66]"
+                      className="w-5 h-5 text-[#00A7E1]"
                       fill="none"
                       stroke="currentColor"
                       viewBox="0 0 24 24"
@@ -143,7 +136,7 @@ export default function DealOfTheDay() {
                   </button>
                   <button className="bg-white/90 hover:bg-white rounded-full p-3 transition-colors">
                     <svg
-                      className="w-5 h-5 text-[#AB8E66]"
+                      className="w-5 h-5 text-[#00A7E1]"
                       fill="none"
                       stroke="currentColor"
                       viewBox="0 0 24 24"
@@ -158,7 +151,7 @@ export default function DealOfTheDay() {
                   </button>
                   <button className="bg-white/90 hover:bg-white rounded-full p-3 transition-colors">
                     <svg
-                      className="w-5 h-5 text-[#AB8E66]"
+                      className="w-5 h-5 text-[#00A7E1]"
                       fill="none"
                       stroke="currentColor"
                       viewBox="0 0 24 24"
@@ -224,7 +217,7 @@ export default function DealOfTheDay() {
                       key={star}
                       className={`w-4 h-4 ${
                         star <= 4
-                          ? 'text-[#AB8E66] fill-current'
+                          ? 'text-[#00A7E1] fill-current'
                           : 'text-gray-300'
                       }`}
                       fill={star <= 4 ? 'currentColor' : 'none'}
@@ -246,7 +239,7 @@ export default function DealOfTheDay() {
                   <span className="text-gray-400 line-through mr-2">
                     {product.originalPrice}
                   </span>
-                  <span className="text-[#AB8E66] font-bold text-lg">
+                  <span className="text-[#00A7E1] font-bold text-lg">
                     {product.discountedPrice}
                   </span>
                 </div>
@@ -263,7 +256,7 @@ export default function DealOfTheDay() {
               key={dot}
               onClick={() => setCurrentSlide(dot)}
               className={`w-3 h-3 rounded-full transition-colors ${
-                dot === currentSlide ? 'bg-[#AB8E66]' : 'bg-gray-300'
+                dot === currentSlide ? 'bg-[#00A7E1]' : 'bg-gray-300'
               }`}
               aria-label={`Go to slide ${dot + 1}`}
             />

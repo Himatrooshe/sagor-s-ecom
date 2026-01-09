@@ -16,67 +16,27 @@ interface Product {
 const products: Product[] = [
   {
     id: 1,
-    name: 'Blanche Parfum',
-    originalPrice: '$65',
-    discountedPrice: '$45',
-    image: 'https://images.unsplash.com/photo-1594035910387-fea47794261f?w=300&h=400&fit=crop',
-    rating: 3.5,
+    name: 'Blue DE Chanel 30ML',
+    originalPrice: '$120',
+    discountedPrice: '$95',
+    image: 'https://res.cloudinary.com/dp0la6xmd/image/upload/v1767873198/2025_12_22_09_09_IMG_2288_t3eyhk.png',
+    rating: 5,
   },
   {
     id: 2,
-    name: 'Tuscan Creations',
-    originalPrice: '$65',
-    discountedPrice: '$45',
-    image: 'https://images.unsplash.com/photo-1541643600914-78b084683601?w=300&h=400&fit=crop',
-    rating: 3.5,
+    name: 'Vempire Blood 30ML',
+    originalPrice: '$85',
+    discountedPrice: '$68',
+    image: 'https://res.cloudinary.com/dp0la6xmd/image/upload/v1767873197/2025_12_23_21_45_IMG_2324_rw1hzh.png',
+    rating: 4.8,
   },
   {
     id: 3,
-    name: 'Terra Rossa',
-    originalPrice: '$65',
+    name: 'Crocs Classic Clogs',
+    originalPrice: '$55',
     discountedPrice: '$45',
-    image: 'https://images.unsplash.com/photo-1606760227091-3dd870d97f1d?w=300&h=400&fit=crop',
-    rating: 3.5,
-  },
-  {
-    id: 4,
-    name: 'Glorious Eau',
-    originalPrice: '$65',
-    discountedPrice: '$45',
-    image: 'https://images.unsplash.com/photo-1594035910387-fea47794261f?w=300&h=400&fit=crop',
-    rating: 3.5,
-  },
-  {
-    id: 5,
-    name: 'Poison Parfum',
-    originalPrice: '$65',
-    discountedPrice: '$45',
-    image: 'https://images.unsplash.com/photo-1541643600914-78b084683601?w=300&h=400&fit=crop',
-    rating: 3.5,
-  },
-  {
-    id: 6,
-    name: 'Elegant Essence',
-    originalPrice: '$65',
-    discountedPrice: '$45',
-    image: 'https://images.unsplash.com/photo-1606760227091-3dd870d97f1d?w=300&h=400&fit=crop',
-    rating: 3.5,
-  },
-  {
-    id: 7,
-    name: 'Poison Girl Unexpected',
-    originalPrice: '$65',
-    discountedPrice: '$45',
-    image: 'https://images.unsplash.com/photo-1594035910387-fea47794261f?w=300&h=400&fit=crop',
-    rating: 3.5,
-  },
-  {
-    id: 8,
-    name: 'Golden Aura',
-    originalPrice: '$65',
-    discountedPrice: '$45',
-    image: 'https://images.unsplash.com/photo-1541643600914-78b084683601?w=300&h=400&fit=crop',
-    rating: 3.5,
+    image: 'https://res.cloudinary.com/dp0la6xmd/image/upload/v1767873196/shoe_h0j8oy.jpg',
+    rating: 4.7,
   },
 ];
 
@@ -109,7 +69,7 @@ export default function ProductListing() {
         {[...Array(fullStars)].map((_, i) => (
           <svg
             key={`full-${i}`}
-            className="w-4 h-4 text-[#AB8E66] fill-current"
+            className="w-4 h-4 text-[#00A7E1] fill-current"
             viewBox="0 0 24 24"
           >
             <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
@@ -124,7 +84,7 @@ export default function ProductListing() {
               <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
             </svg>
             <svg
-              className="absolute inset-0 w-4 h-4 text-[#AB8E66] fill-current"
+              className="absolute inset-0 w-4 h-4 text-[#00A7E1] fill-current"
               viewBox="0 0 24 24"
               style={{ clipPath: 'inset(0 50% 0 0)' }}
             >
@@ -161,8 +121,8 @@ export default function ProductListing() {
             onClick={() => setActiveTab('bestseller')}
             className={`px-6 py-3 font-semibold text-sm md:text-base transition-all rounded-t ${
               activeTab === 'bestseller'
-                ? 'bg-[#AB8E66] text-white'
-                : 'text-black hover:text-[#AB8E66]'
+                ? 'bg-[#00A7E1] text-white'
+                : 'text-black hover:text-[#00A7E1]'
             }`}
           >
             Bestseller
@@ -171,8 +131,8 @@ export default function ProductListing() {
             onClick={() => setActiveTab('newarrivals')}
             className={`px-6 py-3 font-semibold text-sm md:text-base transition-all rounded-t ${
               activeTab === 'newarrivals'
-                ? 'bg-[#AB8E66] text-white'
-                : 'text-black hover:text-[#AB8E66]'
+                ? 'bg-[#00A7E1] text-white'
+                : 'text-black hover:text-[#00A7E1]'
             }`}
           >
             New Arrivals
@@ -181,8 +141,8 @@ export default function ProductListing() {
             onClick={() => setActiveTab('toprated')}
             className={`px-6 py-3 font-semibold text-sm md:text-base transition-all rounded-t ${
               activeTab === 'toprated'
-                ? 'bg-[#AB8E66] text-white'
-                : 'text-black hover:text-[#AB8E66]'
+                ? 'bg-[#00A7E1] text-white'
+                : 'text-black hover:text-[#00A7E1]'
             }`}
           >
             Top Rated
@@ -201,7 +161,7 @@ export default function ProductListing() {
               >
                 {/* New Badge */}
                 <div className="absolute top-3 left-3 z-10">
-                  <span className="bg-[#AB8E66] text-white text-xs font-semibold px-3 py-1 rounded">
+                  <span className="bg-[#00A7E1] text-white text-xs font-semibold px-3 py-1 rounded">
                     New
                   </span>
                 </div>
@@ -233,7 +193,7 @@ export default function ProductListing() {
                     <span className="text-gray-400 line-through mr-2">
                       {product.originalPrice}
                     </span>
-                    <span className="text-[#AB8E66] font-bold text-lg">
+                    <span className="text-[#00A7E1] font-bold text-lg">
                       {product.discountedPrice}
                     </span>
                   </div>

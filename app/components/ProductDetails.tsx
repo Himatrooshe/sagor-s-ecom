@@ -2,67 +2,62 @@
 
 import Image from 'next/image';
 import Link from 'next/link';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import productDetailsData from '../../data/product-details.json';
 
-export default function ProductDetails() {
-  const [selectedColor, setSelectedColor] = useState('blue');
-  const [selectedSize, setSelectedSize] = useState('M');
+interface ProductDetailsProps {
+  slug: string;
+}
+
+export default function ProductDetails({ slug }: ProductDetailsProps) {
+  const [selectedColor, setSelectedColor] = useState(0);
+  const [selectedSize, setSelectedSize] = useState(0);
   const [quantity, setQuantity] = useState(1);
   const [activeTab, setActiveTab] = useState('descriptions');
   const [selectedImage, setSelectedImage] = useState(0);
   const [relatedProductIndex, setRelatedProductIndex] = useState(0);
   const [testimonialIndex, setTestimonialIndex] = useState(0);
+  
+  // Find the product by slug
+  const product = productDetailsData.productDetails.find(p => p.slug === slug);
+  
+  // If no product found, show error
+  if (!product) {
+    return (
+      <div className="min-h-screen flex items-center justify-center">
+        <div className="text-center">
+          <h1 className="text-3xl font-bold text-black mb-4">Product Not Found</h1>
+          <Link href="/" className="text-[#00A7E1] hover:underline">
+            Return to Home
+          </Link>
+        </div>
+      </div>
+    );
+  }
 
   const categories = [
-    'New Arrivals',
-    'Dining',
-    'Desks',
-    'Accents',
-    'Accessories',
-    'Tables',
+    'Perfume & Fragrance',
+    'Watch',
+    'Beauty and Skincare',
+    'Gadget Items',
+    'Ladies Items',
+    'Shoes Collection',
   ];
 
-  const sizes = ['XS', 'S', 'M', 'L', 'XL', 'XXL'];
+  // Get related products based on the relatedProducts array from product data
+  const relatedProducts = product.relatedProducts
+    .map(id => productDetailsData.productDetails.find(p => p.id === id))
+    .filter(Boolean)
+    .map(p => ({
+      id: p!.id,
+      name: p!.name,
+      originalPrice: `$${p!.originalPrice}`,
+      discountedPrice: `$${p!.discountedPrice}`,
+      image: p!.images[0],
+      rating: p!.rating,
+    }));
 
-  const colors = [
-    { name: 'white', value: '#FFFFFF', checked: false },
-    { name: 'black', value: '#000000', checked: false },
-    { name: 'blue', value: '#4A5568', checked: true },
-    { name: 'brown', value: '#8B4513', checked: false },
-  ];
-
-  const relatedProducts = [
-    {
-      id: 1,
-      name: 'Toilette',
-      originalPrice: '$65',
-      discountedPrice: '$45',
-      image: 'https://images.unsplash.com/photo-1541643600914-78b084683601?w=200&h=200&fit=crop',
-      rating: 3,
-    },
-    {
-      id: 2,
-      name: 'Bibliotheque',
-      originalPrice: '$65',
-      discountedPrice: '$45',
-      image: 'https://images.unsplash.com/photo-1594035910387-fea47794261f?w=200&h=200&fit=crop',
-      rating: 4,
-    },
-    {
-      id: 3,
-      name: 'Tuscan Creations',
-      originalPrice: '$65',
-      discountedPrice: '$45',
-      image: 'https://images.unsplash.com/photo-1606760227091-3dd870d97f1d?w=200&h=200&fit=crop',
-      rating: 3.5,
-    },
-  ];
-
-  const productImages = [
-    'https://images.unsplash.com/photo-1594035910387-fea47794261f?w=600&h=600&fit=crop',
-    'https://images.unsplash.com/photo-1541643600914-78b084683601?w=600&h=600&fit=crop',
-    'https://images.unsplash.com/photo-1606760227091-3dd870d97f1d?w=600&h=600&fit=crop',
-  ];
+  const productImages = product.images;
 
   const testimonials = [
     {
@@ -88,32 +83,16 @@ export default function ProductDetails() {
     },
   ];
 
-  const youMayAlsoLike = [
-    {
-      id: 1,
-      name: 'Toilette',
-      originalPrice: '$65',
-      discountedPrice: '$45',
-      image: 'https://images.unsplash.com/photo-1541643600914-78b084683601?w=300&h=400&fit=crop',
-      rating: 3,
-    },
-    {
-      id: 2,
-      name: 'Bibliotheque',
-      originalPrice: '$65',
-      discountedPrice: '$45',
-      image: 'https://images.unsplash.com/photo-1594035910387-fea47794261f?w=300&h=400&fit=crop',
-      rating: 4,
-    },
-    {
-      id: 3,
-      name: 'Hypnotic Poison',
-      originalPrice: '$65',
-      discountedPrice: '$45',
-      image: 'https://images.unsplash.com/photo-1606760227091-3dd870d97f1d?w=300&h=400&fit=crop',
-      rating: 4.5,
-    },
-  ];
+  const youMayAlsoLike = productDetailsData.productDetails
+    .filter(p => p.id !== product.id)
+    .map(p => ({
+      id: p.id,
+      name: p.name,
+      originalPrice: `$${p.originalPrice}`,
+      discountedPrice: `$${p.discountedPrice}`,
+      image: p.images[0],
+      rating: p.rating,
+    }));
 
   const nextRelatedProduct = () => {
     setRelatedProductIndex((prev) => (prev + 1) % relatedProducts.length);
@@ -140,15 +119,15 @@ export default function ProductDetails() {
       <div className="bg-white border-b border-gray-200 py-3">
         <div className="container mx-auto px-4">
           <nav className="text-sm text-gray-600">
-            <Link href="/" className="hover:text-[#AB8E66] transition-colors">
+            <Link href="/" className="hover:text-[#00A7E1] transition-colors">
               Home
             </Link>
             <span className="mx-2">»</span>
-            <Link href="/" className="hover:text-[#AB8E66] transition-colors">
+            <Link href="/" className="hover:text-[#00A7E1] transition-colors">
               Accents
             </Link>
             <span className="mx-2">»</span>
-            <span className="text-black">Glorious Eau</span>
+            <span className="text-black">{product.name}</span>
           </nav>
         </div>
       </div>
@@ -169,9 +148,9 @@ export default function ProductDetails() {
                     <label className="flex items-center cursor-pointer group">
                       <input
                         type="checkbox"
-                        className="w-4 h-4 text-[#AB8E66] border-gray-300 rounded focus:ring-[#AB8E66] focus:ring-2"
+                        className="w-4 h-4 text-[#00A7E1] border-gray-300 rounded focus:ring-[#00A7E1] focus:ring-2"
                       />
-                      <span className="ml-3 text-sm text-black group-hover:text-[#AB8E66] transition-colors">
+                      <span className="ml-3 text-sm text-black group-hover:text-[#00A7E1] transition-colors">
                         {category}
                       </span>
                     </label>
@@ -195,11 +174,11 @@ export default function ProductDetails() {
                         href={`/product/${productSlug}`}
                         className="block group"
                       >
-                        <div className="flex gap-3 border border-gray-200 rounded-lg p-2 hover:border-[#AB8E66] hover:shadow-md transition-all">
+                        <div className="flex gap-3 border border-gray-200 rounded-lg p-2 hover:border-[#00A7E1] hover:shadow-md transition-all">
                           {/* Product Image */}
                           <div className="relative w-20 h-20 bg-gray-50 rounded overflow-hidden">
                             <div className="absolute top-1 left-1 z-10">
-                              <span className="bg-[#AB8E66] text-white text-[10px] font-semibold px-1.5 py-0.5 rounded">
+                              <span className="bg-[#00A7E1] text-white text-[10px] font-semibold px-1.5 py-0.5 rounded">
                                 New
                               </span>
                             </div>
@@ -212,7 +191,7 @@ export default function ProductDetails() {
                           </div>
                           {/* Product Info */}
                           <div className="flex-1 min-w-0">
-                            <h4 className="text-sm font-semibold text-black mb-1 truncate group-hover:text-[#AB8E66] transition-colors">
+                            <h4 className="text-sm font-semibold text-black mb-1 truncate group-hover:text-[#00A7E1] transition-colors">
                               {product.name}
                             </h4>
                             {/* Star Rating */}
@@ -222,7 +201,7 @@ export default function ProductDetails() {
                                   key={star}
                                   className={`w-3 h-3 ${
                                     star <= product.rating
-                                      ? 'text-[#AB8E66] fill-current'
+                                      ? 'text-[#00A7E1] fill-current'
                                       : 'text-gray-300'
                                   }`}
                                   viewBox="0 0 24 24"
@@ -243,7 +222,7 @@ export default function ProductDetails() {
                               <span className="text-xs text-gray-400 line-through">
                                 {product.originalPrice}
                               </span>
-                              <span className="text-sm font-bold text-[#AB8E66]">
+                              <span className="text-sm font-bold text-[#00A7E1]">
                                 {product.discountedPrice}
                               </span>
                             </div>
@@ -255,7 +234,7 @@ export default function ProductDetails() {
                 </div>
                 {/* Navigation Arrows */}
                 <div className="flex justify-between mt-4">
-                  <button className="w-8 h-8 border border-gray-300 rounded flex items-center justify-center hover:bg-[#AB8E66] hover:text-white hover:border-[#AB8E66] transition-colors">
+                  <button className="w-8 h-8 border border-gray-300 rounded flex items-center justify-center hover:bg-[#00A7E1] hover:text-white hover:border-[#00A7E1] transition-colors">
                     <svg
                       className="w-4 h-4"
                       fill="none"
@@ -270,7 +249,7 @@ export default function ProductDetails() {
                       />
                     </svg>
                   </button>
-                  <button className="w-8 h-8 border border-gray-300 rounded flex items-center justify-center hover:bg-[#AB8E66] hover:text-white hover:border-[#AB8E66] transition-colors">
+                  <button className="w-8 h-8 border border-gray-300 rounded flex items-center justify-center hover:bg-[#00A7E1] hover:text-white hover:border-[#00A7E1] transition-colors">
                     <svg
                       className="w-4 h-4"
                       fill="none"
@@ -299,12 +278,12 @@ export default function ProductDetails() {
                 <div className="relative aspect-square bg-white border border-gray-200 rounded-lg overflow-hidden mb-4">
                   <Image
                     src={productImages[selectedImage]}
-                    alt="Glorious Eau Perfume"
+                    alt={product.name}
                     fill
                     className="object-contain p-8"
                   />
                   {/* Zoom Icon */}
-                  <button className="absolute top-4 right-4 w-10 h-10 bg-white/90 hover:bg-[#AB8E66] rounded-full flex items-center justify-center transition-colors shadow-md z-10">
+                  <button className="absolute top-4 right-4 w-10 h-10 bg-white/90 hover:bg-[#00A7E1] rounded-full flex items-center justify-center transition-colors shadow-md z-10">
                     <svg
                       className="w-5 h-5 text-gray-700 hover:text-white"
                       fill="none"
@@ -330,7 +309,7 @@ export default function ProductDetails() {
                         onClick={() => setSelectedImage(index)}
                         className={` w-20 h-20 border-2 rounded overflow-hidden transition-all ${
                           selectedImage === index
-                            ? 'border-[#AB8E66] ring-2 ring-[#AB8E66] ring-offset-1'
+                            ? 'border-[#00A7E1] ring-2 ring-[#00A7E1] ring-offset-1'
                             : 'border-gray-200 hover:border-gray-300'
                         }`}
                       >
@@ -346,7 +325,7 @@ export default function ProductDetails() {
                     ))}
                   </div>
                   {/* Navigation Arrows for Thumbnails */}
-                  <button className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-2 w-8 h-8 bg-white border border-gray-300 rounded-full flex items-center justify-center shadow-md hover:bg-[#AB8E66] hover:text-white hover:border-[#AB8E66] transition-colors">
+                  <button className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-2 w-8 h-8 bg-white border border-gray-300 rounded-full flex items-center justify-center shadow-md hover:bg-[#00A7E1] hover:text-white hover:border-[#00A7E1] transition-colors">
                     <svg
                       className="w-4 h-4"
                       fill="none"
@@ -361,7 +340,7 @@ export default function ProductDetails() {
                       />
                     </svg>
                   </button>
-                  <button className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-2 w-8 h-8 bg-white border border-gray-300 rounded-full flex items-center justify-center shadow-md hover:bg-[#AB8E66] hover:text-white hover:border-[#AB8E66] transition-colors">
+                  <button className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-2 w-8 h-8 bg-white border border-gray-300 rounded-full flex items-center justify-center shadow-md hover:bg-[#00A7E1] hover:text-white hover:border-[#00A7E1] transition-colors">
                     <svg
                       className="w-4 h-4"
                       fill="none"
@@ -382,7 +361,7 @@ export default function ProductDetails() {
               {/* Product Details */}
               <div>
                 <h1 className="text-3xl md:text-4xl font-bold text-black mb-4">
-                  Glorious Eau
+                  {product.name}
                 </h1>
 
                 {/* Rating */}
@@ -390,96 +369,115 @@ export default function ProductDetails() {
                   {[1, 2, 3, 4, 5].map((star) => (
                     <svg
                       key={star}
-                      className="w-5 h-5 text-[#AB8E66] fill-current"
+                      className={`w-5 h-5 ${star <= product.rating ? 'text-[#00A7E1] fill-current' : 'text-gray-300'}`}
                       viewBox="0 0 24 24"
                     >
                       <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
                     </svg>
                   ))}
+                  <span className="text-sm text-gray-600 ml-2">({product.reviews} reviews)</span>
                 </div>
 
                 {/* Availability */}
                 <p className="text-sm text-gray-600 mb-4">
-                  Availability: <span className="text-green-600 font-semibold">In Stock</span>
+                  Availability: <span className={product.inStock ? "text-green-600 font-semibold" : "text-red-600 font-semibold"}>
+                    {product.inStock ? 'In Stock' : 'Out of Stock'}
+                  </span>
                 </p>
 
                 {/* Price */}
                 <div className="mb-6">
-                  <span className="text-4xl font-bold text-black">$45</span>
+                  {product.originalPrice !== product.discountedPrice && (
+                    <span className="text-2xl text-gray-400 line-through mr-3">${product.originalPrice}</span>
+                  )}
+                  <span className="text-4xl font-bold text-black">${product.discountedPrice}</span>
+                  {product.discount > 0 && (
+                    <span className="ml-3 text-sm bg-red-100 text-red-600 px-2 py-1 rounded">
+                      {product.discount}% OFF
+                    </span>
+                  )}
                 </div>
 
                 {/* Description/Features */}
                 <div className="mb-6">
+                  <p className="text-sm text-gray-700 mb-3">{product.shortDescription}</p>
                   <ul className="space-y-2 text-sm text-gray-700">
-                    <li>• Vestibulum tortor quam</li>
-                    <li>• Imported</li>
-                    <li>• Art.No. 06-7680</li>
+                    {product.features.slice(0, 3).map((feature, index) => (
+                      <li key={index}>• {feature}</li>
+                    ))}
                   </ul>
                 </div>
 
                 {/* Color Selection */}
-                <div className="mb-6">
-                  <label className="block text-sm font-semibold text-black mb-3">
-                    Color:
-                  </label>
-                  <div className="flex gap-3">
-                    {colors.map((color) => (
-                      <button
-                        key={color.name}
-                        onClick={() => setSelectedColor(color.name)}
-                        className={`w-10 h-10 rounded border-2 transition-all ${
-                          selectedColor === color.name
-                            ? 'border-[#AB8E66] ring-2 ring-[#AB8E66] ring-offset-2'
-                            : 'border-gray-300 hover:border-gray-400'
-                        }`}
-                        style={{ backgroundColor: color.value }}
-                        aria-label={`Select ${color.name} color`}
-                      >
-                        {selectedColor === color.name && (
-                          <svg
-                            className="w-6 h-6 text-white mx-auto"
-                            fill="none"
-                            stroke="currentColor"
-                            viewBox="0 0 24 24"
-                          >
-                            <path
-                              strokeLinecap="round"
-                              strokeLinejoin="round"
-                              strokeWidth={3}
-                              d="M5 13l4 4L19 7"
-                            />
-                          </svg>
-                        )}
-                      </button>
-                    ))}
+                {product.colors && product.colors.length > 0 && (
+                  <div className="mb-6">
+                    <label className="block text-sm font-semibold text-black mb-3">
+                      Color:
+                    </label>
+                    <div className="flex gap-3">
+                      {product.colors.map((color, index) => (
+                        <button
+                          key={index}
+                          onClick={() => setSelectedColor(index)}
+                          className={`w-10 h-10 rounded border-2 transition-all ${
+                            selectedColor === index
+                              ? 'border-[#00A7E1] ring-2 ring-[#00A7E1] ring-offset-2'
+                              : 'border-gray-300 hover:border-gray-400'
+                          }`}
+                          style={{ backgroundColor: color.value }}
+                          aria-label={`Select ${color.name} color`}
+                        >
+                          {selectedColor === index && (
+                            <svg
+                              className="w-6 h-6 text-white mx-auto"
+                              fill="none"
+                              stroke="currentColor"
+                              viewBox="0 0 24 24"
+                            >
+                              <path
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                strokeWidth={3}
+                                d="M5 13l4 4L19 7"
+                              />
+                            </svg>
+                          )}
+                        </button>
+                      ))}
+                    </div>
                   </div>
-                </div>
+                )}
 
                 {/* Size Selection */}
-                <div className="mb-6">
-                  <label className="block text-sm font-semibold text-black mb-3">
-                    Pots Size:
-                  </label>
-                  <div className="flex flex-wrap gap-2">
-                    {sizes.map((size) => (
-                      <button
-                        key={size}
-                        onClick={() => setSelectedSize(size)}
-                        className={`px-4 py-2 border-2 rounded transition-all text-sm font-semibold ${
-                          selectedSize === size
-                            ? 'bg-[#AB8E66] text-white border-[#AB8E66]'
-                            : 'bg-white text-black border-gray-300 hover:border-[#AB8E66]'
-                        }`}
-                      >
-                        {size}
-                      </button>
-                    ))}
+                {product.sizes && product.sizes.length > 0 && (
+                  <div className="mb-6">
+                    <label className="block text-sm font-semibold text-black mb-3">
+                      Size:
+                    </label>
+                    <div className="flex flex-wrap gap-2">
+                      {product.sizes.map((size, index) => (
+                        <button
+                          key={index}
+                          onClick={() => setSelectedSize(index)}
+                          disabled={!size.available}
+                          className={`px-4 py-2 border-2 rounded transition-all text-sm font-semibold ${
+                            selectedSize === index
+                              ? 'bg-[#00A7E1] text-white border-[#00A7E1]'
+                              : size.available
+                              ? 'bg-white text-black border-gray-300 hover:border-[#00A7E1]'
+                              : 'bg-gray-100 text-gray-400 border-gray-200 cursor-not-allowed'
+                          }`}
+                        >
+                          {size.size}
+                        </button>
+                      ))}
+                    </div>
                   </div>
-                </div>
+                )}
 
                 {/* Action Links */}
                 <div className="flex gap-6 mb-6">
-                  <button className="flex items-center gap-2 text-black hover:text-[#AB8E66] transition-colors">
+                  <button className="flex items-center gap-2 text-black hover:text-[#00A7E1] transition-colors">
                     <svg
                       className="w-5 h-5"
                       fill="none"
@@ -495,7 +493,7 @@ export default function ProductDetails() {
                     </svg>
                     <span className="text-sm">Add to Wishlist</span>
                   </button>
-                  <button className="flex items-center gap-2 text-black hover:text-[#AB8E66] transition-colors">
+                  <button className="flex items-center gap-2 text-black hover:text-[#00A7E1] transition-colors">
                     <svg
                       className="w-5 h-5"
                       fill="none"
@@ -556,7 +554,7 @@ export default function ProductDetails() {
                       </svg>
                     </button>
                   </div>
-                  <button className="flex-1 bg-[#AB8E66] hover:bg-[#8F7455] text-white font-bold py-3 px-6 rounded transition-colors">
+                  <button className="flex-1 bg-[#00A7E1] hover:bg-[#8F7455] text-white font-bold py-3 px-6 rounded transition-colors">
                     ADD TO CART
                   </button>
                 </div>
@@ -571,39 +569,39 @@ export default function ProductDetails() {
                   onClick={() => setActiveTab('descriptions')}
                   className={`px-6 py-3 font-semibold text-sm uppercase transition-colors relative ${
                     activeTab === 'descriptions'
-                      ? 'text-[#AB8E66]'
+                      ? 'text-[#00A7E1]'
                       : 'text-gray-600 hover:text-black'
                   }`}
                 >
                   DESCRIPTIONS
                   {activeTab === 'descriptions' && (
-                    <span className="absolute bottom-0 left-0 right-0 h-0.5 bg-[#AB8E66]"></span>
+                    <span className="absolute bottom-0 left-0 right-0 h-0.5 bg-[#00A7E1]"></span>
                   )}
                 </button>
                 <button
                   onClick={() => setActiveTab('information')}
                   className={`px-6 py-3 font-semibold text-sm uppercase transition-colors relative ${
                     activeTab === 'information'
-                      ? 'text-[#AB8E66]'
+                      ? 'text-[#00A7E1]'
                       : 'text-gray-600 hover:text-black'
                   }`}
                 >
                   INFORMATION
                   {activeTab === 'information' && (
-                    <span className="absolute bottom-0 left-0 right-0 h-0.5 bg-[#AB8E66]"></span>
+                    <span className="absolute bottom-0 left-0 right-0 h-0.5 bg-[#00A7E1]"></span>
                   )}
                 </button>
                 <button
                   onClick={() => setActiveTab('reviews')}
                   className={`px-6 py-3 font-semibold text-sm uppercase transition-colors relative ${
                     activeTab === 'reviews'
-                      ? 'text-[#AB8E66]'
+                      ? 'text-[#00A7E1]'
                       : 'text-gray-600 hover:text-black'
                   }`}
                 >
                   REVIEWS
                   {activeTab === 'reviews' && (
-                    <span className="absolute bottom-0 left-0 right-0 h-0.5 bg-[#AB8E66]"></span>
+                    <span className="absolute bottom-0 left-0 right-0 h-0.5 bg-[#00A7E1]"></span>
                   )}
                 </button>
               </div>
@@ -611,24 +609,56 @@ export default function ProductDetails() {
               {/* Tab Content */}
               <div className="text-gray-700 leading-relaxed">
                 {activeTab === 'descriptions' && (
-                  <p>
-                    Quisque quis ipsum venenatis, fermentum ante volutpat, ornare enim. Phasellus molestie risus non aliquet cursus. Integer vestibulum mi lorem, id hendrerit ante lobortis non. Nunc ante ante, lobortis non pretium non, vulputate vel nisi. Maecenas dolor elit, pulvinar eu vehicula eu, consequat et lacus. Duis et turpis mauris, vitae cursus leo. Suspendisse pretium gravida lectus, ut malesuada odio venenatis vel. Nam sed malesuada elit, quis luctus eros. Cras id elit in lorem malesuada imperdiet vestibulum vitae ipsum. Quisque ut tortor rhoncus, imperdiet felis non, viverra risus.
-                  </p>
+                  <div>
+                    <p className="mb-4">{product.fullDescription}</p>
+                    {product.howToUse && (
+                      <div className="mt-4">
+                        <h4 className="font-semibold mb-2">How to Use:</h4>
+                        <p>{product.howToUse}</p>
+                      </div>
+                    )}
+                  </div>
                 )}
                 {activeTab === 'information' && (
                   <div className="space-y-4">
                     <p><strong>Product Information:</strong></p>
                     <ul className="list-disc list-inside space-y-2">
-                      <li>Material: Premium Glass and Gold</li>
-                      <li>Size: Available in multiple sizes</li>
-                      <li>Origin: Imported</li>
-                      <li>Art.No: 06-7680</li>
+                      <li>Brand: {product.brand}</li>
+                      <li>SKU: {product.sku}</li>
+                      <li>Category: {product.category}</li>
+                      {Object.entries(product.specifications).map(([key, value]) => (
+                        <li key={key}>{key}: {value}</li>
+                      ))}
                     </ul>
                   </div>
                 )}
                 {activeTab === 'reviews' && (
-                  <div className="space-y-4">
-                    <p>No reviews yet. Be the first to review this product!</p>
+                  <div className="space-y-6">
+                    {product.reviewsData && product.reviewsData.length > 0 ? (
+                      product.reviewsData.map(review => (
+                        <div key={review.id} className="border-b border-gray-200 pb-4">
+                          <div className="flex items-center gap-2 mb-2">
+                            <div className="flex">
+                              {[1, 2, 3, 4, 5].map((star) => (
+                                <svg
+                                  key={star}
+                                  className={`w-4 h-4 ${star <= review.rating ? 'text-[#00A7E1] fill-current' : 'text-gray-300'}`}
+                                  viewBox="0 0 24 24"
+                                >
+                                  <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+                                </svg>
+                              ))}
+                            </div>
+                            <span className="font-semibold">{review.author}</span>
+                            {review.verified && <span className="text-xs text-green-600">(Verified)</span>}
+                          </div>
+                          <p className="text-sm text-gray-600 mb-2">{review.date}</p>
+                          <p>{review.comment}</p>
+                        </div>
+                      ))
+                    ) : (
+                      <p>No reviews yet. Be the first to review this product!</p>
+                    )}
                   </div>
                 )}
               </div>
@@ -642,7 +672,7 @@ export default function ProductDetails() {
                 <h2 className="text-2xl font-bold text-black uppercase mb-3">
                   YOU MAY ALSO LIKE
                 </h2>
-                <div className="w-16 h-0.5 bg-[#AB8E66] mx-auto"></div>
+                <div className="w-16 h-0.5 bg-[#00A7E1] mx-auto"></div>
               </div>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -658,7 +688,7 @@ export default function ProductDetails() {
                         {/* Product Image */}
                         <div className="relative h-64 bg-gray-50">
                           <div className="absolute top-3 left-3 z-10">
-                            <span className="bg-[#AB8E66] text-white text-xs font-semibold px-3 py-1 rounded-full">
+                            <span className="bg-[#00A7E1] text-white text-xs font-semibold px-3 py-1 rounded-full">
                               New
                             </span>
                           </div>
@@ -672,7 +702,7 @@ export default function ProductDetails() {
 
                         {/* Product Info */}
                         <div className="p-4">
-                          <h3 className="text-lg font-bold text-black mb-2 text-center group-hover:text-[#AB8E66] transition-colors">
+                          <h3 className="text-lg font-bold text-black mb-2 text-center group-hover:text-[#00A7E1] transition-colors">
                             {product.name}
                           </h3>
                           {/* Star Rating */}
@@ -692,7 +722,7 @@ export default function ProductDetails() {
                                   key={star}
                                   className={`w-4 h-4 ${
                                     star <= product.rating
-                                      ? 'text-[#AB8E66] fill-current'
+                                      ? 'text-[#00A7E1] fill-current'
                                       : 'text-gray-300'
                                   }`}
                                   viewBox="0 0 24 24"
@@ -714,7 +744,7 @@ export default function ProductDetails() {
                             <span className="text-gray-400 line-through mr-2">
                               {product.originalPrice}
                             </span>
-                            <span className="text-[#AB8E66] font-bold text-lg">
+                            <span className="text-[#00A7E1] font-bold text-lg">
                               {product.discountedPrice}
                             </span>
                           </div>

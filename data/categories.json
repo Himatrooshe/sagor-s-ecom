@@ -1,0 +1,64 @@
+{
+  "categories": [
+    {
+      "id": 1,
+      "name": "Perfume & Fragrance",
+      "slug": "perfume-fragrance",
+      "description": "Discover our exquisite collection of perfumes and fragrances from world-renowned brands",
+      "image": "https://images.unsplash.com/photo-1541643600914-78b084683601?w=400&h=300&fit=crop",
+      "icon": "🌸",
+      "featured": true,
+      "productCount": 45
+    },
+    {
+      "id": 2,
+      "name": "Watch",
+      "slug": "watch",
+      "description": "Luxury and sports watches from prestigious brands",
+      "image": "https://images.unsplash.com/photo-1523170335258-f5ed11844a49?w=400&h=300&fit=crop",
+      "icon": "⌚",
+      "featured": true,
+      "productCount": 32
+    },
+    {
+      "id": 3,
+      "name": "Beauty and Skincare",
+      "slug": "beauty-skincare",
+      "description": "Premium skincare products for radiant and healthy skin",
+      "image": "https://images.unsplash.com/photo-1556228578-0d85b1a4d571?w=400&h=300&fit=crop",
+      "icon": "💄",
+      "featured": true,
+      "productCount": 78
+    },
+    {
+      "id": 4,
+      "name": "Gadget Items",
+      "slug": "gadget-items",
+      "description": "Latest technology gadgets and smart devices",
+      "image": "https://images.unsplash.com/photo-1606841837239-c5a1a4a07af7?w=400&h=300&fit=crop",
+      "icon": "📱",
+      "featured": true,
+      "productCount": 56
+    },
+    {
+      "id": 5,
+      "name": "Ladies Items",
+      "slug": "ladies-items",
+      "description": "Elegant accessories and fashion items for women",
+      "image": "https://images.unsplash.com/photo-1584917865442-de89df76afd3?w=400&h=300&fit=crop",
+      "icon": "👜",
+      "featured": true,
+      "productCount": 64
+    },
+    {
+      "id": 6,
+      "name": "Shoes Collection",
+      "slug": "shoes-collection",
+      "description": "Trendy footwear for every style and occasion",
+      "image": "https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=400&h=300&fit=crop",
+      "icon": "👟",
+      "featured": true,
+      "productCount": 89
+    }
+  ]
+}

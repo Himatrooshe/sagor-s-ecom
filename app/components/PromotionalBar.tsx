@@ -2,7 +2,7 @@
 
 export default function PromotionalBar() {
   return (
-    <section className="bg-[#AB8E66] text-white py-6 md:py-8">
+    <section className="bg-[#00A7E1] text-white py-6 md:py-8">
       <div className="container mx-auto px-4">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
           {/* EU FREE DELIVERY */}

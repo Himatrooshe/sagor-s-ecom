@@ -1,116 +1,95 @@
 'use client';
 
-import Image from 'next/image';
-import { useState } from 'react';
+import Link from 'next/link';
 
 export default function HeroSection() {
-  const [currentSlide, setCurrentSlide] = useState(0);
-
   return (
-    <section className="bg-white py-8">
-      <div className="container mx-auto px-4">
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-          {/* Left Section - Large Hero Banner */}
-          <div className="lg:col-span-2 relative bg-gradient-to-br from-blue-50 to-white rounded-lg overflow-hidden">
-            <div className="grid md:grid-cols-2 gap-6 p-6 md:p-8">
-              {/* Text Content */}
-              <div className="flex flex-col justify-center gap-3 md:gap-4">
-                <div className="text-[#AB8E66] font-bold text-base md:text-lg lg:text-xl">
-                  SALE UP TO 40% OFF!
-                </div>
-                <h1 className="text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold text-black leading-tight">
-                  Spring Summer Collection
-                </h1>
-                <div className="text-[#AB8E66] text-xl md:text-2xl lg:text-3xl font-bold">
-                  New Price: $270.00
-                </div>
-                <button className="text-black font-semibold text-base md:text-lg underline hover:text-[#AB8E66] transition-colors self-start mt-2">
-                  SHOP NOW
-                </button>
-              </div>
+    <section className="relative w-full h-[70vh] md:h-[85vh] lg:h-screen overflow-hidden">
+      {/* Video Background */}
+      <div className="absolute inset-0 w-full h-full">
+        <video
+          autoPlay
+          loop
+          muted
+          playsInline
+          className="w-full h-full object-cover"
+        >
+          <source
+            src="https://res.cloudinary.com/dp0la6xmd/video/upload/v1767873687/4154241-uhd_4096_2160_25fps_lptzg0.mp4"
+            type="video/mp4"
+          />
+          Your browser does not support the video tag.
+        </video>
+      </div>
 
-              {/* Image */}
-              <div className="relative h-64 md:h-80 lg:h-96 flex items-center justify-center">
-                <Image
-                  src="https://images.unsplash.com/photo-1594035910387-fea47794261f?w=600&h=800&fit=crop"
-                  alt="Perfume Bottle"
-                  fill
-                  className="object-contain"
-                  priority
-                />
-              </div>
+      {/* Overlay for better text readability */}
+      <div className="absolute inset-0 bg-black/40"></div>
+
+      {/* Content */}
+      <div className="relative z-10 h-full flex items-center justify-center">
+        <div className="container mx-auto px-4 text-center">
+          <div className="max-w-3xl mx-auto space-y-6 md:space-y-8">
+            {/* Badge */}
+            <div className="inline-block bg-[#00A7E1] text-white px-6 py-2 md:px-8 md:py-3 rounded-full font-bold text-sm md:text-base lg:text-lg uppercase tracking-wide">
+              SALE UP TO 40% OFF!
             </div>
 
-            {/* Pagination Dots */}
-            <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex gap-2">
-              {[0, 1, 2].map((dot) => (
-                <button
-                  key={dot}
-                  onClick={() => setCurrentSlide(dot)}
-                  className={`w-3 h-3 rounded-full transition-colors ${
-                    dot === currentSlide
-                      ? 'bg-[#AB8E66]'
-                      : 'bg-gray-300'
-                  }`}
-                  aria-label={`Go to slide ${dot + 1}`}
-                />
-              ))}
-            </div>
-          </div>
+            {/* Main Heading */}
+            <h1 className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-white leading-tight drop-shadow-lg">
+              Spring Summer
+              <br />
+              <span className="text-[#00A7E1]">Collection</span>
+            </h1>
 
-          {/* Right Section - Two Smaller Banners */}
-          <div className="lg:col-span-1 flex flex-col gap-6">
-            {/* Top Right Banner */}
-            <div className="bg-gradient-to-br from-blue-50 to-white rounded-lg p-4 md:p-6 flex flex-col md:flex-row lg:flex-col gap-4 h-full">
-              <div className="flex-1 flex flex-col justify-between order-2 md:order-1 lg:order-1">
-                <div>
-                  <h2 className="text-lg md:text-xl lg:text-2xl font-bold text-black mb-2">
-                    Pick Your Items
-                  </h2>
-                  <p className="text-xs md:text-sm text-gray-600 mb-3 md:mb-4">
-                    Adipiscing elit curabitur senectus sem
-                  </p>
-                  <button className="text-black font-semibold text-sm md:text-base underline hover:text-[#AB8E66] transition-colors">
-                    SHOP NOW
-                  </button>
-                </div>
-              </div>
-              <div className="relative h-40 md:h-48 lg:h-48 flex items-center justify-center order-1 md:order-2 lg:order-2">
-                <Image
-                  src="https://images.unsplash.com/photo-1606760227091-3dd870d97f1d?w=400&h=600&fit=crop"
-                  alt="Shoe-shaped Perfume Bottle"
-                  fill
-                  className="object-contain"
-                />
-              </div>
+            {/* Subtitle */}
+            <p className="text-lg md:text-xl lg:text-2xl text-white/90 drop-shadow-md max-w-2xl mx-auto">
+              Discover our exquisite collection of premium products
+            </p>
+
+            {/* Price */}
+            <div className="flex items-center justify-center gap-3 md:gap-4">
+              <span className="text-white/70 line-through text-xl md:text-2xl lg:text-3xl">
+                $450.00
+              </span>
+              <span className="text-[#00A7E1] font-bold text-3xl md:text-4xl lg:text-5xl">
+                $270.00
+              </span>
             </div>
 
-            {/* Bottom Right Banner */}
-            <div className="bg-gradient-to-br from-blue-50 to-white rounded-lg p-4 md:p-6 flex flex-col md:flex-row lg:flex-col gap-4 h-full">
-              <div className="flex-1 flex flex-col justify-between order-2 md:order-1 lg:order-1">
-                <div>
-                  <h2 className="text-lg md:text-xl lg:text-2xl font-bold text-black mb-2">
-                    Best Of Products
-                  </h2>
-                  <p className="text-xs md:text-sm text-gray-600 mb-2">
-                    Cras pulvinar loresum dolor conse
-                  </p>
-                  <div className="text-[#AB8E66] text-xl md:text-2xl font-bold mb-3 md:mb-4">
-                    $379.00
-                  </div>
-                </div>
-              </div>
-              <div className="relative h-40 md:h-48 lg:h-48 flex items-center justify-center order-1 md:order-2 lg:order-2">
-                <Image
-                  src="https://images.unsplash.com/photo-1541643600914-78b084683601?w=400&h=600&fit=crop"
-                  alt="Rectangular Perfume Bottle"
-                  fill
-                  className="object-contain"
-                />
-              </div>
+            {/* CTA Buttons */}
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-4 md:gap-6 pt-4">
+              <Link
+                href="/shop"
+                className="bg-[#00A7E1] hover:bg-[#8F7455] text-white font-bold px-8 md:px-12 py-3 md:py-4 rounded-lg text-base md:text-lg lg:text-xl uppercase tracking-wide transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl"
+              >
+                Shop Now
+              </Link>
+              <Link
+                href="/about"
+                className="bg-white/10 backdrop-blur-sm hover:bg-white/20 text-white font-bold px-8 md:px-12 py-3 md:py-4 rounded-lg text-base md:text-lg lg:text-xl uppercase tracking-wide transition-all duration-300 border-2 border-white/30 hover:border-white/50"
+              >
+                Learn More
+              </Link>
             </div>
           </div>
         </div>
+      </div>
+
+      {/* Scroll Indicator */}
+      <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-10 animate-bounce">
+        <svg
+          className="w-6 h-6 md:w-8 md:h-8 text-white"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+        >
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth={2}
+            d="M19 14l-7 7m0 0l-7-7m7 7V3"
+          />
+        </svg>
       </div>
     </section>
   );

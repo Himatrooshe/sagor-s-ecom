@@ -1,0 +1,61 @@
+{
+  "products": [
+    {
+      "id": 1,
+      "name": "Blue DE Chanel 30ML",
+      "slug": "blue-de-chanel-30ml",
+      "category": "Perfume & Fragrance",
+      "originalPrice": 120,
+      "discountedPrice": 95,
+      "discount": 21,
+      "image": "https://res.cloudinary.com/dp0la6xmd/image/upload/v1767873198/2025_12_22_09_09_IMG_2288_t3eyhk.png",
+      "hoverImage": "https://res.cloudinary.com/dp0la6xmd/image/upload/v1767873198/2025_12_22_09_09_IMG_2288_t3eyhk.png",
+      "rating": 5,
+      "reviews": 156,
+      "isNew": true,
+      "isFeatured": true,
+      "inStock": true,
+      "stockQuantity": 25,
+      "badge": "New",
+      "shortDescription": "A sophisticated woody aromatic fragrance for men"
+    },
+    {
+      "id": 2,
+      "name": "Vempire Blood 30ML",
+      "slug": "vempire-blood-30ml",
+      "category": "Perfume & Fragrance",
+      "originalPrice": 85,
+      "discountedPrice": 68,
+      "discount": 20,
+      "image": "https://res.cloudinary.com/dp0la6xmd/image/upload/v1767873197/2025_12_23_21_45_IMG_2324_rw1hzh.png",
+      "hoverImage": "https://res.cloudinary.com/dp0la6xmd/image/upload/v1767873197/2025_12_23_21_45_IMG_2324_rw1hzh.png",
+      "rating": 4.8,
+      "reviews": 89,
+      "isNew": true,
+      "isFeatured": true,
+      "inStock": true,
+      "stockQuantity": 30,
+      "badge": "New",
+      "shortDescription": "An intriguing and mysterious fragrance with dark notes"
+    },
+    {
+      "id": 3,
+      "name": "Crocs Classic Clogs",
+      "slug": "crocs-classic-clogs",
+      "category": "Shoes Collection",
+      "originalPrice": 55,
+      "discountedPrice": 45,
+      "discount": 18,
+      "image": "https://res.cloudinary.com/dp0la6xmd/image/upload/v1767873196/shoe_h0j8oy.jpg",
+      "hoverImage": "https://res.cloudinary.com/dp0la6xmd/image/upload/v1767873196/shoe_h0j8oy.jpg",
+      "rating": 4.7,
+      "reviews": 234,
+      "isNew": false,
+      "isFeatured": true,
+      "inStock": true,
+      "stockQuantity": 50,
+      "badge": "Popular",
+      "shortDescription": "Comfortable and iconic lightweight clogs"
+    }
+  ]
+}
