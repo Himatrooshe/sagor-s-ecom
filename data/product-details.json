@@ -7,9 +7,9 @@
       "category": "Perfume & Fragrance",
       "brand": "Chanel",
       "sku": "CHN-BLUE-30ML",
-      "originalPrice": 120,
-      "discountedPrice": 95,
-      "discount": 21,
+      "originalPrice": 599,
+      "discountedPrice": 499,
+      "discount": 17,
       "rating": 5,
       "reviews": 156,
       "inStock": true,
@@ -32,7 +32,7 @@
       "sizes": [
         {
           "size": "30ml",
-          "price": 95,
+          "price": 499,
           "available": true
         }
       ],
@@ -95,9 +95,9 @@
       "category": "Perfume & Fragrance",
       "brand": "Vempire",
       "sku": "VMP-BLOOD-30ML",
-      "originalPrice": 85,
-      "discountedPrice": 68,
-      "discount": 20,
+      "originalPrice": 599,
+      "discountedPrice": 499,
+      "discount": 17,
       "rating": 4.8,
       "reviews": 89,
       "inStock": true,
@@ -120,7 +120,7 @@
       "sizes": [
         {
           "size": "30ml",
-          "price": 68,
+          "price": 499,
           "available": true
         }
       ],
@@ -192,9 +192,9 @@
       "category": "Shoes Collection",
       "brand": "Crocs",
       "sku": "CRC-CLSC-CLG",
-      "originalPrice": 55,
-      "discountedPrice": 45,
-      "discount": 18,
+      "originalPrice": 1299,
+      "discountedPrice": 1099,
+      "discount": 15,
       "rating": 4.7,
       "reviews": 234,
       "inStock": true,
@@ -217,22 +217,22 @@
       "sizes": [
         {
           "size": "M7/W9",
-          "price": 45,
+          "price": 1099,
           "available": true
         },
         {
           "size": "M8/W10",
-          "price": 45,
+          "price": 1099,
           "available": true
         },
         {
           "size": "M9/W11",
-          "price": 45,
+          "price": 1099,
           "available": true
         },
         {
           "size": "M10/W12",
-          "price": 45,
+          "price": 1099,
           "available": true
         }
       ],
@@ -300,6 +300,213 @@
           "helpful": 42
         }
       ]
+    },
+    {
+      "id": 4,
+      "slug": "good-girl-inspired-version-30ml",
+      "name": "Good girl - Inspired Version 30ML",
+      "category": "Perfume & Fragrance",
+      "brand": "Inspired",
+      "sku": "INSP-GG-30ML",
+      "originalPrice": 599,
+      "discountedPrice": 599,
+      "discount": 0,
+      "rating": 5,
+      "reviews": 0,
+      "inStock": true,
+      "stockQuantity": 25,
+      "images": [
+        "https://res.cloudinary.com/dp0la6xmd/image/upload/v1768126282/good_girl_mlgbxc.png",
+        "https://res.cloudinary.com/dp0la6xmd/image/upload/v1768126282/good_girl_mlgbxc.png"
+      ],
+      "shortDescription": "Amber Floral, sweet Gourmand, Warm & Sensual fragrance.",
+      "fullDescription": "Good girl - Inspired Version is a captivating fragrance that combines amber floral notes with sweet gourmand accords, creating a warm and sensual scent experience. This Eau de Parfum opens with delicate floral notes that transition into a rich, sweet gourmand heart, finishing with warm amber and sensual base notes. Perfect for those who love sophisticated, feminine fragrances with depth and character.",
+      "ingredients": "Alcohol, Parfum (Fragrance), Aqua (Water), Limonene, Linalool, Citronellol, Coumarin, Citral, Geraniol",
+      "howToUse": "Spray on pulse points such as neck, wrists, and behind the ears. Apply after showering for longer lasting effect. Do not rub the fragrance into the skin.",
+      "colors": [
+        {
+          "name": "Pink",
+          "value": "#FF69B4",
+          "image": "https://res.cloudinary.com/dp0la6xmd/image/upload/v1768126282/good_girl_mlgbxc.png"
+        }
+      ],
+      "sizes": [
+        {
+          "size": "30ml",
+          "price": 599,
+          "available": true
+        }
+      ],
+      "specifications": {
+        "Type": "Eau de Parfum (EDP)",
+        "Fragrance Family": "Amber Floral, Sweet Gourmand",
+        "Volume": "30ml / 1 fl oz",
+        "Top Notes": "Floral Notes",
+        "Middle Notes": "Sweet Gourmand",
+        "Base Notes": "Amber, Warm & Sensual Notes",
+        "Gender": "Women",
+        "Longevity": "6-8 hours",
+        "Sillage": "Moderate to Heavy",
+        "Country of Origin": "UAE",
+        "Manufacturing Date": "2024",
+        "Shelf Life": "36 months from opening"
+      },
+      "features": [
+        "Amber Floral fragrance",
+        "Sweet Gourmand notes",
+        "Warm & Sensual scent",
+        "Long-lasting formula",
+        "Elegant bottle design",
+        "Perfect for evening wear"
+      ],
+      "shipping": {
+        "weight": "0.2 kg",
+        "dimensions": "10 x 8 x 5 cm",
+        "freeShipping": true,
+        "estimatedDelivery": "3-5 business days"
+      },
+      "warranty": "100% Authentic Product Guarantee",
+      "returnPolicy": "30-day return policy",
+      "relatedProducts": [5, 6],
+      "reviewsData": []
+    },
+    {
+      "id": 5,
+      "slug": "dior-sauvage-inspired-version-30ml",
+      "name": "Dior sauvage - Inspired Version 30ML",
+      "category": "Perfume & Fragrance",
+      "brand": "Inspired",
+      "sku": "INSP-DS-30ML",
+      "originalPrice": 599,
+      "discountedPrice": 599,
+      "discount": 0,
+      "rating": 5,
+      "reviews": 0,
+      "inStock": true,
+      "stockQuantity": 25,
+      "images": [
+        "https://res.cloudinary.com/dp0la6xmd/image/upload/v1768126281/Dior_Savage_dnzpru.png",
+        "https://res.cloudinary.com/dp0la6xmd/image/upload/v1768126281/Dior_Savage_dnzpru.png"
+      ],
+      "shortDescription": "Fresh / Spicy / Masculine / Woody fragrance.",
+      "fullDescription": "Dior Sauvage - Inspired Version is a bold and fresh fragrance that captures the essence of modern masculinity. This Eau de Toilette opens with fresh, invigorating notes that quickly transition into a spicy heart, revealing a masculine character. The woody base notes provide depth and longevity, creating a sophisticated scent that is both fresh and powerful. Perfect for the confident man who appreciates quality fragrances.",
+      "ingredients": "Alcohol, Parfum (Fragrance), Aqua (Water), Limonene, Linalool, Citronellol, Coumarin, Citral, Geraniol",
+      "howToUse": "Spray on pulse points such as neck, wrists, and behind the ears. Apply after showering for longer lasting effect. Do not rub the fragrance into the skin.",
+      "colors": [
+        {
+          "name": "Blue",
+          "value": "#0066CC",
+          "image": "https://res.cloudinary.com/dp0la6xmd/image/upload/v1768126281/Dior_Savage_dnzpru.png"
+        }
+      ],
+      "sizes": [
+        {
+          "size": "30ml",
+          "price": 599,
+          "available": true
+        }
+      ],
+      "specifications": {
+        "Type": "Eau de Toilette (EDT)",
+        "Fragrance Family": "Fresh / Spicy / Masculine / Woody",
+        "Volume": "30ml / 1 fl oz",
+        "Top Notes": "Fresh Notes",
+        "Middle Notes": "Spicy Notes",
+        "Base Notes": "Woody Notes",
+        "Gender": "Men",
+        "Longevity": "4-6 hours",
+        "Sillage": "Moderate",
+        "Country of Origin": "UAE",
+        "Manufacturing Date": "2024",
+        "Shelf Life": "36 months from opening"
+      },
+      "features": [
+        "Fresh and invigorating",
+        "Spicy masculine character",
+        "Woody base notes",
+        "Perfect for daily wear",
+        "Modern and sophisticated",
+        "Compact travel size"
+      ],
+      "shipping": {
+        "weight": "0.2 kg",
+        "dimensions": "10 x 8 x 5 cm",
+        "freeShipping": true,
+        "estimatedDelivery": "3-5 business days"
+      },
+      "warranty": "100% Authentic Product Guarantee",
+      "returnPolicy": "30-day return policy",
+      "relatedProducts": [4, 6],
+      "reviewsData": []
+    },
+    {
+      "id": 6,
+      "slug": "dior-sauvage-inspired-version-50ml",
+      "name": "Dior sauvage - Inspired Version 50ML",
+      "category": "Perfume & Fragrance",
+      "brand": "Inspired",
+      "sku": "INSP-DS-50ML",
+      "originalPrice": 899,
+      "discountedPrice": 899,
+      "discount": 0,
+      "rating": 5,
+      "reviews": 0,
+      "inStock": true,
+      "stockQuantity": 20,
+      "images": [
+        "https://res.cloudinary.com/dp0la6xmd/image/upload/v1768126280/Dior_Savage_50ml_fflij7.png",
+        "https://res.cloudinary.com/dp0la6xmd/image/upload/v1768126280/Dior_Savage_50ml_fflij7.png"
+      ],
+      "shortDescription": "Fresh / Spicy / Masculine / Woody fragrance.",
+      "fullDescription": "Dior Sauvage - Inspired Version in 50ML is a bold and fresh fragrance that captures the essence of modern masculinity. This Eau de Toilette opens with fresh, invigorating notes that quickly transition into a spicy heart, revealing a masculine character. The woody base notes provide depth and longevity, creating a sophisticated scent that is both fresh and powerful. The larger 50ML size offers better value and longer-lasting supply for the confident man who appreciates quality fragrances.",
+      "ingredients": "Alcohol, Parfum (Fragrance), Aqua (Water), Limonene, Linalool, Citronellol, Coumarin, Citral, Geraniol",
+      "howToUse": "Spray on pulse points such as neck, wrists, and behind the ears. Apply after showering for longer lasting effect. Do not rub the fragrance into the skin.",
+      "colors": [
+        {
+          "name": "Blue",
+          "value": "#0066CC",
+          "image": "https://res.cloudinary.com/dp0la6xmd/image/upload/v1768126280/Dior_Savage_50ml_fflij7.png"
+        }
+      ],
+      "sizes": [
+        {
+          "size": "50ml",
+          "price": 899,
+          "available": true
+        }
+      ],
+      "specifications": {
+        "Type": "Eau de Toilette (EDT)",
+        "Fragrance Family": "Fresh / Spicy / Masculine / Woody",
+        "Volume": "50ml / 1.7 fl oz",
+        "Top Notes": "Fresh Notes",
+        "Middle Notes": "Spicy Notes",
+        "Base Notes": "Woody Notes",
+        "Gender": "Men",
+        "Longevity": "4-6 hours",
+        "Sillage": "Moderate",
+        "Country of Origin": "UAE",
+        "Manufacturing Date": "2024",
+        "Shelf Life": "36 months from opening"
+      },
+      "features": [
+        "Fresh and invigorating",
+        "Spicy masculine character",
+        "Woody base notes",
+        "Perfect for daily wear",
+        "Modern and sophisticated",
+        "Better value with larger size"
+      ],
+      "shipping": {
+        "weight": "0.3 kg",
+        "dimensions": "12 x 10 x 6 cm",
+        "freeShipping": true,
+        "estimatedDelivery": "3-5 business days"
+      },
+      "warranty": "100% Authentic Product Guarantee",
+      "returnPolicy": "30-day return policy",
+      "relatedProducts": [4, 5],
+      "reviewsData": []
     }
   ]
 }

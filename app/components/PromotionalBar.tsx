@@ -2,10 +2,10 @@
 
 export default function PromotionalBar() {
   return (
-    <section className="bg-[#00A7E1] text-white py-6 md:py-8">
+    <section className="bg-[#10192E] text-white py-6 md:py-8">
       <div className="container mx-auto px-4">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
-          {/* EU FREE DELIVERY */}
+          {/* FAST DELIVERY */}
           <div className="flex items-start gap-4">
             <div className="flex-shrink-0">
               <svg
@@ -14,12 +14,6 @@ export default function PromotionalBar() {
                 stroke="currentColor"
                 viewBox="0 0 24 24"
               >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M13 7l5 5m0 0l-5 5m5-5H6"
-                />
                 <path
                   strokeLinecap="round"
                   strokeLinejoin="round"
@@ -30,18 +24,18 @@ export default function PromotionalBar() {
             </div>
             <div>
               <h3 className="font-bold text-base md:text-lg uppercase mb-1">
-                EU FREE DELIVERY
+                FAST DELIVERY
               </h3>
               <p className="text-sm md:text-base mb-1">
-                Free Delivery on all order from EU
+                Nationwide delivery across Bangladesh
               </p>
               <p className="text-sm md:text-base opacity-90">
-                with price more than $90.00
+                Delivery within 3-5 business days
               </p>
             </div>
           </div>
 
-          {/* MONEY GUARANTEE */}
+          {/* SECURE PAYMENT */}
           <div className="flex items-start gap-4">
             <div className="flex-shrink-0">
               <svg
@@ -54,19 +48,19 @@ export default function PromotionalBar() {
                   strokeLinecap="round"
                   strokeLinejoin="round"
                   strokeWidth={2}
-                  d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"
+                  d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"
                 />
               </svg>
             </div>
             <div>
               <h3 className="font-bold text-base md:text-lg uppercase mb-1">
-                MONEY GUARANTEE
+                SECURE PAYMENT
               </h3>
               <p className="text-sm md:text-base mb-1">
-                30 Days money back guarantee
+                Cash on Delivery Available
               </p>
               <p className="text-sm md:text-base opacity-90">
-                no question asked!
+                Safe and secure checkout
               </p>
             </div>
           </div>

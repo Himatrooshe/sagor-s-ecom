@@ -1,25 +1,28 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Inter, Montserrat } from "next/font/google";
 import "./globals.css";
 import SmoothScrolling from "./components/SmoothScrolling";
+import { CartProvider } from "./context/CartContext";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const inter = Inter({
+  variable: "--font-inter",
   subsets: ["latin"],
+  display: "swap",
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+const montserrat = Montserrat({
+  variable: "--font-montserrat",
   subsets: ["latin"],
+  display: "swap",
 });
 
 export const metadata: Metadata = {
-  title: "in bd",
-  description: "Your premier online shopping destination in Bangladesh",
+  title: "inbd - Premium Online Shopping in Bangladesh",
+  description: "Your premier online shopping destination in Bangladesh. Shop perfumes, shoes, and more with fast delivery and cash on delivery available.",
   icons: {
-    icon: '/logo.png',
-    shortcut: '/logo.png',
-    apple: '/logo.png',
+    icon: '/favicon.png',
+    shortcut: '/favicon.png',
+    apple: '/favicon.png',
   },
 };
 
@@ -32,11 +35,13 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <head suppressHydrationWarning />
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${inter.variable} ${montserrat.variable} antialiased`}
       >
-        <SmoothScrolling>
-          {children}
-        </SmoothScrolling>
+        <CartProvider>
+          <SmoothScrolling>
+            {children}
+          </SmoothScrolling>
+        </CartProvider>
       </body>
     </html>
   );

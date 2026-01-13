@@ -3,6 +3,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { useState, useEffect } from 'react';
+import productsData from '../../data/products.json';
 
 interface Product {
   id: number;
@@ -11,40 +12,68 @@ interface Product {
   discountedPrice: string;
   image: string;
   rating: number;
+  slug: string;
+  discount: number;
 }
-
-const products: Product[] = [
-  {
-    id: 1,
-    name: 'Blue DE Chanel 30ML',
-    originalPrice: '$120',
-    discountedPrice: '$95',
-    image: 'https://res.cloudinary.com/dp0la6xmd/image/upload/v1767873198/2025_12_22_09_09_IMG_2288_t3eyhk.png',
-    rating: 5,
-  },
-  {
-    id: 2,
-    name: 'Vempire Blood 30ML',
-    originalPrice: '$85',
-    discountedPrice: '$68',
-    image: 'https://res.cloudinary.com/dp0la6xmd/image/upload/v1767873197/2025_12_23_21_45_IMG_2324_rw1hzh.png',
-    rating: 4.8,
-  },
-  {
-    id: 3,
-    name: 'Crocs Classic Clogs',
-    originalPrice: '$55',
-    discountedPrice: '$45',
-    image: 'https://res.cloudinary.com/dp0la6xmd/image/upload/v1767873196/shoe_h0j8oy.jpg',
-    rating: 4.7,
-  },
-];
 
 type TabType = 'bestseller' | 'newarrivals' | 'toprated';
 
-export default function ProductListing() {
+interface ProductListingProps {
+  searchQuery?: string;
+}
+
+export default function ProductListing({ searchQuery = '' }: ProductListingProps) {
   const [activeTab, setActiveTab] = useState<TabType>('bestseller');
   const [showScrollTop, setShowScrollTop] = useState(false);
+
+  // Get products from JSON data
+  const getProductsByTab = (): Product[] => {
+    let filteredProducts = productsData.products;
+    
+    // First, filter by search query if provided
+    if (searchQuery) {
+      const query = searchQuery.toLowerCase();
+      filteredProducts = productsData.products.filter(product => 
+        product.name.toLowerCase().includes(query) ||
+        product.category.toLowerCase().includes(query) ||
+        product.shortDescription?.toLowerCase().includes(query)
+      );
+    }
+    
+    // Then apply tab filtering/sorting
+    if (!searchQuery) {
+      switch (activeTab) {
+        case 'bestseller':
+          // Sort by reviews (most reviewed = bestseller)
+          filteredProducts = [...filteredProducts].sort((a, b) => b.reviews - a.reviews);
+          break;
+        case 'newarrivals':
+          // Filter new products
+          filteredProducts = filteredProducts.filter(p => p.isNew);
+          break;
+        case 'toprated':
+          // Sort by rating
+          filteredProducts = [...filteredProducts].sort((a, b) => b.rating - a.rating);
+          break;
+      }
+    }
+    
+    // Limit results if not searching
+    const productsToShow = searchQuery ? filteredProducts : filteredProducts.slice(0, 8);
+    
+    return productsToShow.map(product => ({
+      id: product.id,
+      name: product.name,
+      originalPrice: `৳${product.originalPrice}`,
+      discountedPrice: `৳${product.discountedPrice}`,
+      image: product.image,
+      rating: product.rating,
+      slug: product.slug,
+      discount: product.discount,
+    }));
+  };
+
+  const products = getProductsByTab();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -69,7 +98,7 @@ export default function ProductListing() {
         {[...Array(fullStars)].map((_, i) => (
           <svg
             key={`full-${i}`}
-            className="w-4 h-4 text-[#00A7E1] fill-current"
+            className="w-4 h-4 text-[#10192E] fill-current"
             viewBox="0 0 24 24"
           >
             <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
@@ -84,7 +113,7 @@ export default function ProductListing() {
               <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
             </svg>
             <svg
-              className="absolute inset-0 w-4 h-4 text-[#00A7E1] fill-current"
+              className="absolute inset-0 w-4 h-4 text-[#10192E] fill-current"
               viewBox="0 0 24 24"
               style={{ clipPath: 'inset(0 50% 0 0)' }}
             >
@@ -115,53 +144,83 @@ export default function ProductListing() {
   return (
     <section className="bg-white py-12 relative">
       <div className="container mx-auto px-4">
-        {/* Tabs Navigation */}
-        <div className="flex justify-center gap-2 md:gap-4 mb-8">
-          <button
-            onClick={() => setActiveTab('bestseller')}
-            className={`px-6 py-3 font-semibold text-sm md:text-base transition-all rounded-t ${
-              activeTab === 'bestseller'
-                ? 'bg-[#00A7E1] text-white'
-                : 'text-black hover:text-[#00A7E1]'
-            }`}
-          >
-            Bestseller
-          </button>
-          <button
-            onClick={() => setActiveTab('newarrivals')}
-            className={`px-6 py-3 font-semibold text-sm md:text-base transition-all rounded-t ${
-              activeTab === 'newarrivals'
-                ? 'bg-[#00A7E1] text-white'
-                : 'text-black hover:text-[#00A7E1]'
-            }`}
-          >
-            New Arrivals
-          </button>
-          <button
-            onClick={() => setActiveTab('toprated')}
-            className={`px-6 py-3 font-semibold text-sm md:text-base transition-all rounded-t ${
-              activeTab === 'toprated'
-                ? 'bg-[#00A7E1] text-white'
-                : 'text-black hover:text-[#00A7E1]'
-            }`}
-          >
-            Top Rated
-          </button>
-        </div>
+        {/* Search Results Info */}
+        {searchQuery && (
+          <div className="mb-8 text-center">
+            <p className="text-gray-600 font-inter">
+              Found <span className="font-bold text-[#10192E]">{products.length}</span> {products.length === 1 ? 'product' : 'products'}
+            </p>
+          </div>
+        )}
+
+        {/* Tabs Navigation - Hide when searching */}
+        {!searchQuery && (
+          <div className="flex justify-center gap-2 md:gap-4 mb-8">
+            <button
+              onClick={() => setActiveTab('bestseller')}
+              className={`px-6 py-3 font-montserrat font-semibold text-sm md:text-base transition-all rounded-lg ${
+                activeTab === 'bestseller'
+                  ? 'bg-[#10192E] text-white shadow-lg'
+                  : 'text-slate-700 hover:text-[#10192E] hover:bg-slate-50'
+              }`}
+            >
+              Bestseller
+            </button>
+            <button
+              onClick={() => setActiveTab('newarrivals')}
+              className={`px-6 py-3 font-montserrat font-semibold text-sm md:text-base transition-all rounded-lg ${
+                activeTab === 'newarrivals'
+                  ? 'bg-[#10192E] text-white shadow-lg'
+                  : 'text-slate-700 hover:text-[#10192E] hover:bg-slate-50'
+              }`}
+            >
+              New Arrivals
+            </button>
+            <button
+              onClick={() => setActiveTab('toprated')}
+              className={`px-6 py-3 font-montserrat font-semibold text-sm md:text-base transition-all rounded-lg ${
+                activeTab === 'toprated'
+                  ? 'bg-[#10192E] text-white shadow-lg'
+                  : 'text-slate-700 hover:text-[#10192E] hover:bg-slate-50'
+              }`}
+            >
+              Top Rated
+            </button>
+          </div>
+        )}
+
+        {/* No Results Message */}
+        {searchQuery && products.length === 0 && (
+          <div className="text-center py-16">
+            <svg className="w-24 h-24 mx-auto text-gray-300 mb-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+            </svg>
+            <h3 className="text-2xl font-montserrat font-bold text-slate-800 mb-3">No Products Found</h3>
+            <p className="text-gray-600 font-inter mb-6">
+              We couldn't find any products matching "<span className="font-semibold text-[#10192E]">{searchQuery}</span>"
+            </p>
+            <a
+              href="/shop"
+              className="inline-block bg-[#10192E] hover:bg-[#1a2744] text-white font-montserrat font-semibold px-8 py-3 rounded-lg transition-colors"
+            >
+              Browse All Products
+            </a>
+          </div>
+        )}
 
         {/* Product Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
+        {products.length > 0 && (
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
           {products.map((product) => {
-            const productSlug = product.name.toLowerCase().replace(/\s+/g, '-');
             return (
               <Link
                 key={product.id}
-                href={`/product/${productSlug}`}
+                href={`/product/${product.slug}`}
                 className="group bg-white border border-gray-200 rounded-lg overflow-hidden hover:shadow-lg transition-all relative block"
               >
                 {/* New Badge */}
                 <div className="absolute top-3 left-3 z-10">
-                  <span className="bg-[#00A7E1] text-white text-xs font-semibold px-3 py-1 rounded">
+                  <span className="bg-[#10192E] text-white text-xs font-semibold px-3 py-1 rounded">
                     New
                   </span>
                 </div>
@@ -190,10 +249,12 @@ export default function ProductListing() {
 
                   {/* Price */}
                   <div className="text-center">
-                    <span className="text-gray-400 line-through mr-2">
-                      {product.originalPrice}
-                    </span>
-                    <span className="text-[#00A7E1] font-bold text-lg">
+                    {product.discount > 0 && (
+                      <span className="text-gray-400 line-through mr-2">
+                        {product.originalPrice}
+                      </span>
+                    )}
+                    <span className="text-[#10192E] font-bold text-lg">
                       {product.discountedPrice}
                     </span>
                   </div>
@@ -201,7 +262,8 @@ export default function ProductListing() {
               </Link>
             );
           })}
-        </div>
+          </div>
+        )}
       </div>
 
       {/* Scroll to Top Button */}

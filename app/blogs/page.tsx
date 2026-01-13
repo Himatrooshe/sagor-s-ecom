@@ -36,42 +36,42 @@ export default function BlogsPage() {
       <Header />
       
       {/* Page Header */}
-      <div className="bg-gray-50 py-12 border-b border-gray-200">
+      <div className="bg-gray-50 py-8 md:py-12 border-b border-gray-200">
         <div className="container mx-auto px-4">
-          <h1 className="text-4xl font-bold text-black text-center mb-4">Our Blog</h1>
-          <p className="text-gray-600 text-center max-w-2xl mx-auto">
+          <h1 className="text-3xl md:text-4xl font-bold text-black text-center mb-3 md:mb-4">Our Blog</h1>
+          <p className="text-sm md:text-base text-gray-600 text-center max-w-2xl mx-auto">
             Tips, trends, and stories from the world of premium products
           </p>
         </div>
       </div>
 
       {/* Blog Posts */}
-      <div className="container mx-auto px-4 py-16">
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+      <div className="container mx-auto px-4 py-8 md:py-16">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
           {blogPosts.map((post) => (
             <article key={post.id} className="bg-white border border-gray-200 rounded-lg overflow-hidden hover:shadow-lg transition-shadow">
-              <div className="relative h-48">
+              <div className="relative h-48 md:h-56">
                 <Image
                   src={post.image}
                   alt={post.title}
                   fill
                   className="object-cover"
                 />
-                <div className="absolute top-4 left-4">
-                  <span className="bg-[#00A7E1] text-white text-xs font-semibold px-3 py-1 rounded-full">
+                <div className="absolute top-3 md:top-4 left-3 md:left-4">
+                  <span className="bg-[#10192E] text-white text-xs font-semibold px-2 md:px-3 py-1 rounded-full">
                     {post.category}
                   </span>
                 </div>
               </div>
-              <div className="p-6">
-                <p className="text-sm text-gray-500 mb-2">{post.date}</p>
-                <h2 className="text-xl font-bold text-black mb-3 hover:text-[#00A7E1] transition-colors">
+              <div className="p-4 md:p-6">
+                <p className="text-xs md:text-sm text-gray-500 mb-2">{post.date}</p>
+                <h2 className="text-lg md:text-xl font-bold text-black mb-2 md:mb-3 hover:text-[#10192E] transition-colors line-clamp-2">
                   {post.title}
                 </h2>
-                <p className="text-gray-600 mb-4">{post.excerpt}</p>
+                <p className="text-sm md:text-base text-gray-600 mb-3 md:mb-4 line-clamp-3">{post.excerpt}</p>
                 <Link 
                   href={`/blogs/${post.id}`}
-                  className="text-[#00A7E1] font-semibold hover:underline inline-flex items-center gap-2"
+                  className="text-[#10192E] font-semibold hover:underline inline-flex items-center gap-2 text-sm md:text-base"
                 >
                   Read More
                   <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -84,18 +84,18 @@ export default function BlogsPage() {
         </div>
 
         {/* Newsletter Section */}
-        <div className="mt-16 bg-gray-50 rounded-lg p-8 text-center">
-          <h3 className="text-2xl font-bold text-black mb-4">Subscribe to Our Newsletter</h3>
-          <p className="text-gray-600 mb-6 max-w-2xl mx-auto">
+        <div className="mt-12 md:mt-16 bg-gray-50 rounded-lg p-6 md:p-8 text-center">
+          <h3 className="text-xl md:text-2xl font-bold text-black mb-3 md:mb-4">Subscribe to Our Newsletter</h3>
+          <p className="text-sm md:text-base text-gray-600 mb-4 md:mb-6 max-w-2xl mx-auto">
             Get the latest updates on new products, special offers, and blog posts delivered to your inbox.
           </p>
-          <div className="max-w-md mx-auto flex gap-2">
+          <div className="max-w-md mx-auto flex flex-col sm:flex-row gap-2">
             <input
               type="email"
               placeholder="Enter your email"
-              className="flex-1 px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-[#00A7E1]"
+              className="flex-1 px-4 py-2 md:py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-[#10192E] text-sm md:text-base text-black placeholder:text-gray-400"
             />
-            <button className="bg-[#00A7E1] text-white px-6 py-3 rounded-lg font-semibold hover:bg-[#0095C9] transition-colors">
+            <button className="bg-[#10192E] text-white px-4 md:px-6 py-2 md:py-3 rounded-lg font-semibold hover:bg-[#1a2744] transition-colors text-sm md:text-base whitespace-nowrap">
               Subscribe
             </button>
           </div>

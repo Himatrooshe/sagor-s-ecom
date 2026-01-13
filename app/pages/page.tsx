@@ -71,32 +71,32 @@ export default function PagesDirectory() {
       <Header />
       
       {/* Page Header */}
-      <div className="bg-gray-50 py-12 border-b border-gray-200">
+      <div className="bg-gray-50 py-8 md:py-12 border-b border-gray-200">
         <div className="container mx-auto px-4">
-          <h1 className="text-4xl font-bold text-black text-center mb-4">Site Pages</h1>
-          <p className="text-gray-600 text-center max-w-2xl mx-auto">
+          <h1 className="text-3xl md:text-4xl font-bold text-black text-center mb-3 md:mb-4">Site Pages</h1>
+          <p className="text-sm md:text-base text-gray-600 text-center max-w-2xl mx-auto">
             Quick access to all important pages on our website
           </p>
         </div>
       </div>
 
       {/* Pages Grid */}
-      <div className="container mx-auto px-4 py-16">
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div className="container mx-auto px-4 py-8 md:py-16">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
           {pages.map((page, index) => (
             <Link
               key={index}
               href={page.link}
-              className="group bg-white border border-gray-200 rounded-lg p-6 hover:border-[#00A7E1] hover:shadow-lg transition-all"
+              className="group bg-white border border-gray-200 rounded-lg p-4 md:p-6 hover:border-[#10192E] hover:shadow-lg transition-all"
             >
-              <div className="w-16 h-16 bg-gray-100 rounded-lg flex items-center justify-center mb-4 text-gray-600 group-hover:bg-[#00A7E1] group-hover:text-white transition-colors">
+              <div className="w-12 h-12 md:w-16 md:h-16 bg-gray-100 rounded-lg flex items-center justify-center mb-3 md:mb-4 text-gray-600 group-hover:bg-[#10192E] group-hover:text-white transition-colors">
                 {page.icon}
               </div>
-              <h2 className="text-xl font-bold text-black mb-2 group-hover:text-[#00A7E1] transition-colors">
+              <h2 className="text-lg md:text-xl font-bold text-black mb-2 group-hover:text-[#10192E] transition-colors">
                 {page.title}
               </h2>
-              <p className="text-gray-600 text-sm mb-4">{page.description}</p>
-              <div className="flex items-center gap-2 text-[#00A7E1] font-semibold">
+              <p className="text-gray-600 text-xs md:text-sm mb-3 md:mb-4">{page.description}</p>
+              <div className="flex items-center gap-2 text-[#10192E] font-semibold text-sm md:text-base">
                 Visit Page
                 <svg className="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />

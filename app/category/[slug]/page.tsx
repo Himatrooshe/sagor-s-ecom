@@ -4,6 +4,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import productsData from '../../../data/products.json';
 import categoriesData from '../../../data/categories.json';
+import ScrollToTop from '../../components/ScrollToTop';
 
 export default async function CategoryPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
@@ -19,10 +20,11 @@ export default async function CategoryPage({ params }: { params: Promise<{ slug:
   if (!category) {
     return (
       <div className="min-h-screen bg-white">
+        <ScrollToTop />
         <Header />
         <div className="container mx-auto px-4 py-16 text-center">
           <h1 className="text-3xl font-bold text-black mb-4">Category Not Found</h1>
-          <Link href="/" className="text-[#00A7E1] hover:underline">
+          <Link href="/" className="text-[#10192E] hover:underline">
             Return to Home
           </Link>
         </div>
@@ -33,6 +35,7 @@ export default async function CategoryPage({ params }: { params: Promise<{ slug:
 
   return (
     <div className="min-h-screen bg-white">
+      <ScrollToTop />
       <Header />
       
       {/* Category Header */}
@@ -55,7 +58,7 @@ export default async function CategoryPage({ params }: { params: Promise<{ slug:
       <div className="bg-white border-b border-gray-200 py-3">
         <div className="container mx-auto px-4">
           <nav className="text-sm text-gray-600">
-            <Link href="/" className="hover:text-[#00A7E1] transition-colors">
+            <Link href="/" className="hover:text-[#10192E] transition-colors">
               Home
             </Link>
             <span className="mx-2">»</span>
@@ -78,7 +81,7 @@ export default async function CategoryPage({ params }: { params: Promise<{ slug:
                 <div className="relative h-64 bg-gray-50">
                   {product.badge && (
                     <div className="absolute top-3 left-3 z-10">
-                      <span className="bg-[#00A7E1] text-white text-xs font-semibold px-3 py-1 rounded-full">
+                      <span className="bg-[#10192E] text-white text-xs font-semibold px-3 py-1 rounded-full">
                         {product.badge}
                       </span>
                     </div>
@@ -93,7 +96,7 @@ export default async function CategoryPage({ params }: { params: Promise<{ slug:
 
                 {/* Product Info */}
                 <div className="p-4">
-                  <h3 className="text-lg font-bold text-black mb-2 group-hover:text-[#00A7E1] transition-colors line-clamp-2">
+                  <h3 className="text-lg font-bold text-black mb-2 group-hover:text-[#10192E] transition-colors line-clamp-2">
                     {product.name}
                   </h3>
                   
@@ -106,7 +109,7 @@ export default async function CategoryPage({ params }: { params: Promise<{ slug:
                           key={star}
                           className={`w-4 h-4 ${
                             star <= fullStars
-                              ? 'text-[#00A7E1] fill-current'
+                              ? 'text-[#10192E] fill-current'
                               : 'text-gray-300'
                           }`}
                           viewBox="0 0 24 24"
@@ -122,11 +125,11 @@ export default async function CategoryPage({ params }: { params: Promise<{ slug:
                   <div className="flex items-center gap-2">
                     {product.discount > 0 && (
                       <span className="text-sm text-gray-400 line-through">
-                        ${product.originalPrice}
+                        ৳{product.originalPrice}
                       </span>
                     )}
-                    <span className="text-xl font-bold text-[#00A7E1]">
-                      ${product.discountedPrice}
+                    <span className="text-xl font-bold text-[#10192E]">
+                      ৳{product.discountedPrice}
                     </span>
                     {product.discount > 0 && (
                       <span className="text-xs bg-red-100 text-red-600 px-2 py-0.5 rounded">
@@ -164,7 +167,7 @@ export default async function CategoryPage({ params }: { params: Promise<{ slug:
             </p>
             <Link
               href="/shop"
-              className="inline-block bg-[#00A7E1] text-white px-6 py-3 rounded-lg font-semibold hover:bg-[#0095C9] transition-colors"
+              className="inline-block bg-[#10192E] text-white px-6 py-3 rounded-lg font-semibold hover:bg-[#1a2744] transition-colors"
             >
               Browse All Products
             </Link>
@@ -185,10 +188,10 @@ export default async function CategoryPage({ params }: { params: Promise<{ slug:
                 <Link
                   key={cat.id}
                   href={`/category/${cat.slug}`}
-                  className="group bg-white border border-gray-200 rounded-lg p-4 text-center hover:border-[#00A7E1] hover:shadow-md transition-all"
+                  className="group bg-white border border-gray-200 rounded-lg p-4 text-center hover:border-[#10192E] hover:shadow-md transition-all"
                 >
                   <div className="text-3xl mb-2">{cat.icon}</div>
-                  <h3 className="text-sm font-semibold text-black group-hover:text-[#00A7E1] transition-colors mb-1">
+                  <h3 className="text-sm font-semibold text-black group-hover:text-[#10192E] transition-colors mb-1">
                     {cat.name}
                   </h3>
                   <p className="text-xs text-gray-500">
