@@ -6,6 +6,7 @@ import Image from 'next/image';
 import { useCart } from '../context/CartContext';
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
+import { sendOrderToGoogleSheets, formatOrderData, generateOrderId } from '../lib/googleSheets';
 
 const bangladeshCities = [
   'Dhaka', 'Chittagong', 'Khulna', 'Rajshahi', 'Sylhet', 'Barisal', 'Rangpur', 'Mymensingh',
@@ -33,6 +34,18 @@ export default function CheckoutPage() {
   const [isProcessing, setIsProcessing] = useState(false);
   const [citySearch, setCitySearch] = useState('');
   const [showCityDropdown, setShowCityDropdown] = useState(false);
+  const [orderId, setOrderId] = useState<string | null>(null);
+  const [error, setError] = useState<string | null>(null);
+
+  // Calculate shipping cost based on city
+  const calculateShipping = (city: string): number => {
+    if (!city) return 0;
+    return city.toLowerCase() === 'dhaka' ? 80 : 120;
+  };
+
+  const shippingCost = calculateShipping(formData.city);
+  const subtotal = getTotalPrice();
+  const total = subtotal + shippingCost;
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     setFormData({
@@ -74,12 +87,63 @@ export default function CheckoutPage() {
     }
     
     setIsProcessing(true);
+    setError(null);
+    
+    // Generate order ID
+    const newOrderId = generateOrderId();
+    setOrderId(newOrderId);
 
-    // Simulate order processing
-    setTimeout(() => {
-      clearCart();
-      router.push('/order-success');
-    }, 2000);
+    try {
+      // Format cart items for order submission
+      const orderItems = cart.map(item => ({
+        id: item.id,
+        sku: item.sku || `PROD-${item.id}`,
+        name: item.name,
+        price: item.price,
+        quantity: item.quantity,
+        originalPrice: item.originalPrice,
+        selectedSize: item.selectedSize,
+        selectedColor: item.selectedColor,
+        image: item.image,
+        slug: item.slug,
+      }));
+
+      // Calculate shipping cost
+      const shippingAmount = calculateShipping(formData.city);
+
+      // Format order data
+      const orderData = formatOrderData(
+        formData,
+        orderItems,
+        subtotal,
+        shippingAmount
+      );
+
+      // Store order ID and total in sessionStorage for order success page (before sending to Sheets)
+      sessionStorage.setItem('lastOrderId', newOrderId);
+      sessionStorage.setItem('lastOrderTotal', total.toFixed(2));
+      
+      // Send to Google Sheets (non-blocking - order proceeds even if this fails)
+      const result = await sendOrderToGoogleSheets(orderData);
+
+      if (result.success) {
+        // Clear cart and redirect
+        clearCart();
+        router.push(`/order-success?orderId=${newOrderId}`);
+      } else {
+        // Log error but still proceed with order (graceful degradation)
+        console.warn('Google Sheets submission failed:', result.error);
+        // Still complete the order - it's saved in sessionStorage
+        clearCart();
+        router.push(`/order-success?orderId=${newOrderId}`);
+        // Optionally show a warning that Sheets sync failed
+        // setError('Order placed successfully, but there was an issue saving to our system. Your Order ID: ' + newOrderId);
+      }
+    } catch (err) {
+      console.error('Order submission error:', err);
+      setError('An error occurred while processing your order. Please try again.');
+      setIsProcessing(false);
+    }
   };
 
   if (cart.length === 0) {
@@ -289,17 +353,27 @@ export default function CheckoutPage() {
               <div className="space-y-3 mb-6">
                 <div className="flex justify-between text-gray-700">
                   <span>Subtotal</span>
-                  <span className="font-semibold">৳{getTotalPrice().toFixed(2)}</span>
+                  <span className="font-semibold">৳{subtotal.toFixed(2)}</span>
                 </div>
                 <div className="flex justify-between text-gray-700">
                   <span>Shipping</span>
-                  <span className="font-semibold text-green-600">FREE</span>
+                  {formData.city ? (
+                    <span className="font-semibold">৳{shippingCost.toFixed(2)}</span>
+                  ) : (
+                    <span className="font-semibold text-gray-400">Select city</span>
+                  )}
                 </div>
                 <div className="border-t pt-3 flex justify-between text-lg font-bold text-black">
                   <span>Total</span>
-                  <span className="text-[#54b3e3]">৳{getTotalPrice().toFixed(2)}</span>
+                  <span className="text-[#54b3e3]">৳{total.toFixed(2)}</span>
                 </div>
               </div>
+
+              {error && (
+                <div className="mb-4 p-3 bg-red-50 border border-red-200 rounded-lg">
+                  <p className="text-sm text-red-600">{error}</p>
+                </div>
+              )}
 
               <button
                 type="submit"

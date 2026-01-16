@@ -2,6 +2,7 @@
   "products": [
     {
       "id": 1,
+      "sku": "INBD-BDC-30ML-001",
       "name": "Blue DE Chanel 30ML",
       "slug": "blue-de-chanel-30ml",
       "category": "Perfume & Fragrance",
@@ -21,6 +22,7 @@
     },
     {
       "id": 2,
+      "sku": "INBD-VB-30ML-002",
       "name": "Vempire Blood 30ML",
       "slug": "vempire-blood-30ml",
       "category": "Perfume & Fragrance",
@@ -40,6 +42,7 @@
     },
     {
       "id": 3,
+      "sku": "INBD-CC-CLASSIC-003",
       "name": "Crocs Classic Clogs",
       "slug": "crocs-classic-clogs",
       "category": "Shoes Collection",
@@ -59,6 +62,7 @@
     },
     {
       "id": 4,
+      "sku": "INBD-GG-30ML-004",
       "name": "Good girl - Inspired Version 30ML",
       "slug": "good-girl-inspired-version-30ml",
       "category": "Perfume & Fragrance",
@@ -78,6 +82,7 @@
     },
     {
       "id": 5,
+      "sku": "INBD-DS-30ML-005",
       "name": "Dior sauvage - Inspired Version 30ML",
       "slug": "dior-sauvage-inspired-version-30ml",
       "category": "Perfume & Fragrance",
@@ -97,6 +102,7 @@
     },
     {
       "id": 6,
+      "sku": "INBD-DS-50ML-006",
       "name": "Dior sauvage - Inspired Version 50ML",
       "slug": "dior-sauvage-inspired-version-50ml",
       "category": "Perfume & Fragrance",

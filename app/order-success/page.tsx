@@ -1,8 +1,26 @@
+'use client';
+
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import Link from 'next/link';
+import { useSearchParams } from 'next/navigation';
+import { useEffect, useState, Suspense } from 'react';
 
-export default function OrderSuccessPage() {
+function OrderSuccessContent() {
+  const searchParams = useSearchParams();
+  const [orderId, setOrderId] = useState<string | null>(null);
+  const [orderTotal, setOrderTotal] = useState<string | null>(null);
+
+  useEffect(() => {
+    // Get order ID from URL or sessionStorage
+    const urlOrderId = searchParams.get('orderId');
+    const sessionOrderId = typeof window !== 'undefined' ? sessionStorage.getItem('lastOrderId') : null;
+    const sessionTotal = typeof window !== 'undefined' ? sessionStorage.getItem('lastOrderTotal') : null;
+    
+    setOrderId(urlOrderId || sessionOrderId);
+    setOrderTotal(sessionTotal);
+  }, [searchParams]);
+
   return (
     <div className="min-h-screen bg-white">
       <Header />
@@ -17,9 +35,35 @@ export default function OrderSuccessPage() {
           </div>
 
           <h1 className="text-2xl md:text-4xl font-bold text-black mb-3 md:mb-4">Order Placed Successfully!</h1>
-          <p className="text-sm md:text-lg text-gray-600 mb-6 md:mb-8">
+          <p className="text-sm md:text-lg text-gray-600 mb-4 md:mb-6">
             Thank you for your order. We'll contact you shortly to confirm your order details.
           </p>
+
+          {/* Order Details */}
+          {orderId && (
+            <div className="bg-[#54b3e3]/10 border-2 border-[#54b3e3] rounded-lg p-4 md:p-6 mb-6 md:mb-8">
+              <h3 className="text-lg md:text-xl font-bold text-black mb-3">Order Details</h3>
+              <div className="space-y-2 text-left">
+                <div className="flex justify-between items-center">
+                  <span className="text-gray-700 font-medium">Order ID:</span>
+                  <span className="text-black font-bold font-mono">{orderId}</span>
+                </div>
+                {orderTotal && (
+                  <div className="flex justify-between items-center">
+                    <span className="text-gray-700 font-medium">Order Total:</span>
+                    <span className="text-[#54b3e3] font-bold text-lg">৳{orderTotal}</span>
+                  </div>
+                )}
+                <div className="flex justify-between items-center">
+                  <span className="text-gray-700 font-medium">Status:</span>
+                  <span className="bg-yellow-100 text-yellow-800 px-3 py-1 rounded-full text-sm font-semibold">Pending Confirmation</span>
+                </div>
+              </div>
+              <p className="text-xs md:text-sm text-gray-600 mt-4 text-center">
+                Please save your Order ID for future reference
+              </p>
+            </div>
+          )}
 
           {/* Order Info */}
           <div className="bg-gray-50 rounded-lg p-4 md:p-6 mb-6 md:mb-8">
@@ -98,5 +142,21 @@ export default function OrderSuccessPage() {
       
       <Footer />
     </div>
+  );
+}
+
+export default function OrderSuccessPage() {
+  return (
+    <Suspense fallback={
+      <div className="min-h-screen bg-white">
+        <Header />
+        <div className="container mx-auto px-4 py-16 text-center">
+          <div className="animate-pulse">Loading...</div>
+        </div>
+        <Footer />
+      </div>
+    }>
+      <OrderSuccessContent />
+    </Suspense>
   );
 }

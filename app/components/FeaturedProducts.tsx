@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { useState } from 'react';
 import productsData from '../../data/products.json';
 import { useCart } from '../context/CartContext';
+import AddToCartButton from './AddToCartButton';
 
 interface Product {
   id: number;
@@ -19,8 +20,6 @@ interface Product {
 }
 
 export default function FeaturedProducts() {
-  const { addToCart } = useCart();
-  const [showAddedMessage, setShowAddedMessage] = useState<number | null>(null);
   const [currentSlide, setCurrentSlide] = useState(0);
 
   // Filter featured products and map to component format
@@ -37,27 +36,6 @@ export default function FeaturedProducts() {
       slug: product.slug,
       discount: product.discount,
     }));
-
-  const handleAddToCart = (e: React.MouseEvent, product: Product) => {
-    e.preventDefault();
-    e.stopPropagation();
-    
-    const productData = productsData.products.find(p => p.id === product.id);
-    if (!productData) return;
-
-    addToCart({
-      id: productData.id,
-      name: productData.name,
-      price: productData.discountedPrice,
-      quantity: 1,
-      image: productData.image,
-      slug: productData.slug,
-    });
-
-    // Show success message
-    setShowAddedMessage(product.id);
-    setTimeout(() => setShowAddedMessage(null), 3000);
-  };
 
   // Carousel settings
   const productsPerSlide = 3;
@@ -127,7 +105,7 @@ export default function FeaturedProducts() {
             return (
               <div
                 key={product.id}
-                className="group bg-white border border-gray-200 rounded-lg overflow-hidden hover:shadow-xl hover:border-[#54b3e3] transition-all duration-300"
+                className="group bg-white border border-gray-200 rounded-lg overflow-hidden hover:shadow-xl hover:border-[#54b3e3] transition-all duration-300 flex flex-col h-full"
               >
                 {/* Category Badge */}
                 {/* <div className="absolute top-3 left-3 z-10">
@@ -137,7 +115,7 @@ export default function FeaturedProducts() {
                 </div> */}
 
                 {/* Image Container */}
-                <div className="relative bg-white h-72 overflow-hidden">
+                <div className="relative bg-white h-72 overflow-hidden shrink-0">
                   <Link href={`/product/${product.slug}`} className="block h-full">
                     <Image
                       src={product.image}
@@ -194,42 +172,23 @@ export default function FeaturedProducts() {
                         />
                       </svg>
                     </Link>
-                    <button 
-                      onClick={(e) => {
-                        e.preventDefault();
-                        e.stopPropagation();
-                        handleAddToCart(e, product);
-                      }}
-                      className="bg-white hover:bg-gray-100 rounded-full p-3 transition-colors shadow-lg transform hover:scale-110 duration-200 pointer-events-auto"
-                    >
-                      <svg
-                        className="w-5 h-5 text-[#54b3e3]"
-                        fill="none"
-                        stroke="currentColor"
-                        viewBox="0 0 24 24"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth={2}
-                          d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"
-                        />
-                      </svg>
-                    </button>
+                    <div className="pointer-events-auto" onClick={(e) => { e.stopPropagation(); }}>
+                      <AddToCartButton productId={product.id} variant="icon" />
+                    </div>
                   </div>
                 </div>
 
                 {/* Product Details */}
-                <div className="p-5">
+                <div className="p-5 flex flex-col grow">
                   {/* Product Name */}
                   <Link href={`/product/${product.slug}`}>
-                    <h3 className="text-black font-bold text-lg mb-3 text-center group-hover:text-[#54b3e3] transition-colors cursor-pointer">
+                    <h3 className="text-black font-bold text-lg mb-3 text-center group-hover:text-[#54b3e3] transition-colors cursor-pointer line-clamp-2 min-h-14">
                       {product.name}
                     </h3>
                   </Link>
 
                   {/* Star Rating */}
-                  <div className="flex justify-center gap-1 mb-4">
+                  <div className="flex justify-center gap-1 mb-4 shrink-0">
                     {[1, 2, 3, 4, 5].map((star) => (
                       <svg
                         key={star}
@@ -253,7 +212,7 @@ export default function FeaturedProducts() {
                   </div>
 
                   {/* Price */}
-                  <div className="text-center mb-4">
+                  <div className="text-center mb-4 shrink-0">
                     {product.discount > 0 && (
                       <span className="text-gray-400 line-through mr-2 text-sm">
                         {product.originalPrice}
@@ -264,27 +223,13 @@ export default function FeaturedProducts() {
                     </span>
                   </div>
 
-                  {/* Success Message */}
-                  {showAddedMessage === product.id && (
-                    <div className="mb-3 bg-green-100 border border-green-400 text-green-700 px-3 py-2 rounded-lg text-sm flex items-center gap-2">
-                      <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                      </svg>
-                      <span>Added to cart!</span>
-                    </div>
-                  )}
-
                   {/* Action Buttons */}
-                  <div className="flex gap-2">
-                    <button
-                      onClick={(e) => handleAddToCart(e, product)}
-                      className="flex-1 bg-[#54b3e3] hover:bg-[#3a9bd1] text-white font-semibold py-2.5 px-4 rounded-lg transition-all duration-300 transform hover:scale-105 flex items-center justify-center gap-2"
-                    >
-                      <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
-                      </svg>
-                      Add to Cart
-                    </button>
+                  <div className="flex gap-2 mt-auto shrink-0">
+                    <AddToCartButton 
+                      productId={product.id} 
+                      variant="button"
+                      className="flex-1"
+                    />
                     <Link
                       href={`/product/${product.slug}`}
                       className="flex-1 bg-gray-100 hover:bg-gray-200 text-black font-semibold py-2.5 px-4 rounded-lg transition-all duration-300 transform hover:scale-105 text-center"

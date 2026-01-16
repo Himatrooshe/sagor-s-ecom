@@ -4,6 +4,7 @@ import React, { createContext, useContext, useState, useEffect } from 'react';
 
 interface CartItem {
   id: number;
+  sku: string;
   name: string;
   price: number;
   quantity: number;
@@ -12,6 +13,7 @@ interface CartItem {
   selectedSize?: string;
   selectedColor?: string;
   cartItemId?: string; // Unique identifier for cart items
+  originalPrice?: number; // For tracking discount
 }
 
 interface CartContextType {
@@ -48,9 +50,13 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
 
   const addToCart = (item: CartItem) => {
     setCart((prevCart) => {
-      // Create unique cart item ID
-      const cartItemId = `${item.id}-${item.selectedSize || 'no-size'}-${item.selectedColor || 'no-color'}`;
-      const itemWithId = { ...item, cartItemId };
+      // Ensure SKU exists, fallback to generated SKU if missing
+      const sku = item.sku || `PROD-${item.id}`;
+      const itemWithSku = { ...item, sku };
+      
+      // Create unique cart item ID using SKU for better tracking
+      const cartItemId = `${item.id}-${sku}-${item.selectedSize || 'no-size'}-${item.selectedColor || 'no-color'}`;
+      const itemWithId = { ...itemWithSku, cartItemId };
 
       const existingItem = prevCart.find(
         (cartItem) => cartItem.cartItemId === cartItemId

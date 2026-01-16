@@ -113,8 +113,10 @@ export default function ProductDetails({ slug }: ProductDetailsProps) {
   const handleBuyNow = () => {
     addToCart({
       id: product.id,
+      sku: product.sku,
       name: product.name,
       price: product.discountedPrice,
+      originalPrice: product.originalPrice,
       quantity: quantity,
       image: product.images[0],
       slug: product.slug,

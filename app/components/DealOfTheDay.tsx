@@ -4,6 +4,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { useState, useEffect } from 'react';
 import productsData from '../../data/products.json';
+import AddToCartButton from './AddToCartButton';
 
 interface Product {
   id: number;
@@ -88,10 +89,9 @@ export default function DealOfTheDay() {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6 mb-8">
           {products.map((product) => {
             return (
-              <Link
+              <div
                 key={product.id}
-                href={`/product/${product.slug}`}
-                className="group border border-[#54b3e3] bg-white rounded-lg overflow-hidden hover:shadow-lg transition-shadow relative block"
+                className="group border border-[#54b3e3] bg-white rounded-lg overflow-hidden hover:shadow-lg transition-shadow relative flex flex-col h-full"
               >
               {/* New Badge */}
               <div className="absolute top-3 left-3 z-10">
@@ -101,68 +101,28 @@ export default function DealOfTheDay() {
               </div>
 
               {/* Image Container */}
-              <div className="relative bg-gray-100 h-64 overflow-hidden">
-                <Image
-                  src={product.image}
-                  alt={product.name}
-                  fill
-                  className="object-contain p-4"
-                />
+              <Link href={`/product/${product.slug}`} className="block shrink-0">
+                <div className="relative bg-gray-100 h-64 overflow-hidden">
+                  <Image
+                    src={product.image}
+                    alt={product.name}
+                    fill
+                    className="object-contain p-4"
+                  />
 
-                {/* Hover Overlay with Icons */}
-                <div className="absolute inset-0 bg-[#54b3e3]/80 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-4 z-20">
-                  <button className="bg-white/90 hover:bg-white rounded-full p-3 transition-colors">
-                    <svg
-                      className="w-5 h-5 text-[#54b3e3]"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"
-                      />
-                    </svg>
-                  </button>
-                  <button className="bg-white/90 hover:bg-white rounded-full p-3 transition-colors">
-                    <svg
-                      className="w-5 h-5 text-[#54b3e3]"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
-                      />
-                    </svg>
-                  </button>
-                  <button className="bg-white/90 hover:bg-white rounded-full p-3 transition-colors">
-                    <svg
-                      className="w-5 h-5 text-[#54b3e3]"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"
-                      />
-                    </svg>
-                  </button>
+                  {/* Hover Overlay with Icons */}
+                  <div className="absolute inset-0 bg-[#54b3e3]/80 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-4 z-20 pointer-events-none">
+                    <div className="pointer-events-auto" onClick={(e) => { e.preventDefault(); e.stopPropagation(); }}>
+                      <AddToCartButton productId={product.id} variant="icon" />
+                    </div>
+                  </div>
                 </div>
-              </div>
+              </Link>
 
-              {/* Product Details */}
-              <div className="p-4">
+                {/* Product Details */}
+              <div className="p-4 flex flex-col grow">
                 {/* Countdown Timer */}
-                <div className="flex justify-center gap-2 mb-4">
+                <div className="flex justify-center gap-2 mb-4 shrink-0">
                   <div className="text-center">
                     <div className="w-12 h-12 md:w-14 md:h-14 rounded-full bg-gray-200 flex items-center justify-center mb-1">
                       <span className="text-black font-bold text-sm md:text-base">
@@ -198,12 +158,12 @@ export default function DealOfTheDay() {
                 </div>
 
                 {/* Product Name */}
-                <h3 className="text-black font-semibold text-center mb-2">
+                <h3 className="text-black font-semibold text-center mb-2 line-clamp-2 min-h-10">
                   {product.name}
                 </h3>
 
                 {/* Star Rating */}
-                <div className="flex justify-center gap-1 mb-3">
+                <div className="flex justify-center gap-1 mb-3 shrink-0">
                   {[1, 2, 3, 4, 5].map((star) => {
                     const fullStars = Math.floor(product.rating);
                     return (
@@ -230,7 +190,7 @@ export default function DealOfTheDay() {
                 </div>
 
                 {/* Price */}
-                <div className="text-center">
+                <div className="text-center mb-4 shrink-0">
                   <span className="text-gray-400 line-through mr-2">
                     {product.originalPrice}
                   </span>
@@ -238,8 +198,16 @@ export default function DealOfTheDay() {
                     {product.discountedPrice}
                   </span>
                 </div>
+
+                {/* Add to Cart Button */}
+                <div className="mt-auto shrink-0">
+                  <AddToCartButton 
+                    productId={product.id} 
+                    variant="full-width"
+                  />
+                </div>
               </div>
-            </Link>
+            </div>
           );
           })}
         </div>

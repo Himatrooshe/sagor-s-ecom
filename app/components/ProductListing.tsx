@@ -4,6 +4,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { useState, useEffect } from 'react';
 import productsData from '../../data/products.json';
+import AddToCartButton from './AddToCartButton';
 
 interface Product {
   id: number;
@@ -220,10 +221,9 @@ export default function ProductListing({ searchQuery = '' }: ProductListingProps
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
           {products.map((product) => {
             return (
-              <Link
+              <div
                 key={product.id}
-                href={`/product/${product.slug}`}
-                className="group bg-white border border-gray-200 rounded-lg overflow-hidden hover:shadow-lg transition-all relative block"
+                className="group bg-white border border-gray-200 rounded-lg overflow-hidden hover:shadow-lg transition-all relative flex flex-col h-full"
               >
                 {/* New Badge */}
                 <div className="absolute top-3 left-3 z-10">
@@ -233,29 +233,33 @@ export default function ProductListing({ searchQuery = '' }: ProductListingProps
                 </div>
 
                 {/* Product Image */}
-                <div className="relative bg-gray-50 h-64 overflow-hidden">
-                  <Image
-                    src={product.image}
-                    alt={product.name}
-                    fill
-                    className="object-contain p-4 group-hover:scale-105 transition-transform duration-300"
-                  />
-                </div>
+                <Link href={`/product/${product.slug}`} className="block shrink-0">
+                  <div className="relative bg-gray-50 h-64 overflow-hidden">
+                    <Image
+                      src={product.image}
+                      alt={product.name}
+                      fill
+                      className="object-contain p-4 group-hover:scale-105 transition-transform duration-300"
+                    />
+                  </div>
+                </Link>
 
                 {/* Product Details */}
-                <div className="p-4">
+                <div className="p-4 flex flex-col grow">
                   {/* Product Name */}
-                  <h3 className="text-black font-bold text-center mb-2 text-lg">
-                    {product.name}
-                  </h3>
+                  <Link href={`/product/${product.slug}`}>
+                    <h3 className="text-black font-bold text-center mb-2 text-lg hover:text-[#54b3e3] transition-colors line-clamp-2 min-h-14">
+                      {product.name}
+                    </h3>
+                  </Link>
 
                   {/* Star Rating */}
-                  <div className="flex justify-center mb-3">
+                  <div className="flex justify-center mb-3 shrink-0">
                     {renderStars(product.rating)}
                   </div>
 
                   {/* Price */}
-                  <div className="text-center">
+                  <div className="text-center mb-4 shrink-0">
                     {product.discount > 0 && (
                       <span className="text-gray-400 line-through mr-2">
                         {product.originalPrice}
@@ -265,8 +269,16 @@ export default function ProductListing({ searchQuery = '' }: ProductListingProps
                       {product.discountedPrice}
                     </span>
                   </div>
+
+                  {/* Add to Cart Button */}
+                  <div className="mt-auto shrink-0">
+                    <AddToCartButton 
+                      productId={product.id} 
+                      variant="full-width"
+                    />
+                  </div>
                 </div>
-              </Link>
+              </div>
             );
           })}
           </div>

@@ -36,6 +36,7 @@ export default function RootLayout({
       <head suppressHydrationWarning />
       <body
         className={`${inter.variable} ${montserrat.variable} antialiased`}
+        suppressHydrationWarning
       >
         <CartProvider>
           <SmoothScrolling>
