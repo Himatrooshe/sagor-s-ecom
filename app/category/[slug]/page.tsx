@@ -24,7 +24,7 @@ export default async function CategoryPage({ params }: { params: Promise<{ slug:
         <Header />
         <div className="container mx-auto px-4 py-16 text-center">
           <h1 className="text-3xl font-bold text-black mb-4">Category Not Found</h1>
-          <Link href="/" className="text-[#10192E] hover:underline">
+          <Link href="/" className="text-[#54b3e3] hover:underline">
             Return to Home
           </Link>
         </div>
@@ -58,7 +58,7 @@ export default async function CategoryPage({ params }: { params: Promise<{ slug:
       <div className="bg-white border-b border-gray-200 py-3">
         <div className="container mx-auto px-4">
           <nav className="text-sm text-gray-600">
-            <Link href="/" className="hover:text-[#10192E] transition-colors">
+            <Link href="/" className="hover:text-[#54b3e3] transition-colors">
               Home
             </Link>
             <span className="mx-2">»</span>
@@ -81,7 +81,7 @@ export default async function CategoryPage({ params }: { params: Promise<{ slug:
                 <div className="relative h-64 bg-gray-50">
                   {product.badge && (
                     <div className="absolute top-3 left-3 z-10">
-                      <span className="bg-[#10192E] text-white text-xs font-semibold px-3 py-1 rounded-full">
+                      <span className="bg-[#54b3e3] text-white text-xs font-semibold px-3 py-1 rounded-full">
                         {product.badge}
                       </span>
                     </div>
@@ -96,7 +96,7 @@ export default async function CategoryPage({ params }: { params: Promise<{ slug:
 
                 {/* Product Info */}
                 <div className="p-4">
-                  <h3 className="text-lg font-bold text-black mb-2 group-hover:text-[#10192E] transition-colors line-clamp-2">
+                  <h3 className="text-lg font-bold text-black mb-2 group-hover:text-[#54b3e3] transition-colors line-clamp-2">
                     {product.name}
                   </h3>
                   
@@ -109,7 +109,7 @@ export default async function CategoryPage({ params }: { params: Promise<{ slug:
                           key={star}
                           className={`w-4 h-4 ${
                             star <= fullStars
-                              ? 'text-[#10192E] fill-current'
+                              ? 'text-[#54b3e3] fill-current'
                               : 'text-gray-300'
                           }`}
                           viewBox="0 0 24 24"
@@ -128,7 +128,7 @@ export default async function CategoryPage({ params }: { params: Promise<{ slug:
                         ৳{product.originalPrice}
                       </span>
                     )}
-                    <span className="text-xl font-bold text-[#10192E]">
+                    <span className="text-xl font-bold text-[#54b3e3]">
                       ৳{product.discountedPrice}
                     </span>
                     {product.discount > 0 && (
@@ -167,7 +167,7 @@ export default async function CategoryPage({ params }: { params: Promise<{ slug:
             </p>
             <Link
               href="/shop"
-              className="inline-block bg-[#10192E] text-white px-6 py-3 rounded-lg font-semibold hover:bg-[#1a2744] transition-colors"
+              className="inline-block bg-[#54b3e3] text-white px-6 py-3 rounded-lg font-semibold hover:bg-[#3a9bd1] transition-colors"
             >
               Browse All Products
             </Link>
@@ -188,10 +188,10 @@ export default async function CategoryPage({ params }: { params: Promise<{ slug:
                 <Link
                   key={cat.id}
                   href={`/category/${cat.slug}`}
-                  className="group bg-white border border-gray-200 rounded-lg p-4 text-center hover:border-[#10192E] hover:shadow-md transition-all"
+                  className="group bg-white border border-gray-200 rounded-lg p-4 text-center hover:border-[#54b3e3] hover:shadow-md transition-all"
                 >
                   <div className="text-3xl mb-2">{cat.icon}</div>
-                  <h3 className="text-sm font-semibold text-black group-hover:text-[#10192E] transition-colors mb-1">
+                  <h3 className="text-sm font-semibold text-black group-hover:text-[#54b3e3] transition-colors mb-1">
                     {cat.name}
                   </h3>
                   <p className="text-xs text-gray-500">

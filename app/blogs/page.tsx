@@ -58,20 +58,20 @@ export default function BlogsPage() {
                   className="object-cover"
                 />
                 <div className="absolute top-3 md:top-4 left-3 md:left-4">
-                  <span className="bg-[#10192E] text-white text-xs font-semibold px-2 md:px-3 py-1 rounded-full">
+                  <span className="bg-[#54b3e3] text-white text-xs font-semibold px-2 md:px-3 py-1 rounded-full">
                     {post.category}
                   </span>
                 </div>
               </div>
               <div className="p-4 md:p-6">
                 <p className="text-xs md:text-sm text-gray-500 mb-2">{post.date}</p>
-                <h2 className="text-lg md:text-xl font-bold text-black mb-2 md:mb-3 hover:text-[#10192E] transition-colors line-clamp-2">
+                <h2 className="text-lg md:text-xl font-bold text-black mb-2 md:mb-3 hover:text-[#54b3e3] transition-colors line-clamp-2">
                   {post.title}
                 </h2>
                 <p className="text-sm md:text-base text-gray-600 mb-3 md:mb-4 line-clamp-3">{post.excerpt}</p>
                 <Link 
                   href={`/blogs/${post.id}`}
-                  className="text-[#10192E] font-semibold hover:underline inline-flex items-center gap-2 text-sm md:text-base"
+                  className="text-[#54b3e3] font-semibold hover:underline inline-flex items-center gap-2 text-sm md:text-base"
                 >
                   Read More
                   <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -93,9 +93,9 @@ export default function BlogsPage() {
             <input
               type="email"
               placeholder="Enter your email"
-              className="flex-1 px-4 py-2 md:py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-[#10192E] text-sm md:text-base text-black placeholder:text-gray-400"
+              className="flex-1 px-4 py-2 md:py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-[#54b3e3] text-sm md:text-base text-black placeholder:text-gray-400"
             />
-            <button className="bg-[#10192E] text-white px-4 md:px-6 py-2 md:py-3 rounded-lg font-semibold hover:bg-[#1a2744] transition-colors text-sm md:text-base whitespace-nowrap">
+            <button className="bg-[#54b3e3] text-white px-4 md:px-6 py-2 md:py-3 rounded-lg font-semibold hover:bg-[#3a9bd1] transition-colors text-sm md:text-base whitespace-nowrap">
               Subscribe
             </button>
           </div>

@@ -81,7 +81,7 @@ export default function DealOfTheDay() {
           <h2 className="text-2xl md:text-3xl font-bold text-black uppercase mb-3">
             DEAL OF THE DAY
           </h2>
-          <div className="w-16 h-1 bg-[#10192E] mx-auto"></div>
+          <div className="w-16 h-1 bg-[#54b3e3] mx-auto"></div>
         </div>
 
         {/* Product Cards Grid */}
@@ -91,11 +91,11 @@ export default function DealOfTheDay() {
               <Link
                 key={product.id}
                 href={`/product/${product.slug}`}
-                className="group border border-[#10192E] bg-white rounded-lg overflow-hidden hover:shadow-lg transition-shadow relative block"
+                className="group border border-[#54b3e3] bg-white rounded-lg overflow-hidden hover:shadow-lg transition-shadow relative block"
               >
               {/* New Badge */}
               <div className="absolute top-3 left-3 z-10">
-                <span className="bg-[#10192E] text-black text-xs font-semibold px-3 py-1 rounded">
+                <span className="bg-[#54b3e3] text-black text-xs font-semibold px-3 py-1 rounded">
                   New
                 </span>
               </div>
@@ -110,10 +110,10 @@ export default function DealOfTheDay() {
                 />
 
                 {/* Hover Overlay with Icons */}
-                <div className="absolute inset-0 bg-[#10192E]/80 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-4 z-20">
+                <div className="absolute inset-0 bg-[#54b3e3]/80 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-4 z-20">
                   <button className="bg-white/90 hover:bg-white rounded-full p-3 transition-colors">
                     <svg
-                      className="w-5 h-5 text-[#10192E]"
+                      className="w-5 h-5 text-[#54b3e3]"
                       fill="none"
                       stroke="currentColor"
                       viewBox="0 0 24 24"
@@ -128,7 +128,7 @@ export default function DealOfTheDay() {
                   </button>
                   <button className="bg-white/90 hover:bg-white rounded-full p-3 transition-colors">
                     <svg
-                      className="w-5 h-5 text-[#10192E]"
+                      className="w-5 h-5 text-[#54b3e3]"
                       fill="none"
                       stroke="currentColor"
                       viewBox="0 0 24 24"
@@ -143,7 +143,7 @@ export default function DealOfTheDay() {
                   </button>
                   <button className="bg-white/90 hover:bg-white rounded-full p-3 transition-colors">
                     <svg
-                      className="w-5 h-5 text-[#10192E]"
+                      className="w-5 h-5 text-[#54b3e3]"
                       fill="none"
                       stroke="currentColor"
                       viewBox="0 0 24 24"
@@ -211,7 +211,7 @@ export default function DealOfTheDay() {
                         key={star}
                         className={`w-4 h-4 ${
                           star <= fullStars
-                            ? 'text-[#10192E] fill-current'
+                            ? 'text-[#54b3e3] fill-current'
                             : 'text-gray-300'
                         }`}
                         fill={star <= fullStars ? 'currentColor' : 'none'}
@@ -234,7 +234,7 @@ export default function DealOfTheDay() {
                   <span className="text-gray-400 line-through mr-2">
                     {product.originalPrice}
                   </span>
-                  <span className="text-[#10192E] font-bold text-lg">
+                  <span className="text-[#54b3e3] font-bold text-lg">
                     {product.discountedPrice}
                   </span>
                 </div>
@@ -252,7 +252,7 @@ export default function DealOfTheDay() {
                 key={index}
                 onClick={() => setCurrentSlide(index)}
                 className={`w-3 h-3 rounded-full transition-colors ${
-                  index === currentSlide ? 'bg-[#10192E]' : 'bg-gray-300'
+                  index === currentSlide ? 'bg-[#54b3e3]' : 'bg-gray-300'
                 }`}
                 aria-label={`Go to slide ${index + 1}`}
               />

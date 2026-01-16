@@ -90,7 +90,7 @@ export default function CheckoutPage() {
           <h1 className="text-3xl font-bold text-black mb-4">Your cart is empty</h1>
           <button
             onClick={() => router.push('/shop')}
-            className="bg-[#10192E] text-white px-6 py-3 rounded-lg font-semibold hover:bg-[#1a2744] transition-colors"
+            className="bg-[#54b3e3] text-white px-6 py-3 rounded-lg font-semibold hover:bg-[#3a9bd1] transition-colors"
           >
             Continue Shopping
           </button>
@@ -130,7 +130,7 @@ export default function CheckoutPage() {
                   value={formData.fullName}
                   onChange={handleInputChange}
                   placeholder="Enter your full name"
-                  className="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:outline-none focus:border-[#10192E] transition-colors placeholder:text-gray-400 text-black"
+                  className="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:outline-none focus:border-[#54b3e3] transition-colors placeholder:text-gray-400 text-black"
                 />
               </div>
 
@@ -145,7 +145,7 @@ export default function CheckoutPage() {
                   value={formData.phone}
                   onChange={handleInputChange}
                   placeholder="01XXXXXXXXX"
-                  className="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:outline-none focus:border-[#10192E] transition-colors placeholder:text-gray-400 text-black"
+                  className="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:outline-none focus:border-[#54b3e3] transition-colors placeholder:text-gray-400 text-black"
                 />
               </div>
 
@@ -159,7 +159,7 @@ export default function CheckoutPage() {
                   value={formData.email}
                   onChange={handleInputChange}
                   placeholder="your.email@example.com"
-                  className="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:outline-none focus:border-[#10192E] transition-colors placeholder:text-gray-400 text-black"
+                  className="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:outline-none focus:border-[#54b3e3] transition-colors placeholder:text-gray-400 text-black"
                 />
               </div>
 
@@ -174,7 +174,7 @@ export default function CheckoutPage() {
                   value={formData.address}
                   onChange={handleInputChange}
                   placeholder="House/Flat, Road, Area"
-                  className="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:outline-none focus:border-[#10192E] transition-colors placeholder:text-gray-400 text-black"
+                  className="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:outline-none focus:border-[#54b3e3] transition-colors placeholder:text-gray-400 text-black"
                 />
               </div>
 
@@ -191,7 +191,7 @@ export default function CheckoutPage() {
                   onFocus={() => setShowCityDropdown(true)}
                   placeholder="Search or select city"
                   autoComplete="off"
-                  className="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:outline-none focus:border-[#10192E] transition-colors placeholder:text-gray-500 text-black"
+                  className="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:outline-none focus:border-[#54b3e3] transition-colors placeholder:text-gray-500 text-black"
                 />
                 
                 {showCityDropdown && (
@@ -200,14 +200,14 @@ export default function CheckoutPage() {
                       className="fixed inset-0 z-10" 
                       onClick={() => setShowCityDropdown(false)}
                     ></div>
-                    <div className="absolute z-20 w-full mt-1 bg-white border-2 border-[#10192E] rounded-lg shadow-xl max-h-64 overflow-y-auto">
+                    <div className="absolute z-20 w-full mt-1 bg-white border-2 border-[#54b3e3] rounded-lg shadow-xl max-h-64 overflow-y-auto">
                       {filteredCities.length > 0 ? (
                         filteredCities.map((city) => (
                           <button
                             key={city}
                             type="button"
                             onClick={() => selectCity(city)}
-                            className="w-full text-left px-4 py-3 text-black font-medium hover:bg-[#10192E] hover:text-white transition-colors border-b border-gray-100 last:border-0"
+                            className="w-full text-left px-4 py-3 text-black font-medium hover:bg-[#54b3e3] hover:text-white transition-colors border-b border-gray-100 last:border-0"
                           >
                             {city}
                           </button>
@@ -228,14 +228,14 @@ export default function CheckoutPage() {
               <h2 className="text-2xl font-bold text-black mb-6">Payment Method</h2>
               
               <div className="space-y-3">
-                <label className="flex items-center gap-3 p-4 border-2 border-gray-200 rounded-lg cursor-pointer hover:border-[#10192E] transition-colors">
+                <label className="flex items-center gap-3 p-4 border-2 border-gray-200 rounded-lg cursor-pointer hover:border-[#54b3e3] transition-colors">
                   <input
                     type="radio"
                     name="paymentMethod"
                     value="cod"
                     checked={formData.paymentMethod === 'cod'}
                     onChange={handleInputChange}
-                    className="w-4 h-4 text-[#10192E]"
+                    className="w-4 h-4 text-[#54b3e3]"
                   />
                   <div className="flex-1">
                     <span className="font-semibold text-black">Cash on Delivery</span>
@@ -249,7 +249,7 @@ export default function CheckoutPage() {
                     name="paymentMethod"
                     value="online"
                     disabled
-                    className="w-4 h-4 text-[#10192E]"
+                    className="w-4 h-4 text-[#54b3e3]"
                   />
                   <div className="flex-1">
                     <span className="font-semibold text-black">Online Payment</span>
@@ -280,7 +280,7 @@ export default function CheckoutPage() {
                     <div className="flex-1 min-w-0">
                       <h4 className="text-sm font-semibold text-black truncate">{item.name}</h4>
                       <p className="text-xs text-gray-600">Qty: {item.quantity}</p>
-                      <p className="text-sm font-bold text-[#10192E]">৳{(item.price * item.quantity).toFixed(2)}</p>
+                      <p className="text-sm font-bold text-[#54b3e3]">৳{(item.price * item.quantity).toFixed(2)}</p>
                     </div>
                   </div>
                 ))}
@@ -297,14 +297,14 @@ export default function CheckoutPage() {
                 </div>
                 <div className="border-t pt-3 flex justify-between text-lg font-bold text-black">
                   <span>Total</span>
-                  <span className="text-[#10192E]">৳{getTotalPrice().toFixed(2)}</span>
+                  <span className="text-[#54b3e3]">৳{getTotalPrice().toFixed(2)}</span>
                 </div>
               </div>
 
               <button
                 type="submit"
                 disabled={isProcessing}
-                className="w-full bg-[#10192E] hover:bg-[#1a2744] disabled:bg-gray-400 text-white font-bold py-3 px-6 rounded-lg transition-colors flex items-center justify-center gap-2"
+                className="w-full bg-[#54b3e3] hover:bg-[#3a9bd1] disabled:bg-gray-400 text-white font-bold py-3 px-6 rounded-lg transition-colors flex items-center justify-center gap-2"
               >
                 {isProcessing ? (
                   <>

@@ -26,6 +26,13 @@ export default function ProductListing({ searchQuery = '' }: ProductListingProps
   const [activeTab, setActiveTab] = useState<TabType>('bestseller');
   const [showScrollTop, setShowScrollTop] = useState(false);
 
+  // Reset to bestseller tab when search query changes
+  useEffect(() => {
+    if (searchQuery) {
+      setActiveTab('bestseller');
+    }
+  }, [searchQuery]);
+
   // Get products from JSON data
   const getProductsByTab = (): Product[] => {
     let filteredProducts = productsData.products;
@@ -98,7 +105,7 @@ export default function ProductListing({ searchQuery = '' }: ProductListingProps
         {[...Array(fullStars)].map((_, i) => (
           <svg
             key={`full-${i}`}
-            className="w-4 h-4 text-[#10192E] fill-current"
+            className="w-4 h-4 text-[#54b3e3] fill-current"
             viewBox="0 0 24 24"
           >
             <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
@@ -113,7 +120,7 @@ export default function ProductListing({ searchQuery = '' }: ProductListingProps
               <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
             </svg>
             <svg
-              className="absolute inset-0 w-4 h-4 text-[#10192E] fill-current"
+              className="absolute inset-0 w-4 h-4 text-[#54b3e3] fill-current"
               viewBox="0 0 24 24"
               style={{ clipPath: 'inset(0 50% 0 0)' }}
             >
@@ -148,7 +155,7 @@ export default function ProductListing({ searchQuery = '' }: ProductListingProps
         {searchQuery && (
           <div className="mb-8 text-center">
             <p className="text-gray-600 font-inter">
-              Found <span className="font-bold text-[#10192E]">{products.length}</span> {products.length === 1 ? 'product' : 'products'}
+              Found <span className="font-bold text-[#54b3e3]">{products.length}</span> {products.length === 1 ? 'product' : 'products'}
             </p>
           </div>
         )}
@@ -160,8 +167,8 @@ export default function ProductListing({ searchQuery = '' }: ProductListingProps
               onClick={() => setActiveTab('bestseller')}
               className={`px-6 py-3 font-montserrat font-semibold text-sm md:text-base transition-all rounded-lg ${
                 activeTab === 'bestseller'
-                  ? 'bg-[#10192E] text-white shadow-lg'
-                  : 'text-slate-700 hover:text-[#10192E] hover:bg-slate-50'
+                  ? 'bg-[#54b3e3] text-white shadow-lg'
+                  : 'text-slate-700 hover:text-[#54b3e3] hover:bg-slate-50'
               }`}
             >
               Bestseller
@@ -170,8 +177,8 @@ export default function ProductListing({ searchQuery = '' }: ProductListingProps
               onClick={() => setActiveTab('newarrivals')}
               className={`px-6 py-3 font-montserrat font-semibold text-sm md:text-base transition-all rounded-lg ${
                 activeTab === 'newarrivals'
-                  ? 'bg-[#10192E] text-white shadow-lg'
-                  : 'text-slate-700 hover:text-[#10192E] hover:bg-slate-50'
+                  ? 'bg-[#54b3e3] text-white shadow-lg'
+                  : 'text-slate-700 hover:text-[#54b3e3] hover:bg-slate-50'
               }`}
             >
               New Arrivals
@@ -180,8 +187,8 @@ export default function ProductListing({ searchQuery = '' }: ProductListingProps
               onClick={() => setActiveTab('toprated')}
               className={`px-6 py-3 font-montserrat font-semibold text-sm md:text-base transition-all rounded-lg ${
                 activeTab === 'toprated'
-                  ? 'bg-[#10192E] text-white shadow-lg'
-                  : 'text-slate-700 hover:text-[#10192E] hover:bg-slate-50'
+                  ? 'bg-[#54b3e3] text-white shadow-lg'
+                  : 'text-slate-700 hover:text-[#54b3e3] hover:bg-slate-50'
               }`}
             >
               Top Rated
@@ -197,11 +204,11 @@ export default function ProductListing({ searchQuery = '' }: ProductListingProps
             </svg>
             <h3 className="text-2xl font-montserrat font-bold text-slate-800 mb-3">No Products Found</h3>
             <p className="text-gray-600 font-inter mb-6">
-              We couldn't find any products matching "<span className="font-semibold text-[#10192E]">{searchQuery}</span>"
+              We couldn't find any products matching "<span className="font-semibold text-[#54b3e3]">{searchQuery}</span>"
             </p>
             <a
               href="/shop"
-              className="inline-block bg-[#10192E] hover:bg-[#1a2744] text-white font-montserrat font-semibold px-8 py-3 rounded-lg transition-colors"
+              className="inline-block bg-[#54b3e3] hover:bg-[#3a9bd1] text-white font-montserrat font-semibold px-8 py-3 rounded-lg transition-colors"
             >
               Browse All Products
             </a>
@@ -220,7 +227,7 @@ export default function ProductListing({ searchQuery = '' }: ProductListingProps
               >
                 {/* New Badge */}
                 <div className="absolute top-3 left-3 z-10">
-                  <span className="bg-[#10192E] text-white text-xs font-semibold px-3 py-1 rounded">
+                  <span className="bg-[#54b3e3] text-white text-xs font-semibold px-3 py-1 rounded">
                     New
                   </span>
                 </div>
@@ -254,7 +261,7 @@ export default function ProductListing({ searchQuery = '' }: ProductListingProps
                         {product.originalPrice}
                       </span>
                     )}
-                    <span className="text-[#10192E] font-bold text-lg">
+                    <span className="text-[#54b3e3] font-bold text-lg">
                       {product.discountedPrice}
                     </span>
                   </div>

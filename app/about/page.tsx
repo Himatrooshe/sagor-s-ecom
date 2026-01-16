@@ -38,7 +38,7 @@ export default function AboutPage() {
           {/* Mission & Values */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 mb-8 md:mb-12">
             <div className="text-center p-4 md:p-6 bg-gray-50 rounded-lg">
-              <div className="w-12 h-12 md:w-16 md:h-16 bg-[#10192E] rounded-full flex items-center justify-center mx-auto mb-3 md:mb-4">
+              <div className="w-12 h-12 md:w-16 md:h-16 bg-[#54b3e3] rounded-full flex items-center justify-center mx-auto mb-3 md:mb-4">
                 <svg className="w-6 h-6 md:w-8 md:h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                 </svg>
@@ -50,7 +50,7 @@ export default function AboutPage() {
             </div>
 
             <div className="text-center p-4 md:p-6 bg-gray-50 rounded-lg">
-              <div className="w-12 h-12 md:w-16 md:h-16 bg-[#10192E] rounded-full flex items-center justify-center mx-auto mb-3 md:mb-4">
+              <div className="w-12 h-12 md:w-16 md:h-16 bg-[#54b3e3] rounded-full flex items-center justify-center mx-auto mb-3 md:mb-4">
                 <svg className="w-6 h-6 md:w-8 md:h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
                 </svg>
@@ -62,7 +62,7 @@ export default function AboutPage() {
             </div>
 
             <div className="text-center p-4 md:p-6 bg-gray-50 rounded-lg">
-              <div className="w-12 h-12 md:w-16 md:h-16 bg-[#10192E] rounded-full flex items-center justify-center mx-auto mb-3 md:mb-4">
+              <div className="w-12 h-12 md:w-16 md:h-16 bg-[#54b3e3] rounded-full flex items-center justify-center mx-auto mb-3 md:mb-4">
                 <svg className="w-6 h-6 md:w-8 md:h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
                 </svg>
@@ -75,17 +75,17 @@ export default function AboutPage() {
           </div>
 
           {/* Contact Info */}
-          <div className="bg-[#10192E] text-white rounded-lg p-6 md:p-8 text-center">
+          <div className="bg-[#54b3e3] text-white rounded-lg p-6 md:p-8 text-center">
             <h3 className="text-xl md:text-2xl font-bold mb-3 md:mb-4">Get in Touch</h3>
             <p className="text-sm md:text-base mb-4 md:mb-6">Have questions? We'd love to hear from you!</p>
             <div className="flex flex-col sm:flex-row justify-center gap-3 md:gap-4">
-              <a href="tel:01335550839" className="flex items-center justify-center gap-2 bg-white text-[#10192E] px-4 md:px-6 py-2 md:py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors text-sm md:text-base">
+              <a href="tel:01335550839" className="flex items-center justify-center gap-2 bg-white text-[#54b3e3] px-4 md:px-6 py-2 md:py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors text-sm md:text-base">
                 <svg className="w-4 h-4 md:w-5 md:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
                 </svg>
                 Call Us
               </a>
-              <a href="mailto:inbdstore1@gmail.com" className="flex items-center justify-center gap-2 bg-white text-[#10192E] px-4 md:px-6 py-2 md:py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors text-sm md:text-base">
+              <a href="mailto:inbdstore1@gmail.com" className="flex items-center justify-center gap-2 bg-white text-[#54b3e3] px-4 md:px-6 py-2 md:py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors text-sm md:text-base">
                 <svg className="w-4 h-4 md:w-5 md:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                 </svg>

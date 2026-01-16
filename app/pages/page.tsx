@@ -87,16 +87,16 @@ export default function PagesDirectory() {
             <Link
               key={index}
               href={page.link}
-              className="group bg-white border border-gray-200 rounded-lg p-4 md:p-6 hover:border-[#10192E] hover:shadow-lg transition-all"
+              className="group bg-white border border-gray-200 rounded-lg p-4 md:p-6 hover:border-[#54b3e3] hover:shadow-lg transition-all"
             >
-              <div className="w-12 h-12 md:w-16 md:h-16 bg-gray-100 rounded-lg flex items-center justify-center mb-3 md:mb-4 text-gray-600 group-hover:bg-[#10192E] group-hover:text-white transition-colors">
+              <div className="w-12 h-12 md:w-16 md:h-16 bg-gray-100 rounded-lg flex items-center justify-center mb-3 md:mb-4 text-gray-600 group-hover:bg-[#54b3e3] group-hover:text-white transition-colors">
                 {page.icon}
               </div>
-              <h2 className="text-lg md:text-xl font-bold text-black mb-2 group-hover:text-[#10192E] transition-colors">
+              <h2 className="text-lg md:text-xl font-bold text-black mb-2 group-hover:text-[#54b3e3] transition-colors">
                 {page.title}
               </h2>
               <p className="text-gray-600 text-xs md:text-sm mb-3 md:mb-4">{page.description}</p>
-              <div className="flex items-center gap-2 text-[#10192E] font-semibold text-sm md:text-base">
+              <div className="flex items-center gap-2 text-[#54b3e3] font-semibold text-sm md:text-base">
                 Visit Page
                 <svg className="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />

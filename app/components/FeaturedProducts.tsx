@@ -89,7 +89,7 @@ export default function FeaturedProducts() {
           <h2 className="text-2xl md:text-3xl font-bold text-black uppercase mb-3">
             Featured Products
           </h2>
-          <div className="w-16 h-1 bg-[#10192E] mx-auto mb-2"></div>
+          <div className="w-16 h-1 bg-[#54b3e3] mx-auto mb-2"></div>
           <p className="text-gray-600 mt-3">
             Discover our handpicked selection of premium products
           </p>
@@ -102,7 +102,7 @@ export default function FeaturedProducts() {
             <>
               <button
                 onClick={prevSlide}
-                className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 md:-translate-x-6 z-10 bg-white hover:bg-[#10192E] text-black hover:text-white border-2 border-gray-200 hover:border-[#10192E] rounded-full p-3 shadow-lg transition-all duration-300"
+                className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 md:-translate-x-6 z-10 bg-white hover:bg-[#54b3e3] text-black hover:text-white border-2 border-gray-200 hover:border-[#54b3e3] rounded-full p-3 shadow-lg transition-all duration-300"
                 aria-label="Previous products"
               >
                 <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -111,7 +111,7 @@ export default function FeaturedProducts() {
               </button>
               <button
                 onClick={nextSlide}
-                className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 md:translate-x-6 z-10 bg-white hover:bg-[#10192E] text-black hover:text-white border-2 border-gray-200 hover:border-[#10192E] rounded-full p-3 shadow-lg transition-all duration-300"
+                className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 md:translate-x-6 z-10 bg-white hover:bg-[#54b3e3] text-black hover:text-white border-2 border-gray-200 hover:border-[#54b3e3] rounded-full p-3 shadow-lg transition-all duration-300"
                 aria-label="Next products"
               >
                 <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -127,11 +127,11 @@ export default function FeaturedProducts() {
             return (
               <div
                 key={product.id}
-                className="group bg-white border border-gray-200 rounded-lg overflow-hidden hover:shadow-xl hover:border-[#10192E] transition-all duration-300"
+                className="group bg-white border border-gray-200 rounded-lg overflow-hidden hover:shadow-xl hover:border-[#54b3e3] transition-all duration-300"
               >
                 {/* Category Badge */}
                 {/* <div className="absolute top-3 left-3 z-10">
-                  <span className="bg-[#10192E] text-white text-xs font-semibold px-3 py-1 rounded-full shadow-md">
+                  <span className="bg-[#54b3e3] text-white text-xs font-semibold px-3 py-1 rounded-full shadow-md">
                     {product.category}
                   </span>
                 </div> */}
@@ -148,7 +148,7 @@ export default function FeaturedProducts() {
                   </Link>
 
                   {/* Hover Overlay with Icons */}
-                  <div className="absolute inset-0 bg-[#10192E]/90 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center gap-4 z-20 pointer-events-none">
+                  <div className="absolute inset-0 bg-[#54b3e3]/90 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center gap-4 z-20 pointer-events-none">
                     <button 
                       onClick={(e) => {
                         e.preventDefault();
@@ -157,7 +157,7 @@ export default function FeaturedProducts() {
                       className="bg-white hover:bg-gray-100 rounded-full p-3 transition-colors shadow-lg transform hover:scale-110 duration-200 pointer-events-auto"
                     >
                       <svg
-                        className="w-5 h-5 text-[#10192E]"
+                        className="w-5 h-5 text-[#54b3e3]"
                         fill="none"
                         stroke="currentColor"
                         viewBox="0 0 24 24"
@@ -175,7 +175,7 @@ export default function FeaturedProducts() {
                       className="bg-white hover:bg-gray-100 rounded-full p-3 transition-colors shadow-lg transform hover:scale-110 duration-200 pointer-events-auto"
                     >
                       <svg
-                        className="w-5 h-5 text-[#10192E]"
+                        className="w-5 h-5 text-[#54b3e3]"
                         fill="none"
                         stroke="currentColor"
                         viewBox="0 0 24 24"
@@ -203,7 +203,7 @@ export default function FeaturedProducts() {
                       className="bg-white hover:bg-gray-100 rounded-full p-3 transition-colors shadow-lg transform hover:scale-110 duration-200 pointer-events-auto"
                     >
                       <svg
-                        className="w-5 h-5 text-[#10192E]"
+                        className="w-5 h-5 text-[#54b3e3]"
                         fill="none"
                         stroke="currentColor"
                         viewBox="0 0 24 24"
@@ -223,7 +223,7 @@ export default function FeaturedProducts() {
                 <div className="p-5">
                   {/* Product Name */}
                   <Link href={`/product/${product.slug}`}>
-                    <h3 className="text-black font-bold text-lg mb-3 text-center group-hover:text-[#10192E] transition-colors cursor-pointer">
+                    <h3 className="text-black font-bold text-lg mb-3 text-center group-hover:text-[#54b3e3] transition-colors cursor-pointer">
                       {product.name}
                     </h3>
                   </Link>
@@ -235,7 +235,7 @@ export default function FeaturedProducts() {
                         key={star}
                         className={`w-4 h-4 ${
                           star <= product.rating
-                            ? 'text-[#10192E] fill-current'
+                            ? 'text-[#54b3e3] fill-current'
                             : 'text-gray-300'
                         }`}
                         fill={star <= product.rating ? 'currentColor' : 'none'}
@@ -259,7 +259,7 @@ export default function FeaturedProducts() {
                         {product.originalPrice}
                       </span>
                     )}
-                    <span className="text-[#10192E] font-bold text-xl">
+                    <span className="text-[#54b3e3] font-bold text-xl">
                       {product.discountedPrice}
                     </span>
                   </div>
@@ -278,7 +278,7 @@ export default function FeaturedProducts() {
                   <div className="flex gap-2">
                     <button
                       onClick={(e) => handleAddToCart(e, product)}
-                      className="flex-1 bg-[#10192E] hover:bg-[#1a2744] text-white font-semibold py-2.5 px-4 rounded-lg transition-all duration-300 transform hover:scale-105 flex items-center justify-center gap-2"
+                      className="flex-1 bg-[#54b3e3] hover:bg-[#3a9bd1] text-white font-semibold py-2.5 px-4 rounded-lg transition-all duration-300 transform hover:scale-105 flex items-center justify-center gap-2"
                     >
                       <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
@@ -308,7 +308,7 @@ export default function FeaturedProducts() {
                 onClick={() => goToSlide(index)}
                 className={`transition-all duration-300 rounded-full ${
                   index === currentSlide
-                    ? 'w-8 h-3 bg-[#10192E]'
+                    ? 'w-8 h-3 bg-[#54b3e3]'
                     : 'w-3 h-3 bg-gray-300 hover:bg-gray-400'
                 }`}
                 aria-label={`Go to slide ${index + 1}`}

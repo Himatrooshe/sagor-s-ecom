@@ -27,7 +27,7 @@ export default function CartPage() {
             </p>
             <Link
               href="/shop"
-              className="inline-block bg-[#10192E] text-white px-8 py-3 rounded-lg font-semibold hover:bg-[#1a2744] transition-colors"
+              className="inline-block bg-[#54b3e3] text-white px-8 py-3 rounded-lg font-semibold hover:bg-[#3a9bd1] transition-colors"
             >
               Continue Shopping
             </Link>
@@ -76,7 +76,7 @@ export default function CartPage() {
                     <div className="flex-1 min-w-0">
                       <div className="flex justify-between items-start gap-2 mb-2">
                         <Link href={`/product/${item.slug}`} className="flex-1">
-                          <h3 className="font-bold text-black text-sm md:text-base mb-1 hover:text-[#10192E] transition-colors line-clamp-2">
+                          <h3 className="font-bold text-black text-sm md:text-base mb-1 hover:text-[#54b3e3] transition-colors line-clamp-2">
                             {item.name}
                           </h3>
                         </Link>
@@ -101,26 +101,26 @@ export default function CartPage() {
                       </div>
                       
                       <div className="flex flex-wrap items-center justify-between gap-3">
-                        <p className="text-[#10192E] font-bold text-base md:text-lg">৳{item.price}</p>
+                        <p className="text-[#54b3e3] font-bold text-base md:text-lg">৳{item.price}</p>
                         
                         {/* Quantity Controls */}
                         <div className="flex items-center gap-3">
-                          <div className="flex items-center border-2 border-[#10192E] rounded-lg overflow-hidden">
+                          <div className="flex items-center border-2 border-[#54b3e3] rounded-lg overflow-hidden">
                             <button
                               onClick={() => updateQuantity(item.cartItemId || `${item.id}-${item.selectedSize}-${item.selectedColor}`, item.quantity - 1)}
-                              className="px-2 md:px-3 py-1 bg-white hover:bg-[#10192E] hover:text-white text-[#10192E] transition-colors"
+                              className="px-2 md:px-3 py-1 bg-white hover:bg-[#54b3e3] hover:text-white text-[#54b3e3] transition-colors"
                               aria-label="Decrease quantity"
                             >
                               <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M20 12H4" />
                               </svg>
                             </button>
-                            <span className="px-2 md:px-3 py-1 font-bold text-[#10192E] min-w-[2rem] text-center text-sm">
+                            <span className="px-2 md:px-3 py-1 font-bold text-[#54b3e3] min-w-[2rem] text-center text-sm">
                               {item.quantity}
                             </span>
                             <button
                               onClick={() => updateQuantity(item.cartItemId || `${item.id}-${item.selectedSize}-${item.selectedColor}`, item.quantity + 1)}
-                              className="px-2 md:px-3 py-1 bg-white hover:bg-[#10192E] hover:text-white text-[#10192E] transition-colors"
+                              className="px-2 md:px-3 py-1 bg-white hover:bg-[#54b3e3] hover:text-white text-[#54b3e3] transition-colors"
                               aria-label="Increase quantity"
                             >
                               <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -157,20 +157,20 @@ export default function CartPage() {
                 </div>
                 <div className="border-t pt-3 flex justify-between text-lg font-bold text-black">
                   <span>Total</span>
-                  <span className="text-[#10192E]">৳{getTotalPrice().toFixed(2)}</span>
+                  <span className="text-[#54b3e3]">৳{getTotalPrice().toFixed(2)}</span>
                 </div>
               </div>
 
               <Link
                 href="/checkout"
-                className="block w-full bg-[#10192E] hover:bg-[#1a2744] text-white text-center font-bold py-3 px-6 rounded-lg transition-colors mb-4"
+                className="block w-full bg-[#54b3e3] hover:bg-[#3a9bd1] text-white text-center font-bold py-3 px-6 rounded-lg transition-colors mb-4"
               >
                 Proceed to Checkout
               </Link>
 
               <Link
                 href="/shop"
-                className="block w-full bg-white hover:bg-gray-100 text-[#10192E] text-center font-semibold py-3 px-6 rounded-lg border-2 border-[#10192E] transition-colors"
+                className="block w-full bg-white hover:bg-gray-100 text-[#54b3e3] text-center font-semibold py-3 px-6 rounded-lg border-2 border-[#54b3e3] transition-colors"
               >
                 Continue Shopping
               </Link>

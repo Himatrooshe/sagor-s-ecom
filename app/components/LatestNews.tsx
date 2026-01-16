@@ -48,7 +48,7 @@ export default function LatestNews() {
           <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-black uppercase mb-3">
             OUR LATEST NEWS
           </h2>
-          <div className="w-16 h-1 bg-[#10192E] mx-auto"></div>
+          <div className="w-16 h-1 bg-[#54b3e3] mx-auto"></div>
         </div>
 
         {/* News Articles Grid */}
@@ -71,7 +71,7 @@ export default function LatestNews() {
                   <div className="absolute inset-0 flex items-center justify-center bg-black/20">
                     <div className="w-16 h-16 bg-white/90 rounded-full flex items-center justify-center hover:bg-white transition-colors cursor-pointer">
                       <svg
-                        className="w-8 h-8 text-[#10192E] ml-1"
+                        className="w-8 h-8 text-[#54b3e3] ml-1"
                         fill="currentColor"
                         viewBox="0 0 24 24"
                       >
@@ -102,10 +102,10 @@ export default function LatestNews() {
                 {/* Read More Link */}
                 <a
                   href="#"
-                  className="inline-block text-black font-bold text-sm md:text-base hover:text-[#10192E] transition-colors relative group"
+                  className="inline-block text-black font-bold text-sm md:text-base hover:text-[#54b3e3] transition-colors relative group"
                 >
                   READ MORE
-                  <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-[#10192E] group-hover:w-full transition-all duration-300"></span>
+                  <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-[#54b3e3] group-hover:w-full transition-all duration-300"></span>
                 </a>
               </div>
             </article>
@@ -119,7 +119,7 @@ export default function LatestNews() {
               key={dot}
               onClick={() => setCurrentSlide(dot)}
               className={`w-3 h-3 rounded-full transition-colors ${
-                dot === currentSlide ? 'bg-[#10192E]' : 'bg-gray-300'
+                dot === currentSlide ? 'bg-[#54b3e3]' : 'bg-gray-300'
               }`}
               aria-label={`Go to slide ${dot + 1}`}
             />

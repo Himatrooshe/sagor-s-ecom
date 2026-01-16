@@ -41,7 +41,7 @@ export default function InstagramFeed() {
             <svg
               className="w-12 h-12 md:w-16 md:h-16"
               fill="none"
-              stroke="#10192E"
+              stroke="#54b3e3"
               viewBox="0 0 24 24"
               strokeWidth={2}
             >
@@ -55,7 +55,7 @@ export default function InstagramFeed() {
                 strokeLinejoin="round"
               />
               <circle cx="12" cy="12" r="4" />
-              <circle cx="18" cy="6" r="1" fill="#10192E" />
+              <circle cx="18" cy="6" r="1" fill="#54b3e3" />
             </svg>
           </div>
           
@@ -65,7 +65,7 @@ export default function InstagramFeed() {
           </h2>
           
           {/* Underline */}
-          <div className="w-16 h-1 bg-[#10192E] mx-auto"></div>
+          <div className="w-16 h-1 bg-[#54b3e3] mx-auto"></div>
         </div>
 
         {/* Image Grid */}

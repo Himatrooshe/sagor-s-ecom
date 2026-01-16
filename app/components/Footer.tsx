@@ -11,27 +11,27 @@ export default function Footer() {
             <h3 className="text-lg font-bold mb-4 uppercase">QUICK MENU</h3>
             <ul className="space-y-2">
               <li>
-                <a href="#" className="text-black hover:text-[#10192E] transition-colors text-sm">
+                <a href="#" className="text-black hover:text-[#54b3e3] transition-colors text-sm">
                   New arrivals
                 </a>
               </li>
               <li>
-                <a href="#" className="text-black hover:text-[#10192E] transition-colors text-sm">
+                <a href="#" className="text-black hover:text-[#54b3e3] transition-colors text-sm">
                   Life style
                 </a>
               </li>
               <li>
-                <a href="#" className="text-black hover:text-[#10192E] transition-colors text-sm">
+                <a href="#" className="text-black hover:text-[#54b3e3] transition-colors text-sm">
                   Accents
                 </a>
               </li>
               <li>
-                <a href="#" className="text-black hover:text-[#10192E] transition-colors text-sm">
+                <a href="#" className="text-black hover:text-[#54b3e3] transition-colors text-sm">
                   Tables
                 </a>
               </li>
               <li>
-                <a href="#" className="text-black hover:text-[#10192E] transition-colors text-sm">
+                <a href="#" className="text-black hover:text-[#54b3e3] transition-colors text-sm">
                   Dining
                 </a>
               </li>
@@ -48,11 +48,11 @@ export default function Footer() {
               <input
                 type="email"
                 placeholder="Your email letter"
-                className="w-full px-4 py-2 bg-white border border-gray-300 rounded-lg focus:outline-none focus:border-[#10192E] text-black placeholder-gray-400"
+                className="w-full px-4 py-2 bg-white border border-gray-300 rounded-lg focus:outline-none focus:border-[#54b3e3] text-black placeholder-gray-400"
               />
               <button
                 type="submit"
-                className="w-full bg-[#10192E] hover:bg-[#8F7455] text-white font-bold uppercase py-2 px-4 rounded-lg transition-colors"
+                className="w-full bg-[#54b3e3] hover:bg-[#8F7455] text-white font-bold uppercase py-2 px-4 rounded-lg transition-colors"
               >
                 SUBSCRIBE
               </button>
@@ -64,27 +64,27 @@ export default function Footer() {
             <h3 className="text-lg font-bold mb-4 uppercase">INFORMATION</h3>
             <ul className="space-y-2">
               <li>
-                <a href="#" className="text-black hover:text-[#10192E] transition-colors text-sm">
+                <a href="#" className="text-black hover:text-[#54b3e3] transition-colors text-sm">
                   FAQs
                 </a>
               </li>
               <li>
-                <a href="#" className="text-black hover:text-[#10192E] transition-colors text-sm">
+                <a href="#" className="text-black hover:text-[#54b3e3] transition-colors text-sm">
                   Track Order
                 </a>
               </li>
               <li>
-                <a href="#" className="text-black hover:text-[#10192E] transition-colors text-sm">
+                <a href="#" className="text-black hover:text-[#54b3e3] transition-colors text-sm">
                   Delivery
                 </a>
               </li>
               <li>
-                <a href="#contact" className="text-black hover:text-[#10192E] transition-colors text-sm">
+                <a href="#contact" className="text-black hover:text-[#54b3e3] transition-colors text-sm">
                   Contact Us
                 </a>
               </li>
               <li>
-                <a href="#" className="text-black hover:text-[#10192E] transition-colors text-sm">
+                <a href="#" className="text-black hover:text-[#54b3e3] transition-colors text-sm">
                   Return
                 </a>
               </li>
@@ -97,7 +97,7 @@ export default function Footer() {
             <ul className="space-y-3">
               <li className="flex items-start gap-2">
                 <svg
-                  className="w-5 h-5 text-[#10192E] mt-0.5 flex-shrink-0"
+                  className="w-5 h-5 text-[#54b3e3] mt-0.5 flex-shrink-0"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
@@ -111,14 +111,14 @@ export default function Footer() {
                 </svg>
                 <a
                   href="mailto:inbdstore1@gmail.com"
-                  className="text-black hover:text-[#10192E] transition-colors text-sm break-all"
+                  className="text-black hover:text-[#54b3e3] transition-colors text-sm break-all"
                 >
                   inbdstore1@gmail.com
                 </a>
               </li>
               <li className="flex items-center gap-2">
                 <svg
-                  className="w-5 h-5 text-[#10192E] flex-shrink-0"
+                  className="w-5 h-5 text-[#54b3e3] flex-shrink-0"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
@@ -132,14 +132,14 @@ export default function Footer() {
                 </svg>
                 <a
                   href="tel:01335550839"
-                  className="text-black hover:text-[#10192E] transition-colors text-sm"
+                  className="text-black hover:text-[#54b3e3] transition-colors text-sm"
                 >
                   01335550839
                 </a>
               </li>
               <li className="flex items-center gap-2">
                 <svg
-                  className="w-5 h-5 text-[#10192E] flex-shrink-0"
+                  className="w-5 h-5 text-[#54b3e3] flex-shrink-0"
                   fill="currentColor"
                   viewBox="0 0 24 24"
                 >
@@ -149,14 +149,14 @@ export default function Footer() {
                   href="https://wa.me/8801335550839"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-black hover:text-[#10192E] transition-colors text-sm"
+                  className="text-black hover:text-[#54b3e3] transition-colors text-sm"
                 >
                   WhatsApp: 01335550839
                 </a>
               </li>
               <li className="flex items-center gap-2">
                 <svg
-                  className="w-5 h-5 text-[#10192E] flex-shrink-0"
+                  className="w-5 h-5 text-[#54b3e3] flex-shrink-0"
                   fill="currentColor"
                   viewBox="0 0 24 24"
                 >
@@ -166,14 +166,14 @@ export default function Footer() {
                   href="https://www.facebook.com/inbdperfume"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-black hover:text-[#10192E] transition-colors text-sm"
+                  className="text-black hover:text-[#54b3e3] transition-colors text-sm"
                 >
                   inbd perfume
                 </a>
               </li>
               <li className="flex items-start gap-2">
                 <svg
-                  className="w-5 h-5 text-[#10192E] mt-0.5 flex-shrink-0"
+                  className="w-5 h-5 text-[#54b3e3] mt-0.5 flex-shrink-0"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
@@ -189,7 +189,7 @@ export default function Footer() {
                   href="https://www.inbdstore.com"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-black hover:text-[#10192E] transition-colors text-sm break-all"
+                  className="text-black hover:text-[#54b3e3] transition-colors text-sm break-all"
                 >
                   www.inbdstore.com
                 </a>
@@ -204,7 +204,7 @@ export default function Footer() {
             href="https://www.facebook.com/inbdperfume"
             target="_blank"
             rel="noopener noreferrer"
-            className="text-black hover:text-[#10192E] transition-colors"
+            className="text-black hover:text-[#54b3e3] transition-colors"
             aria-label="Facebook"
           >
             <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
@@ -215,7 +215,7 @@ export default function Footer() {
             href="https://wa.me/8801335550839"
             target="_blank"
             rel="noopener noreferrer"
-            className="text-black hover:text-[#10192E] transition-colors"
+            className="text-black hover:text-[#54b3e3] transition-colors"
             aria-label="WhatsApp"
           >
             <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
@@ -226,7 +226,7 @@ export default function Footer() {
             href="https://www.inbdstore.com"
             target="_blank"
             rel="noopener noreferrer"
-            className="text-black hover:text-[#10192E] transition-colors"
+            className="text-black hover:text-[#54b3e3] transition-colors"
             aria-label="Website"
           >
             <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">

@@ -35,7 +35,7 @@ export default function ProductDetails({ slug }: ProductDetailsProps) {
       <div className="min-h-screen flex items-center justify-center">
         <div className="text-center">
           <h1 className="text-3xl font-bold text-black mb-4">Product Not Found</h1>
-          <Link href="/" className="text-[#10192E] hover:underline">
+          <Link href="/" className="text-[#54b3e3] hover:underline">
             Return to Home
           </Link>
         </div>
@@ -132,11 +132,11 @@ export default function ProductDetails({ slug }: ProductDetailsProps) {
       <div className="bg-white border-b border-gray-200 py-3">
         <div className="container mx-auto px-4">
           <nav className="text-sm text-gray-600">
-            <Link href="/" className="hover:text-[#10192E] transition-colors">
+            <Link href="/" className="hover:text-[#54b3e3] transition-colors">
               Home
             </Link>
             <span className="mx-2">»</span>
-            <Link href="/" className="hover:text-[#10192E] transition-colors">
+            <Link href="/" className="hover:text-[#54b3e3] transition-colors">
               Accents
             </Link>
             <span className="mx-2">»</span>
@@ -165,11 +165,11 @@ export default function ProductDetails({ slug }: ProductDetailsProps) {
                         href={`/product/${productSlug}`}
                         className="block group"
                       >
-                        <div className="flex gap-3 border border-gray-200 rounded-lg p-2 hover:border-[#10192E] hover:shadow-md transition-all">
+                        <div className="flex gap-3 border border-gray-200 rounded-lg p-2 hover:border-[#54b3e3] hover:shadow-md transition-all">
                           {/* Product Image */}
                           <div className="relative w-20 h-20 bg-gray-50 rounded overflow-hidden">
                             <div className="absolute top-1 left-1 z-10">
-                              <span className="bg-[#10192E] text-white text-[10px] font-semibold px-1.5 py-0.5 rounded">
+                              <span className="bg-[#54b3e3] text-white text-[10px] font-semibold px-1.5 py-0.5 rounded">
                                 New
                               </span>
                             </div>
@@ -182,7 +182,7 @@ export default function ProductDetails({ slug }: ProductDetailsProps) {
                           </div>
                           {/* Product Info */}
                           <div className="flex-1 min-w-0">
-                            <h4 className="text-sm font-semibold text-black mb-1 truncate group-hover:text-[#10192E] transition-colors">
+                            <h4 className="text-sm font-semibold text-black mb-1 truncate group-hover:text-[#54b3e3] transition-colors">
                               {product.name}
                             </h4>
                             {/* Star Rating */}
@@ -192,7 +192,7 @@ export default function ProductDetails({ slug }: ProductDetailsProps) {
                                   key={star}
                                   className={`w-3 h-3 ${
                                     star <= product.rating
-                                      ? 'text-[#10192E] fill-current'
+                                      ? 'text-[#54b3e3] fill-current'
                                       : 'text-gray-300'
                                   }`}
                                   viewBox="0 0 24 24"
@@ -213,7 +213,7 @@ export default function ProductDetails({ slug }: ProductDetailsProps) {
                               <span className="text-xs text-gray-400 line-through">
                                 {product.originalPrice}
                               </span>
-                              <span className="text-sm font-bold text-[#10192E]">
+                              <span className="text-sm font-bold text-[#54b3e3]">
                                 {product.discountedPrice}
                               </span>
                             </div>
@@ -228,7 +228,7 @@ export default function ProductDetails({ slug }: ProductDetailsProps) {
                   <div className="flex justify-between mt-4">
                     <button 
                       onClick={prevRelatedProduct}
-                      className="w-8 h-8 bg-gray-100 border border-gray-300 rounded flex items-center justify-center hover:bg-[#10192E] hover:text-white hover:border-[#10192E] transition-colors"
+                      className="w-8 h-8 bg-gray-100 border border-gray-300 rounded flex items-center justify-center hover:bg-[#54b3e3] hover:text-white hover:border-[#54b3e3] transition-colors"
                     >
                       <svg
                         className="w-4 h-4 text-gray-600"
@@ -246,7 +246,7 @@ export default function ProductDetails({ slug }: ProductDetailsProps) {
                     </button>
                     <button 
                       onClick={nextRelatedProduct}
-                      className="w-8 h-8 bg-gray-100 border border-gray-300 rounded flex items-center justify-center hover:bg-[#10192E] hover:text-white hover:border-[#10192E] transition-colors"
+                      className="w-8 h-8 bg-gray-100 border border-gray-300 rounded flex items-center justify-center hover:bg-[#54b3e3] hover:text-white hover:border-[#54b3e3] transition-colors"
                     >
                       <svg
                         className="w-4 h-4 text-gray-600"
@@ -282,7 +282,7 @@ export default function ProductDetails({ slug }: ProductDetailsProps) {
                     className="object-contain p-8"
                   />
                   {/* Zoom Icon */}
-                  <button className="absolute top-4 right-4 w-10 h-10 bg-white/90 hover:bg-[#10192E] rounded-full flex items-center justify-center transition-colors shadow-md z-10">
+                  <button className="absolute top-4 right-4 w-10 h-10 bg-white/90 hover:bg-[#54b3e3] rounded-full flex items-center justify-center transition-colors shadow-md z-10">
                     <svg
                       className="w-5 h-5 text-gray-700 hover:text-white"
                       fill="none"
@@ -308,7 +308,7 @@ export default function ProductDetails({ slug }: ProductDetailsProps) {
                         onClick={() => setSelectedImage(index)}
                         className={` w-20 h-20 border-2 rounded overflow-hidden transition-all ${
                           selectedImage === index
-                            ? 'border-[#10192E] ring-2 ring-[#10192E] ring-offset-1'
+                            ? 'border-[#54b3e3] ring-2 ring-[#54b3e3] ring-offset-1'
                             : 'border-gray-200 hover:border-gray-300'
                         }`}
                       >
@@ -324,7 +324,7 @@ export default function ProductDetails({ slug }: ProductDetailsProps) {
                     ))}
                   </div>
                   {/* Navigation Arrows for Thumbnails */}
-                  <button className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-2 w-8 h-8 bg-white border border-gray-300 rounded-full flex items-center justify-center shadow-md hover:bg-[#10192E] hover:text-white hover:border-[#10192E] transition-colors">
+                  <button className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-2 w-8 h-8 bg-white border border-gray-300 rounded-full flex items-center justify-center shadow-md hover:bg-[#54b3e3] hover:text-white hover:border-[#54b3e3] transition-colors">
                     <svg
                       className="w-4 h-4"
                       fill="none"
@@ -339,7 +339,7 @@ export default function ProductDetails({ slug }: ProductDetailsProps) {
                       />
                     </svg>
                   </button>
-                  <button className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-2 w-8 h-8 bg-white border border-gray-300 rounded-full flex items-center justify-center shadow-md hover:bg-[#10192E] hover:text-white hover:border-[#10192E] transition-colors">
+                  <button className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-2 w-8 h-8 bg-white border border-gray-300 rounded-full flex items-center justify-center shadow-md hover:bg-[#54b3e3] hover:text-white hover:border-[#54b3e3] transition-colors">
                     <svg
                       className="w-4 h-4"
                       fill="none"
@@ -368,7 +368,7 @@ export default function ProductDetails({ slug }: ProductDetailsProps) {
                   {[1, 2, 3, 4, 5].map((star) => (
                     <svg
                       key={star}
-                      className={`w-5 h-5 ${star <= product.rating ? 'text-[#10192E] fill-current' : 'text-gray-300'}`}
+                      className={`w-5 h-5 ${star <= product.rating ? 'text-[#54b3e3] fill-current' : 'text-gray-300'}`}
                       viewBox="0 0 24 24"
                     >
                       <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
@@ -420,7 +420,7 @@ export default function ProductDetails({ slug }: ProductDetailsProps) {
                           onClick={() => setSelectedColor(index)}
                           className={`w-10 h-10 rounded border-2 transition-all ${
                             selectedColor === index
-                              ? 'border-[#10192E] ring-2 ring-[#10192E] ring-offset-2'
+                              ? 'border-[#54b3e3] ring-2 ring-[#54b3e3] ring-offset-2'
                               : 'border-gray-300 hover:border-gray-400'
                           }`}
                           style={{ backgroundColor: color.value }}
@@ -461,9 +461,9 @@ export default function ProductDetails({ slug }: ProductDetailsProps) {
                           disabled={!size.available}
                           className={`px-4 py-2 border-2 rounded transition-all text-sm font-semibold ${
                             selectedSize === index
-                              ? 'bg-[#10192E] text-white border-[#10192E]'
+                              ? 'bg-[#54b3e3] text-white border-[#54b3e3]'
                               : size.available
-                              ? 'bg-white text-black border-gray-300 hover:border-[#10192E]'
+                              ? 'bg-white text-black border-gray-300 hover:border-[#54b3e3]'
                               : 'bg-gray-100 text-gray-400 border-gray-200 cursor-not-allowed'
                           }`}
                         >
@@ -476,7 +476,7 @@ export default function ProductDetails({ slug }: ProductDetailsProps) {
 
                 {/* Action Links */}
                 <div className="flex gap-6 mb-6">
-                  <button className="flex items-center gap-2 text-black hover:text-[#10192E] transition-colors">
+                  <button className="flex items-center gap-2 text-black hover:text-[#54b3e3] transition-colors">
                     <svg
                       className="w-5 h-5"
                       fill="none"
@@ -492,7 +492,7 @@ export default function ProductDetails({ slug }: ProductDetailsProps) {
                     </svg>
                     <span className="text-sm">Add to Wishlist</span>
                   </button>
-                  <button className="flex items-center gap-2 text-black hover:text-[#10192E] transition-colors">
+                  <button className="flex items-center gap-2 text-black hover:text-[#54b3e3] transition-colors">
                     <svg
                       className="w-5 h-5"
                       fill="none"
@@ -512,10 +512,10 @@ export default function ProductDetails({ slug }: ProductDetailsProps) {
 
                 {/* Quantity and Add to Cart */}
                 <div className="flex gap-4 mb-8">
-                  <div className="flex items-center border-2 border-[#10192E] rounded-lg overflow-hidden">
+                  <div className="flex items-center border-2 border-[#54b3e3] rounded-lg overflow-hidden">
                     <button
                       onClick={decreaseQuantity}
-                      className="px-4 py-2 bg-white hover:bg-[#10192E] hover:text-white text-[#10192E] transition-colors"
+                      className="px-4 py-2 bg-white hover:bg-[#54b3e3] hover:text-white text-[#54b3e3] transition-colors"
                     >
                       <svg
                         className="w-4 h-4"
@@ -531,12 +531,12 @@ export default function ProductDetails({ slug }: ProductDetailsProps) {
                         />
                       </svg>
                     </button>
-                    <span className="px-4 py-2 font-bold text-[#10192E] min-w-[3rem] text-center">
+                    <span className="px-4 py-2 font-bold text-[#54b3e3] min-w-[3rem] text-center">
                       {quantity}
                     </span>
                     <button
                       onClick={increaseQuantity}
-                      className="px-4 py-2 bg-white hover:bg-[#10192E] hover:text-white text-[#10192E] transition-colors"
+                      className="px-4 py-2 bg-white hover:bg-[#54b3e3] hover:text-white text-[#54b3e3] transition-colors"
                     >
                       <svg
                         className="w-4 h-4"
@@ -556,7 +556,7 @@ export default function ProductDetails({ slug }: ProductDetailsProps) {
                   <button 
                     onClick={handleBuyNow}
                     disabled={!product.inStock}
-                    className="flex-1 bg-[#10192E] hover:bg-[#1a2744] disabled:bg-gray-400 disabled:cursor-not-allowed text-white font-bold py-3 px-6 rounded-lg transition-all duration-300 transform hover:scale-105 flex items-center justify-center gap-2"
+                    className="flex-1 bg-[#54b3e3] hover:bg-[#3a9bd1] disabled:bg-gray-400 disabled:cursor-not-allowed text-white font-bold py-3 px-6 rounded-lg transition-all duration-300 transform hover:scale-105 flex items-center justify-center gap-2"
                   >
                     <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
@@ -575,39 +575,39 @@ export default function ProductDetails({ slug }: ProductDetailsProps) {
                   onClick={() => setActiveTab('descriptions')}
                   className={`px-6 py-3 font-semibold text-sm uppercase transition-colors relative ${
                     activeTab === 'descriptions'
-                      ? 'text-[#10192E]'
+                      ? 'text-[#54b3e3]'
                       : 'text-gray-600 hover:text-black'
                   }`}
                 >
                   DESCRIPTIONS
                   {activeTab === 'descriptions' && (
-                    <span className="absolute bottom-0 left-0 right-0 h-0.5 bg-[#10192E]"></span>
+                    <span className="absolute bottom-0 left-0 right-0 h-0.5 bg-[#54b3e3]"></span>
                   )}
                 </button>
                 <button
                   onClick={() => setActiveTab('information')}
                   className={`px-6 py-3 font-semibold text-sm uppercase transition-colors relative ${
                     activeTab === 'information'
-                      ? 'text-[#10192E]'
+                      ? 'text-[#54b3e3]'
                       : 'text-gray-600 hover:text-black'
                   }`}
                 >
                   INFORMATION
                   {activeTab === 'information' && (
-                    <span className="absolute bottom-0 left-0 right-0 h-0.5 bg-[#10192E]"></span>
+                    <span className="absolute bottom-0 left-0 right-0 h-0.5 bg-[#54b3e3]"></span>
                   )}
                 </button>
                 <button
                   onClick={() => setActiveTab('reviews')}
                   className={`px-6 py-3 font-semibold text-sm uppercase transition-colors relative ${
                     activeTab === 'reviews'
-                      ? 'text-[#10192E]'
+                      ? 'text-[#54b3e3]'
                       : 'text-gray-600 hover:text-black'
                   }`}
                 >
                   REVIEWS
                   {activeTab === 'reviews' && (
-                    <span className="absolute bottom-0 left-0 right-0 h-0.5 bg-[#10192E]"></span>
+                    <span className="absolute bottom-0 left-0 right-0 h-0.5 bg-[#54b3e3]"></span>
                   )}
                 </button>
               </div>
@@ -648,7 +648,7 @@ export default function ProductDetails({ slug }: ProductDetailsProps) {
                               {[1, 2, 3, 4, 5].map((star) => (
                                 <svg
                                   key={star}
-                                  className={`w-4 h-4 ${star <= review.rating ? 'text-[#10192E] fill-current' : 'text-gray-300'}`}
+                                  className={`w-4 h-4 ${star <= review.rating ? 'text-[#54b3e3] fill-current' : 'text-gray-300'}`}
                                   viewBox="0 0 24 24"
                                 >
                                   <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
@@ -678,7 +678,7 @@ export default function ProductDetails({ slug }: ProductDetailsProps) {
                 <h2 className="text-2xl font-bold text-black uppercase mb-3">
                   YOU MAY ALSO LIKE
                 </h2>
-                <div className="w-16 h-0.5 bg-[#10192E] mx-auto"></div>
+                <div className="w-16 h-0.5 bg-[#54b3e3] mx-auto"></div>
               </div>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -694,7 +694,7 @@ export default function ProductDetails({ slug }: ProductDetailsProps) {
                         {/* Product Image */}
                         <div className="relative h-64 bg-gray-50">
                           <div className="absolute top-3 left-3 z-10">
-                            <span className="bg-[#10192E] text-white text-xs font-semibold px-3 py-1 rounded-full">
+                            <span className="bg-[#54b3e3] text-white text-xs font-semibold px-3 py-1 rounded-full">
                               New
                             </span>
                           </div>
@@ -708,7 +708,7 @@ export default function ProductDetails({ slug }: ProductDetailsProps) {
 
                         {/* Product Info */}
                         <div className="p-4">
-                          <h3 className="text-lg font-bold text-black mb-2 text-center group-hover:text-[#10192E] transition-colors">
+                          <h3 className="text-lg font-bold text-black mb-2 text-center group-hover:text-[#54b3e3] transition-colors">
                             {product.name}
                           </h3>
                           {/* Star Rating */}
@@ -728,7 +728,7 @@ export default function ProductDetails({ slug }: ProductDetailsProps) {
                                   key={star}
                                   className={`w-4 h-4 ${
                                     star <= product.rating
-                                      ? 'text-[#10192E] fill-current'
+                                      ? 'text-[#54b3e3] fill-current'
                                       : 'text-gray-300'
                                   }`}
                                   viewBox="0 0 24 24"
@@ -750,7 +750,7 @@ export default function ProductDetails({ slug }: ProductDetailsProps) {
                             <span className="text-gray-400 line-through mr-2">
                               {product.originalPrice}
                             </span>
-                            <span className="text-[#10192E] font-bold text-lg">
+                            <span className="text-[#54b3e3] font-bold text-lg">
                               {product.discountedPrice}
                             </span>
                           </div>
