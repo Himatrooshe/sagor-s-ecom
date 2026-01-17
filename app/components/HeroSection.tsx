@@ -1,126 +1,232 @@
 'use client';
 
+import Image from 'next/image';
 import Link from 'next/link';
+import { useState, useEffect } from 'react';
+import productsData from '../../data/products.json';
+
+interface Product {
+  id: number;
+  name: string;
+  originalPrice: string;
+  discountedPrice: string;
+  image: string;
+  rating: number;
+  category: string;
+  slug: string;
+  discount: number;
+}
+
+interface BannerSlide {
+  id: number;
+  image: string;
+  title?: string;
+  subtitle?: string;
+  link?: string;
+}
 
 export default function HeroSection() {
+  const [currentBannerSlide, setCurrentBannerSlide] = useState(0);
+  const [isAutoPlaying, setIsAutoPlaying] = useState(true);
+
+  // Banner slides data - you can replace these with your actual banner images
+  const bannerSlides: BannerSlide[] = [
+    {
+      id: 1,
+      image: 'https://res.cloudinary.com/dp0la6xmd/image/upload/v1767873198/2025_12_22_09_09_IMG_2288_t3eyhk.png',
+      title: 'Premium Fragrances',
+      subtitle: 'Discover our exclusive collection',
+      link: '/shop?category=perfume'
+    },
+    {
+      id: 2,
+      image: 'https://res.cloudinary.com/dp0la6xmd/image/upload/v1767873197/2025_12_23_21_45_IMG_2324_rw1hzh.png',
+      title: 'New Arrivals',
+      subtitle: 'Shop the latest products',
+      link: '/shop?filter=new'
+    },
+    {
+      id: 3,
+      image: 'https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=1200',
+      title: 'Special Offers',
+      subtitle: 'Up to 50% off on selected items',
+      link: '/shop?filter=discount'
+    }
+  ];
+
+  // Auto-play banner carousel
+  useEffect(() => {
+    if (!isAutoPlaying) return;
+    
+    const interval = setInterval(() => {
+      setCurrentBannerSlide((prev) => (prev + 1) % bannerSlides.length);
+    }, 5000); // Change slide every 5 seconds
+
+    return () => clearInterval(interval);
+  }, [isAutoPlaying, bannerSlides.length]);
+
+  const goToBannerSlide = (index: number) => {
+    setCurrentBannerSlide(index);
+    setIsAutoPlaying(false);
+  };
+
+  // Get featured products for the products section
+  const products: Product[] = productsData.products
+    .filter(product => product.isFeatured || product.discount > 0)
+    .slice(0, 6)
+    .map(product => ({
+      id: product.id,
+      name: product.name,
+      originalPrice: `৳${product.originalPrice}`,
+      discountedPrice: `৳${product.discountedPrice}`,
+      image: product.image,
+      rating: product.rating,
+      category: product.category,
+      slug: product.slug,
+      discount: product.discount,
+    }));
+
   return (
-    <section className="relative w-full h-[60vh] sm:h-[70vh] md:h-[80vh] lg:h-[90vh] xl:h-screen overflow-hidden">
-      {/* Video Background */}
-      <div className="absolute inset-0 w-full h-full">
-        <video
-          autoPlay
-          loop
-          muted
-          playsInline
-          className="w-full h-full object-cover"
-        >
-          <source
-            src="https://res.cloudinary.com/dp0la6xmd/video/upload/v1767873687/4154241-uhd_4096_2160_25fps_lptzg0.mp4"
-            type="video/mp4"
-          />
-          Your browser does not support the video tag.
-        </video>
+    <section className="w-full bg-white">
+      {/* Banner Carousel */}
+      <div className="relative w-full h-[400px] sm:h-[500px] md:h-[600px] lg:h-[650px] overflow-hidden">
+        {/* Banner Slides */}
+        <div className="relative w-full h-full">
+          {bannerSlides.map((slide, index) => (
+            <Link
+              key={slide.id}
+              href={slide.link || '#'}
+              className={`absolute inset-0 transition-opacity duration-700 ${
+                index === currentBannerSlide ? 'opacity-100 z-10' : 'opacity-0 z-0'
+              }`}
+            >
+              <div className="relative w-full h-full">
+                <Image
+                  src={slide.image}
+                  alt={slide.title || `Banner ${index + 1}`}
+                  fill
+                  className="object-cover"
+                  priority={index === 0}
+                />
+                {/* Overlay for better text readability */}
+                <div className="absolute inset-0 bg-gradient-to-r from-black/60 via-black/40 to-black/60"></div>
+                
+                {/* Banner Content */}
+                {(slide.title || slide.subtitle) && (
+                  <div className="absolute inset-0 flex items-center justify-center z-20">
+                    <div className="text-center px-4 sm:px-6 md:px-8 max-w-4xl mx-auto">
+                      {slide.title && (
+                        <h2 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-extrabold text-white mb-4 sm:mb-6 drop-shadow-2xl leading-tight tracking-tight">
+                          <span className="bg-gradient-to-r from-white via-white to-[#54b3e3] bg-clip-text text-transparent">
+                            {slide.title}
+                          </span>
+                        </h2>
+                      )}
+                      {slide.subtitle && (
+                        <p className="text-xl sm:text-2xl md:text-3xl lg:text-4xl text-white font-semibold drop-shadow-xl">
+                          {slide.subtitle}
+                        </p>
+                      )}
+                    </div>
+                  </div>
+                )}
+              </div>
+            </Link>
+          ))}
+        </div>
+
+        {/* Pagination Dots */}
+        {bannerSlides.length > 1 && (
+          <div className="absolute bottom-4 left-1/2 -translate-x-1/2 z-30 flex gap-2">
+            {bannerSlides.map((_, index) => (
+              <button
+                key={index}
+                onClick={() => goToBannerSlide(index)}
+                className={`transition-all duration-300 rounded-full ${
+                  index === currentBannerSlide
+                    ? 'w-8 h-3 bg-white'
+                    : 'w-3 h-3 bg-white/50 hover:bg-white/75'
+                }`}
+                aria-label={`Go to slide ${index + 1}`}
+              />
+            ))}
+          </div>
+        )}
       </div>
 
-      {/* Gradient Overlay for better text readability */}
-      <div className="absolute inset-0 bg-linear-to-b from-black/60 via-black/40 to-black/70"></div>
-
-      {/* Content */}
-      <div className="relative z-10 h-full flex items-center justify-center px-4 sm:px-6 md:px-8">
-        <div className="container mx-auto text-center w-full">
-          <div className="max-w-5xl mx-auto space-y-4 sm:space-y-6 md:space-y-8 lg:space-y-10">
-            {/* Premium Badge */}
-            <div className="inline-flex items-center gap-1.5 sm:gap-2 bg-white/10 backdrop-blur-md border border-white/20 text-white px-4 py-1.5 sm:px-5 sm:py-2 md:px-6 md:py-2.5 lg:px-8 lg:py-3 rounded-full font-medium text-[10px] sm:text-xs md:text-sm lg:text-base tracking-[0.15em] sm:tracking-[0.2em] uppercase shadow-2xl">
-              <span className="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-[#54b3e3] rounded-full animate-pulse"></span>
-              Exclusive Collection
+      {/* Products Section */}
+      <div className="bg-gray-50 py-8 md:py-12">
+        <div className="container mx-auto px-4">
+          {/* Section Header */}
+          <div className="flex flex-col sm:flex-row items-center justify-between mb-6 md:mb-8">
+            <div>
+              <h2 className="text-2xl md:text-3xl font-bold text-black uppercase mb-1">
+                Flash Sale
+              </h2>
+              <p className="text-gray-600 text-sm md:text-base">On Sale Now</p>
             </div>
+            <Link
+              href="/shop"
+              className="mt-4 sm:mt-0 bg-[#54b3e3] hover:bg-[#3a9bd1] text-white font-semibold py-2 px-6 rounded-lg transition-all duration-300 transform hover:scale-105"
+            >
+              SHOP ALL PRODUCTS
+            </Link>
+          </div>
 
-            {/* Main Heading - Montserrat for premium feel */}
-            <h1 className="font-montserrat font-bold text-white leading-[1.1] tracking-tight px-2">
-              <span className="block text-2xl sm:text-3xl md:text-4xl lg:text-6xl xl:text-7xl 2xl:text-8xl mb-1 sm:mb-2 md:mb-3 lg:mb-4">
-                Elevate Your
-              </span>
-              <span className="block text-3xl sm:text-4xl md:text-5xl lg:text-7xl xl:text-8xl 2xl:text-9xl bg-linear-to-r from-white via-[#54b3e3] to-white bg-clip-text text-transparent animate-gradient">
-                Style
-              </span>
-            </h1>
-
-            {/* Premium Subtitle - Inter for readability */}
-            <p className="font-inter text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl text-white/90 max-w-3xl mx-auto leading-relaxed font-light tracking-wide px-4">
-              Curated fragrances and accessories crafted for those who appreciate
-              <span className="block mt-1 sm:mt-2 font-medium text-[#54b3e3]">
-                exceptional quality and timeless elegance
-              </span>
-            </p>
-
-            {/* Premium Features */}
-            <div className="flex flex-wrap items-center justify-center gap-3 sm:gap-4 md:gap-6 lg:gap-8 text-white/80 text-[10px] sm:text-xs md:text-sm font-inter font-light tracking-wider uppercase px-4">
-              <div className="flex items-center gap-1.5 sm:gap-2">
-                <svg className="w-3 h-3 sm:w-4 sm:h-4 text-[#54b3e3]" fill="currentColor" viewBox="0 0 20 20">
-                  <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
-                </svg>
-                <span>Authentic Products</span>
-              </div>
-              <div className="flex items-center gap-1.5 sm:gap-2">
-                <svg className="w-3 h-3 sm:w-4 sm:h-4 text-[#54b3e3]" fill="currentColor" viewBox="0 0 20 20">
-                  <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
-                </svg>
-                <span>Fast Delivery</span>
-              </div>
-              <div className="flex items-center gap-1.5 sm:gap-2">
-                <svg className="w-3 h-3 sm:w-4 sm:h-4 text-[#54b3e3]" fill="currentColor" viewBox="0 0 20 20">
-                  <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
-                </svg>
-                <span>Easy Returns</span>
-              </div>
-            </div>
-
-            {/* CTA Buttons */}
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 md:gap-6 pt-2 sm:pt-3 md:pt-4 px-4">
-              <Link
-                href="/shop"
-                className="group relative overflow-hidden bg-white text-black font-montserrat font-semibold w-full sm:w-auto px-6 sm:px-8 md:px-10 lg:px-14 py-3 sm:py-3.5 md:py-4 lg:py-5 rounded-full text-xs sm:text-sm md:text-base lg:text-lg uppercase tracking-widest sm:tracking-[0.15em] transition-all duration-500 transform hover:scale-105 shadow-2xl hover:shadow-[0_0_40px_rgba(84,179,227,0.5)] text-center"
+          {/* Products Grid */}
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4 md:gap-6">
+            {products.map((product) => (
+              <div
+                key={product.id}
+                className="group relative bg-white border border-gray-200 rounded-lg overflow-hidden hover:shadow-xl hover:border-[#54b3e3] transition-all duration-300 flex flex-col h-full"
               >
-                <span className="relative z-10">Explore Collection</span>
-                <div className="absolute inset-0 bg-linear-to-r from-[#54b3e3] to-[#3a9bd1] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left"></div>
-                <span className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-500 text-white z-20 font-semibold">
-                  Explore Collection
-                </span>
-              </Link>
-              
-              <Link
-                href="/about"
-                className="font-inter bg-transparent hover:bg-white/10 text-white font-medium w-full sm:w-auto px-6 sm:px-8 md:px-10 lg:px-14 py-3 sm:py-3.5 md:py-4 lg:py-5 rounded-full text-xs sm:text-sm md:text-base lg:text-lg uppercase tracking-widest sm:tracking-[0.15em] transition-all duration-300 border-2 border-white/40 hover:border-white backdrop-blur-sm text-center"
-              >
-                Our Story
-              </Link>
-            </div>
+                {/* Discount Badge */}
+                {product.discount > 0 && (
+                  <div className="absolute top-2 left-2 z-10">
+                    <span className="bg-red-500 text-white text-xs font-bold px-2 py-1 rounded">
+                      -{product.discount}%
+                    </span>
+                  </div>
+                )}
+
+                {/* Product Image */}
+                <Link href={`/product/${product.slug}`} className="block shrink-0">
+                  <div className="relative bg-gray-50 h-40 sm:h-48 overflow-hidden">
+                    <Image
+                      src={product.image}
+                      alt={product.name}
+                      fill
+                      className="object-contain p-4 group-hover:scale-110 transition-transform duration-300"
+                    />
+                  </div>
+                </Link>
+
+                {/* Product Details */}
+                <div className="p-3 sm:p-4 flex flex-col grow">
+                  {/* Product Name */}
+                  <Link href={`/product/${product.slug}`}>
+                    <h3 className="text-black font-medium text-xs sm:text-sm mb-2 group-hover:text-[#54b3e3] transition-colors line-clamp-2 min-h-[2.5rem]">
+                      {product.name}
+                    </h3>
+                  </Link>
+
+                  {/* Price */}
+                  <div className="mt-auto">
+                    {product.discount > 0 && (
+                      <span className="text-gray-400 line-through mr-2 text-xs">
+                        {product.originalPrice}
+                      </span>
+                    )}
+                    <div className="text-[#54b3e3] font-bold text-base sm:text-lg">
+                      {product.discountedPrice}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            ))}
           </div>
         </div>
       </div>
-
-      {/* Scroll Indicator - More Premium */}
-      <div className="absolute bottom-4 sm:bottom-6 md:bottom-8 left-1/2 transform -translate-x-1/2 z-10 flex flex-col items-center gap-1 sm:gap-2 animate-bounce">
-        <span className="text-white/60 text-[10px] sm:text-xs font-inter tracking-widest uppercase hidden sm:block">Scroll</span>
-        <div className="w-5 h-8 sm:w-6 sm:h-10 rounded-full border-2 border-white/30 flex items-start justify-center p-1.5 sm:p-2">
-          <div className="w-1 h-1.5 sm:h-2 bg-white/60 rounded-full"></div>
-        </div>
-      </div>
-
-      {/* Decorative Elements */}
-      <div className="absolute top-1/4 left-4 sm:left-6 md:left-10 w-12 h-12 sm:w-16 sm:h-16 md:w-20 md:h-20 border border-white/10 rounded-full blur-sm hidden sm:block"></div>
-      <div className="absolute bottom-1/4 right-4 sm:right-6 md:right-10 w-16 h-16 sm:w-24 sm:h-24 md:w-32 md:h-32 border border-white/10 rounded-full blur-sm hidden sm:block"></div>
-      
-      <style jsx>{`
-        @keyframes gradient {
-          0%, 100% { background-position: 0% 50%; }
-          50% { background-position: 100% 50%; }
-        }
-        .animate-gradient {
-          background-size: 200% auto;
-          animation: gradient 3s linear infinite;
-        }
-      `}</style>
     </section>
   );
 }
