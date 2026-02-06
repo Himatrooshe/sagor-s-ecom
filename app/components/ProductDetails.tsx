@@ -12,23 +12,26 @@ interface ProductDetailsProps {
 }
 
 export default function ProductDetails({ slug }: ProductDetailsProps) {
+  // Find the product by slug
+  const product = productDetailsData.productDetails.find(p => p.slug === slug);
+  const defaultSize = product?.sizes && product.sizes.length > 0 ? product.sizes[0] : '';
+
   const router = useRouter();
   const { addToCart } = useCart();
-  const [selectedColor, setSelectedColor] = useState(0);
-  const [selectedSize, setSelectedSize] = useState(0);
+  const [selectedSize, setSelectedSize] = useState(defaultSize);
   const [quantity, setQuantity] = useState(1);
   const [activeTab, setActiveTab] = useState('descriptions');
   const [selectedImage, setSelectedImage] = useState(0);
   const [relatedProductsIndex, setRelatedProductsIndex] = useState(0);
-  
+
   // Scroll to top when component loads or slug changes
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
-  }, [slug]);
-  
-  // Find the product by slug
-  const product = productDetailsData.productDetails.find(p => p.slug === slug);
-  
+    if (product?.sizes && product.sizes.length > 0) {
+      setSelectedSize(product.sizes[0]);
+    }
+  }, [slug, product]);
+
   // If no product found, show error
   if (!product) {
     return (
@@ -52,7 +55,7 @@ export default function ProductDetails({ slug }: ProductDetailsProps) {
       id: p!.id,
       name: p!.name,
       originalPrice: `৳${p!.originalPrice}`,
-      discountedPrice: `৳${p!.discountedPrice}`,
+      discountedPrice: `৳${p!.price}`, // Changed from discountedPrice to price
       image: p!.images[0],
       rating: p!.rating,
     }));
@@ -89,7 +92,7 @@ export default function ProductDetails({ slug }: ProductDetailsProps) {
       id: p.id,
       name: p.name,
       originalPrice: `৳${p.originalPrice}`,
-      discountedPrice: `৳${p.discountedPrice}`,
+      discountedPrice: `৳${p.price}`, // Changed from discountedPrice to price
       image: p.images[0],
       rating: p.rating,
     }));
@@ -99,13 +102,13 @@ export default function ProductDetails({ slug }: ProductDetailsProps) {
 
   // Handle related products navigation
   const nextRelatedProduct = () => {
-    setRelatedProductsIndex(prev => 
+    setRelatedProductsIndex(prev =>
       prev < relatedProducts.length - 1 ? prev + 1 : 0
     );
   };
 
   const prevRelatedProduct = () => {
-    setRelatedProductsIndex(prev => 
+    setRelatedProductsIndex(prev =>
       prev > 0 ? prev - 1 : relatedProducts.length - 1
     );
   };
@@ -115,13 +118,12 @@ export default function ProductDetails({ slug }: ProductDetailsProps) {
       id: product.id,
       sku: product.sku,
       name: product.name,
-      price: product.discountedPrice,
+      price: product.price, // Changed from discountedPrice
       originalPrice: product.originalPrice,
       quantity: quantity,
       image: product.images[0],
       slug: product.slug,
-      selectedSize: product.sizes && product.sizes.length > 0 ? product.sizes[selectedSize]?.size : undefined,
-      selectedColor: product.colors && product.colors.length > 0 ? product.colors[selectedColor]?.name : undefined,
+      selectedSize: selectedSize !== '' ? selectedSize : undefined,
     });
 
     // Navigate to checkout
@@ -192,11 +194,10 @@ export default function ProductDetails({ slug }: ProductDetailsProps) {
                               {[1, 2, 3, 4, 5].map((star) => (
                                 <svg
                                   key={star}
-                                  className={`w-3 h-3 ${
-                                    star <= product.rating
-                                      ? 'text-[#54b3e3] fill-current'
-                                      : 'text-gray-300'
-                                  }`}
+                                  className={`w-3 h-3 ${star <= product.rating
+                                    ? 'text-[#54b3e3] fill-current'
+                                    : 'text-gray-300'
+                                    }`}
                                   viewBox="0 0 24 24"
                                   fill={star <= product.rating ? 'currentColor' : 'none'}
                                   stroke="currentColor"
@@ -228,7 +229,7 @@ export default function ProductDetails({ slug }: ProductDetailsProps) {
                 {/* Navigation Arrows */}
                 {relatedProducts.length > 3 && (
                   <div className="flex justify-between mt-4">
-                    <button 
+                    <button
                       onClick={prevRelatedProduct}
                       className="w-8 h-8 bg-gray-100 border border-gray-300 rounded flex items-center justify-center hover:bg-[#54b3e3] hover:text-white hover:border-[#54b3e3] transition-colors"
                     >
@@ -246,7 +247,7 @@ export default function ProductDetails({ slug }: ProductDetailsProps) {
                         />
                       </svg>
                     </button>
-                    <button 
+                    <button
                       onClick={nextRelatedProduct}
                       className="w-8 h-8 bg-gray-100 border border-gray-300 rounded flex items-center justify-center hover:bg-[#54b3e3] hover:text-white hover:border-[#54b3e3] transition-colors"
                     >
@@ -308,11 +309,10 @@ export default function ProductDetails({ slug }: ProductDetailsProps) {
                       <button
                         key={index}
                         onClick={() => setSelectedImage(index)}
-                        className={` w-20 h-20 border-2 rounded overflow-hidden transition-all ${
-                          selectedImage === index
-                            ? 'border-[#54b3e3] ring-2 ring-[#54b3e3] ring-offset-1'
-                            : 'border-gray-200 hover:border-gray-300'
-                        }`}
+                        className={` w-20 h-20 border-2 rounded overflow-hidden transition-all ${selectedImage === index
+                          ? 'border-[#54b3e3] ring-2 ring-[#54b3e3] ring-offset-1'
+                          : 'border-gray-200 hover:border-gray-300'
+                          }`}
                       >
                         <div className="relative w-full h-full">
                           <Image
@@ -388,66 +388,20 @@ export default function ProductDetails({ slug }: ProductDetailsProps) {
 
                 {/* Price */}
                 <div className="mb-6">
-                  {product.originalPrice !== product.discountedPrice && (
+                  {product.originalPrice !== product.price && (
                     <span className="text-2xl text-gray-400 line-through mr-3">৳{product.originalPrice}</span>
                   )}
-                  <span className="text-4xl font-bold text-black">৳{product.discountedPrice}</span>
-                  {product.discount > 0 && (
+                  <span className="text-4xl font-bold text-black">৳{product.price}</span>
+                  {product.originalPrice > product.price && (
                     <span className="ml-3 text-sm bg-red-100 text-red-600 px-2 py-1 rounded">
-                      {product.discount}% OFF
+                      {Math.round(((product.originalPrice - product.price) / product.originalPrice) * 100)}% OFF
                     </span>
                   )}
                 </div>
 
-                {/* Description/Features */}
-                <div className="mb-6">
-                  <p className="text-sm text-gray-700 mb-3">{product.shortDescription}</p>
-                  <ul className="space-y-2 text-sm text-gray-700">
-                    {product.features.slice(0, 3).map((feature, index) => (
-                      <li key={index}>• {feature}</li>
-                    ))}
-                  </ul>
-                </div>
 
-                {/* Color Selection */}
-                {product.colors && product.colors.length > 0 && (
-                  <div className="mb-6">
-                    <label className="block text-sm font-semibold text-black mb-3">
-                      Color:
-                    </label>
-                    <div className="flex gap-3">
-                      {product.colors.map((color, index) => (
-                        <button
-                          key={index}
-                          onClick={() => setSelectedColor(index)}
-                          className={`w-10 h-10 rounded border-2 transition-all ${
-                            selectedColor === index
-                              ? 'border-[#54b3e3] ring-2 ring-[#54b3e3] ring-offset-2'
-                              : 'border-gray-300 hover:border-gray-400'
-                          }`}
-                          style={{ backgroundColor: color.value }}
-                          aria-label={`Select ${color.name} color`}
-                        >
-                          {selectedColor === index && (
-                            <svg
-                              className="w-6 h-6 text-white mx-auto"
-                              fill="none"
-                              stroke="currentColor"
-                              viewBox="0 0 24 24"
-                            >
-                              <path
-                                strokeLinecap="round"
-                                strokeLinejoin="round"
-                                strokeWidth={3}
-                                d="M5 13l4 4L19 7"
-                              />
-                            </svg>
-                          )}
-                        </button>
-                      ))}
-                    </div>
-                  </div>
-                )}
+
+
 
                 {/* Size Selection */}
                 {product.sizes && product.sizes.length > 0 && (
@@ -456,22 +410,31 @@ export default function ProductDetails({ slug }: ProductDetailsProps) {
                       Size:
                     </label>
                     <div className="flex flex-wrap gap-2">
-                      {product.sizes.map((size, index) => (
-                        <button
-                          key={index}
-                          onClick={() => setSelectedSize(index)}
-                          disabled={!size.available}
-                          className={`px-4 py-2 border-2 rounded transition-all text-sm font-semibold ${
-                            selectedSize === index
-                              ? 'bg-[#54b3e3] text-white border-[#54b3e3]'
-                              : size.available
-                              ? 'bg-white text-black border-gray-300 hover:border-[#54b3e3]'
-                              : 'bg-gray-100 text-gray-400 border-gray-200 cursor-not-allowed'
-                          }`}
-                        >
-                          {size.size}
-                        </button>
-                      ))}
+                      {(() => {
+                        const PERFUME_SIZES = ["30ml", "50ml", "90ml"];
+                        const isPerfume = product.category === 'Perfume & Fragrance';
+                        const sizesToDisplay = isPerfume ? PERFUME_SIZES : product.sizes;
+
+                        return sizesToDisplay.map((size, index) => {
+                          const isAvailable = product.sizes.includes(size);
+
+                          return (
+                            <button
+                              key={index}
+                              onClick={() => isAvailable && setSelectedSize(size)}
+                              disabled={!isAvailable}
+                              className={`px-4 py-2 border-2 rounded transition-all text-sm font-semibold ${selectedSize === size
+                                  ? 'bg-[#54b3e3] text-white border-[#54b3e3]'
+                                  : isAvailable
+                                    ? 'bg-white text-black border-gray-300 hover:border-[#54b3e3]'
+                                    : 'bg-gray-100 text-gray-300 border-gray-200 cursor-not-allowed'
+                                }`}
+                            >
+                              {size}
+                            </button>
+                          );
+                        });
+                      })()}
                     </div>
                   </div>
                 )}
@@ -555,7 +518,7 @@ export default function ProductDetails({ slug }: ProductDetailsProps) {
                       </svg>
                     </button>
                   </div>
-                  <button 
+                  <button
                     onClick={handleBuyNow}
                     disabled={!product.inStock}
                     className="flex-1 bg-[#54b3e3] hover:bg-[#3a9bd1] disabled:bg-gray-400 disabled:cursor-not-allowed text-white font-bold py-3 px-6 rounded-lg transition-all duration-300 transform hover:scale-105 flex items-center justify-center gap-2"
@@ -575,11 +538,10 @@ export default function ProductDetails({ slug }: ProductDetailsProps) {
               <div className="flex gap-1 border-b border-gray-200 mb-6">
                 <button
                   onClick={() => setActiveTab('descriptions')}
-                  className={`px-6 py-3 font-semibold text-sm uppercase transition-colors relative ${
-                    activeTab === 'descriptions'
-                      ? 'text-[#54b3e3]'
-                      : 'text-gray-600 hover:text-black'
-                  }`}
+                  className={`px-6 py-3 font-semibold text-sm uppercase transition-colors relative ${activeTab === 'descriptions'
+                    ? 'text-[#54b3e3]'
+                    : 'text-gray-600 hover:text-black'
+                    }`}
                 >
                   DESCRIPTIONS
                   {activeTab === 'descriptions' && (
@@ -588,11 +550,10 @@ export default function ProductDetails({ slug }: ProductDetailsProps) {
                 </button>
                 <button
                   onClick={() => setActiveTab('information')}
-                  className={`px-6 py-3 font-semibold text-sm uppercase transition-colors relative ${
-                    activeTab === 'information'
-                      ? 'text-[#54b3e3]'
-                      : 'text-gray-600 hover:text-black'
-                  }`}
+                  className={`px-6 py-3 font-semibold text-sm uppercase transition-colors relative ${activeTab === 'information'
+                    ? 'text-[#54b3e3]'
+                    : 'text-gray-600 hover:text-black'
+                    }`}
                 >
                   INFORMATION
                   {activeTab === 'information' && (
@@ -601,11 +562,10 @@ export default function ProductDetails({ slug }: ProductDetailsProps) {
                 </button>
                 <button
                   onClick={() => setActiveTab('reviews')}
-                  className={`px-6 py-3 font-semibold text-sm uppercase transition-colors relative ${
-                    activeTab === 'reviews'
-                      ? 'text-[#54b3e3]'
-                      : 'text-gray-600 hover:text-black'
-                  }`}
+                  className={`px-6 py-3 font-semibold text-sm uppercase transition-colors relative ${activeTab === 'reviews'
+                    ? 'text-[#54b3e3]'
+                    : 'text-gray-600 hover:text-black'
+                    }`}
                 >
                   REVIEWS
                   {activeTab === 'reviews' && (
@@ -619,54 +579,21 @@ export default function ProductDetails({ slug }: ProductDetailsProps) {
                 {activeTab === 'descriptions' && (
                   <div>
                     <p className="mb-4">{product.fullDescription}</p>
-                    {product.howToUse && (
-                      <div className="mt-4">
-                        <h4 className="font-semibold mb-2">How to Use:</h4>
-                        <p>{product.howToUse}</p>
-                      </div>
-                    )}
+
                   </div>
                 )}
                 {activeTab === 'information' && (
                   <div className="space-y-4">
                     <p><strong>Product Information:</strong></p>
                     <ul className="list-disc list-inside space-y-2">
-                      <li>Brand: {product.brand}</li>
                       <li>SKU: {product.sku}</li>
                       <li>Category: {product.category}</li>
-                      {Object.entries(product.specifications).map(([key, value]) => (
-                        <li key={key}>{key}: {value}</li>
-                      ))}
                     </ul>
                   </div>
                 )}
                 {activeTab === 'reviews' && (
                   <div className="space-y-6">
-                    {product.reviewsData && product.reviewsData.length > 0 ? (
-                      product.reviewsData.map(review => (
-                        <div key={review.id} className="border-b border-gray-200 pb-4">
-                          <div className="flex items-center gap-2 mb-2">
-                            <div className="flex">
-                              {[1, 2, 3, 4, 5].map((star) => (
-                                <svg
-                                  key={star}
-                                  className={`w-4 h-4 ${star <= review.rating ? 'text-[#54b3e3] fill-current' : 'text-gray-300'}`}
-                                  viewBox="0 0 24 24"
-                                >
-                                  <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
-                                </svg>
-                              ))}
-                            </div>
-                            <span className="font-semibold">{review.author}</span>
-                            {review.verified && <span className="text-xs text-green-600">(Verified)</span>}
-                          </div>
-                          <p className="text-sm text-gray-600 mb-2">{review.date}</p>
-                          <p>{review.comment}</p>
-                        </div>
-                      ))
-                    ) : (
-                      <p>No reviews yet. Be the first to review this product!</p>
-                    )}
+                    <p>No reviews yet. Be the first to review this product!</p>
                   </div>
                 )}
               </div>
@@ -724,15 +651,14 @@ export default function ProductDetails({ slug }: ProductDetailsProps) {
                               } else if (star === fullStars + 1 && hasHalfStar) {
                                 fillType = 'half';
                               }
-                              
+
                               return (
                                 <svg
                                   key={star}
-                                  className={`w-4 h-4 ${
-                                    star <= product.rating
-                                      ? 'text-[#54b3e3] fill-current'
-                                      : 'text-gray-300'
-                                  }`}
+                                  className={`w-4 h-4 ${star <= product.rating
+                                    ? 'text-[#54b3e3] fill-current'
+                                    : 'text-gray-300'
+                                    }`}
                                   viewBox="0 0 24 24"
                                   fill={star <= fullStars ? 'currentColor' : 'none'}
                                   stroke="currentColor"

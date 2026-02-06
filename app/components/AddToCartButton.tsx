@@ -2,28 +2,34 @@
 
 import { useCart } from '../context/CartContext';
 import { useState } from 'react';
+import { useRouter } from 'next/navigation';
 import productsData from '../../data/products.json';
 
 interface AddToCartButtonProps {
   productId: number;
   variant?: 'icon' | 'button' | 'full-width';
   className?: string;
+
   onAdded?: () => void;
+  buyNow?: boolean;
 }
 
-export default function AddToCartButton({ 
-  productId, 
+export default function AddToCartButton({
+  productId,
   variant = 'button',
   className = '',
-  onAdded 
+  onAdded,
+
+  buyNow = false,
 }: AddToCartButtonProps) {
   const { addToCart } = useCart();
+  const router = useRouter();
   const [showSuccess, setShowSuccess] = useState(false);
 
   const handleAddToCart = (e: React.MouseEvent) => {
     e.preventDefault();
     e.stopPropagation();
-    
+
     const productData = productsData.products.find(p => p.id === productId);
     if (!productData) return;
 
@@ -31,7 +37,7 @@ export default function AddToCartButton({
       id: productData.id,
       sku: productData.sku,
       name: productData.name,
-      price: productData.discountedPrice,
+      price: productData.price,
       originalPrice: productData.originalPrice,
       quantity: 1,
       image: productData.image,
@@ -41,10 +47,15 @@ export default function AddToCartButton({
     // Show success message
     setShowSuccess(true);
     setTimeout(() => setShowSuccess(false), 3000);
-    
+
     // Call optional callback
+
     if (onAdded) {
       onAdded();
+    }
+
+    if (buyNow) {
+      router.push('/checkout');
     }
   };
 
@@ -89,7 +100,7 @@ export default function AddToCartButton({
             <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
             </svg>
-            Add to Cart
+            {buyNow ? 'Order Now' : 'Add to Cart'}
           </>
         )}
       </button>
@@ -114,7 +125,7 @@ export default function AddToCartButton({
           <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
           </svg>
-          Add to Cart
+          {buyNow ? 'Order Now' : 'Add to Cart'}
         </>
       )}
     </button>

@@ -9,12 +9,11 @@ interface Product {
   id: number;
   name: string;
   originalPrice: string;
-  discountedPrice: string;
+  price: string;
   image: string;
   rating: number;
   category: string;
   slug: string;
-  discount: number;
 }
 
 interface BannerSlide {
@@ -57,7 +56,7 @@ export default function HeroSection() {
   // Auto-play banner carousel
   useEffect(() => {
     if (!isAutoPlaying) return;
-    
+
     const interval = setInterval(() => {
       setCurrentBannerSlide((prev) => (prev + 1) % bannerSlides.length);
     }, 5000); // Change slide every 5 seconds
@@ -70,20 +69,18 @@ export default function HeroSection() {
     setIsAutoPlaying(false);
   };
 
-  // Get featured products for the products section
+  // Get featured products for the products section (first 6 products)
   const products: Product[] = productsData.products
-    .filter(product => product.isFeatured || product.discount > 0)
     .slice(0, 6)
     .map(product => ({
       id: product.id,
       name: product.name,
       originalPrice: `৳${product.originalPrice}`,
-      discountedPrice: `৳${product.discountedPrice}`,
+      price: `৳${product.price}`,
       image: product.image,
       rating: product.rating,
       category: product.category,
       slug: product.slug,
-      discount: product.discount,
     }));
 
   return (
@@ -96,9 +93,8 @@ export default function HeroSection() {
             <Link
               key={slide.id}
               href={slide.link || '#'}
-              className={`absolute inset-0 transition-opacity duration-700 ${
-                index === currentBannerSlide ? 'opacity-100 z-10' : 'opacity-0 z-0'
-              }`}
+              className={`absolute inset-0 transition-opacity duration-700 ${index === currentBannerSlide ? 'opacity-100 z-10' : 'opacity-0 z-0'
+                }`}
             >
               <div className="relative w-full h-full">
                 <Image
@@ -110,7 +106,7 @@ export default function HeroSection() {
                 />
                 {/* Overlay for better text readability */}
                 <div className="absolute inset-0 bg-gradient-to-r from-black/60 via-black/40 to-black/60"></div>
-                
+
                 {/* Banner Content */}
                 {(slide.title || slide.subtitle) && (
                   <div className="absolute inset-0 flex items-center justify-center z-20">
@@ -142,11 +138,10 @@ export default function HeroSection() {
               <button
                 key={index}
                 onClick={() => goToBannerSlide(index)}
-                className={`transition-all duration-300 rounded-full ${
-                  index === currentBannerSlide
-                    ? 'w-8 h-3 bg-white'
-                    : 'w-3 h-3 bg-white/50 hover:bg-white/75'
-                }`}
+                className={`transition-all duration-300 rounded-full ${index === currentBannerSlide
+                  ? 'w-8 h-3 bg-white'
+                  : 'w-3 h-3 bg-white/50 hover:bg-white/75'
+                  }`}
                 aria-label={`Go to slide ${index + 1}`}
               />
             ))}
@@ -180,14 +175,7 @@ export default function HeroSection() {
                 key={product.id}
                 className="group relative bg-white border border-gray-200 rounded-lg overflow-hidden hover:shadow-xl hover:border-[#54b3e3] transition-all duration-300 flex flex-col h-full"
               >
-                {/* Discount Badge */}
-                {product.discount > 0 && (
-                  <div className="absolute top-2 left-2 z-10">
-                    <span className="bg-red-500 text-white text-xs font-bold px-2 py-1 rounded">
-                      -{product.discount}%
-                    </span>
-                  </div>
-                )}
+                {/* Discount Badge - Removed as discount field is gone */}
 
                 {/* Product Image */}
                 <Link href={`/product/${product.slug}`} className="block shrink-0">
@@ -212,13 +200,13 @@ export default function HeroSection() {
 
                   {/* Price */}
                   <div className="mt-auto">
-                    {product.discount > 0 && (
+                    {product.originalPrice !== product.price && (
                       <span className="text-gray-400 line-through mr-2 text-xs">
                         {product.originalPrice}
                       </span>
                     )}
                     <div className="text-[#54b3e3] font-bold text-base sm:text-lg">
-                      {product.discountedPrice}
+                      {product.price}
                     </div>
                   </div>
                 </div>

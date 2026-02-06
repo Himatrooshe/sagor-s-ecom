@@ -24,7 +24,6 @@ export interface OrderItem {
   quantity: number;
   originalPrice?: number;
   selectedSize?: string;
-  selectedColor?: string;
   image: string;
   slug: string;
 }
@@ -42,7 +41,7 @@ export function generateOrderId(): string {
   const minutes = String(now.getMinutes()).padStart(2, '0');
   const seconds = String(now.getSeconds()).padStart(2, '0');
   const random = Math.floor(Math.random() * 10000).toString().padStart(4, '0');
-  
+
   return `INBD-${year}${month}${day}-${hours}${minutes}${seconds}-${random}`;
 }
 
@@ -52,7 +51,7 @@ export function generateOrderId(): string {
  */
 export async function sendOrderToGoogleSheets(orderData: OrderData): Promise<{ success: boolean; error?: string }> {
   // Get Web App URL from environment variable or use the hardcoded one as fallback
-  const webAppUrl = process.env.NEXT_PUBLIC_GOOGLE_SHEETS_WEB_APP_URL || 
+  const webAppUrl = process.env.NEXT_PUBLIC_GOOGLE_SHEETS_WEB_APP_URL ||
     'https://script.google.com/macros/s/AKfycbySDL6NIQAhTNzfl-yMAo8TfGzgRHxmvXByhFg6ZB7zccdavQJJFxvP3qGfEQ9hYa_l/exec';
 
   if (!webAppUrl) {
@@ -75,20 +74,20 @@ export async function sendOrderToGoogleSheets(orderData: OrderData): Promise<{ s
       },
       body: JSON.stringify(orderData),
     });
-    
+
     // With no-cors mode, we can't read the response (it will be opaque)
     // But the request is sent successfully, so we assume success
     // The Google Apps Script will process the request and save to the sheet
     console.log('Order data sent to Google Sheets (no-cors mode)');
     return { success: true };
-    
+
   } catch (error) {
     console.error('Error sending order to Google Sheets:', error);
-    
+
     // Return error but don't block order completion (graceful degradation)
-    return { 
-      success: false, 
-      error: error instanceof Error ? error.message : 'Failed to connect to Google Sheets' 
+    return {
+      success: false,
+      error: error instanceof Error ? error.message : 'Failed to connect to Google Sheets'
     };
   }
 }
@@ -134,7 +133,6 @@ export function formatOrderData(
       quantity: item.quantity,
       originalPrice: item.originalPrice ? Number(item.originalPrice.toFixed(2)) : undefined,
       selectedSize: item.selectedSize,
-      selectedColor: item.selectedColor,
       image: item.image,
       slug: item.slug,
     })),

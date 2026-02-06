@@ -14,46 +14,43 @@ interface Product {
   image: string;
   rating: number;
   slug: string;
-  discount: number;
 }
 
-type TabType = 'bestseller' | 'newarrivals' | 'toprated';
+type TabType = 'all' | 'newarrivals' | 'toprated';
 
 interface ProductListingProps {
   searchQuery?: string;
 }
 
 export default function ProductListing({ searchQuery = '' }: ProductListingProps) {
-  const [activeTab, setActiveTab] = useState<TabType>('bestseller');
+  const [activeTab, setActiveTab] = useState<TabType>('all');
   const [showScrollTop, setShowScrollTop] = useState(false);
 
   // Reset to bestseller tab when search query changes
   useEffect(() => {
     if (searchQuery) {
-      setActiveTab('bestseller');
+      setActiveTab('all');
     }
   }, [searchQuery]);
 
   // Get products from JSON data
   const getProductsByTab = (): Product[] => {
     let filteredProducts = productsData.products;
-    
+
     // First, filter by search query if provided
     if (searchQuery) {
       const query = searchQuery.toLowerCase();
-      filteredProducts = productsData.products.filter(product => 
+      filteredProducts = productsData.products.filter(product =>
         product.name.toLowerCase().includes(query) ||
-        product.category.toLowerCase().includes(query) ||
-        product.shortDescription?.toLowerCase().includes(query)
+        product.category.toLowerCase().includes(query)
       );
     }
-    
+
     // Then apply tab filtering/sorting
     if (!searchQuery) {
       switch (activeTab) {
-        case 'bestseller':
-          // Sort by reviews (most reviewed = bestseller)
-          filteredProducts = [...filteredProducts].sort((a, b) => b.reviews - a.reviews);
+        case 'all':
+          // Default order
           break;
         case 'newarrivals':
           // Filter new products
@@ -65,19 +62,18 @@ export default function ProductListing({ searchQuery = '' }: ProductListingProps
           break;
       }
     }
-    
+
     // Limit results if not searching
     const productsToShow = searchQuery ? filteredProducts : filteredProducts.slice(0, 8);
-    
+
     return productsToShow.map(product => ({
       id: product.id,
       name: product.name,
       originalPrice: `৳${product.originalPrice}`,
-      discountedPrice: `৳${product.discountedPrice}`,
+      discountedPrice: `৳${product.price}`,
       image: product.image,
       rating: product.rating,
       slug: product.slug,
-      discount: product.discount,
     }));
   };
 
@@ -165,32 +161,29 @@ export default function ProductListing({ searchQuery = '' }: ProductListingProps
         {!searchQuery && (
           <div className="flex justify-center gap-2 md:gap-4 mb-8">
             <button
-              onClick={() => setActiveTab('bestseller')}
-              className={`px-6 py-3 font-montserrat font-semibold text-sm md:text-base transition-all rounded-lg ${
-                activeTab === 'bestseller'
-                  ? 'bg-[#54b3e3] text-white shadow-lg'
-                  : 'text-slate-700 hover:text-[#54b3e3] hover:bg-slate-50'
-              }`}
+              onClick={() => setActiveTab('all')}
+              className={`px-6 py-3 font-montserrat font-semibold text-sm md:text-base transition-all rounded-lg ${activeTab === 'all'
+                ? 'bg-[#54b3e3] text-white shadow-lg'
+                : 'text-slate-700 hover:text-[#54b3e3] hover:bg-slate-50'
+                }`}
             >
-              Bestseller
+              All Products
             </button>
             <button
               onClick={() => setActiveTab('newarrivals')}
-              className={`px-6 py-3 font-montserrat font-semibold text-sm md:text-base transition-all rounded-lg ${
-                activeTab === 'newarrivals'
-                  ? 'bg-[#54b3e3] text-white shadow-lg'
-                  : 'text-slate-700 hover:text-[#54b3e3] hover:bg-slate-50'
-              }`}
+              className={`px-6 py-3 font-montserrat font-semibold text-sm md:text-base transition-all rounded-lg ${activeTab === 'newarrivals'
+                ? 'bg-[#54b3e3] text-white shadow-lg'
+                : 'text-slate-700 hover:text-[#54b3e3] hover:bg-slate-50'
+                }`}
             >
               New Arrivals
             </button>
             <button
               onClick={() => setActiveTab('toprated')}
-              className={`px-6 py-3 font-montserrat font-semibold text-sm md:text-base transition-all rounded-lg ${
-                activeTab === 'toprated'
-                  ? 'bg-[#54b3e3] text-white shadow-lg'
-                  : 'text-slate-700 hover:text-[#54b3e3] hover:bg-slate-50'
-              }`}
+              className={`px-6 py-3 font-montserrat font-semibold text-sm md:text-base transition-all rounded-lg ${activeTab === 'toprated'
+                ? 'bg-[#54b3e3] text-white shadow-lg'
+                : 'text-slate-700 hover:text-[#54b3e3] hover:bg-slate-50'
+                }`}
             >
               Top Rated
             </button>
@@ -219,68 +212,69 @@ export default function ProductListing({ searchQuery = '' }: ProductListingProps
         {/* Product Grid */}
         {products.length > 0 && (
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
-          {products.map((product) => {
-            return (
-              <div
-                key={product.id}
-                className="group bg-white border border-gray-200 rounded-lg overflow-hidden hover:shadow-lg transition-all relative flex flex-col h-full"
-              >
-                {/* New Badge */}
-                <div className="absolute top-3 left-3 z-10">
-                  <span className="bg-[#54b3e3] text-white text-xs font-semibold px-3 py-1 rounded">
-                    New
-                  </span>
-                </div>
-
-                {/* Product Image */}
-                <Link href={`/product/${product.slug}`} className="block shrink-0">
-                  <div className="relative bg-gray-50 h-64 overflow-hidden">
-                    <Image
-                      src={product.image}
-                      alt={product.name}
-                      fill
-                      className="object-contain p-4 group-hover:scale-105 transition-transform duration-300"
-                    />
-                  </div>
-                </Link>
-
-                {/* Product Details */}
-                <div className="p-4 flex flex-col grow">
-                  {/* Product Name */}
-                  <Link href={`/product/${product.slug}`}>
-                    <h3 className="text-black font-bold text-center mb-2 text-lg hover:text-[#54b3e3] transition-colors line-clamp-2 min-h-14">
-                      {product.name}
-                    </h3>
-                  </Link>
-
-                  {/* Star Rating */}
-                  <div className="flex justify-center mb-3 shrink-0">
-                    {renderStars(product.rating)}
-                  </div>
-
-                  {/* Price */}
-                  <div className="text-center mb-4 shrink-0">
-                    {product.discount > 0 && (
-                      <span className="text-gray-400 line-through mr-2">
-                        {product.originalPrice}
-                      </span>
-                    )}
-                    <span className="text-[#54b3e3] font-bold text-lg">
-                      {product.discountedPrice}
+            {products.map((product) => {
+              return (
+                <div
+                  key={product.id}
+                  className="group bg-white border border-gray-200 rounded-lg overflow-hidden hover:shadow-lg transition-all relative flex flex-col h-full"
+                >
+                  {/* New Badge */}
+                  <div className="absolute top-3 left-3 z-10">
+                    <span className="bg-[#54b3e3] text-white text-xs font-semibold px-3 py-1 rounded">
+                      New
                     </span>
                   </div>
 
-                  {/* Add to Cart Button */}
-                  <div className="mt-auto shrink-0">
-                    <AddToCartButton 
-                      productId={product.id} 
-                      variant="full-width"
-                    />
+                  {/* Product Image */}
+                  <Link href={`/product/${product.slug}`} className="block shrink-0">
+                    <div className="relative bg-gray-50 h-64 overflow-hidden">
+                      <Image
+                        src={product.image}
+                        alt={product.name}
+                        fill
+                        className="object-contain p-4 group-hover:scale-105 transition-transform duration-300"
+                      />
+                    </div>
+                  </Link>
+
+                  {/* Product Details */}
+                  <div className="p-4 flex flex-col grow">
+                    {/* Product Name */}
+                    <Link href={`/product/${product.slug}`}>
+                      <h3 className="text-black font-bold text-center mb-2 text-lg hover:text-[#54b3e3] transition-colors line-clamp-2 min-h-14">
+                        {product.name}
+                      </h3>
+                    </Link>
+
+                    {/* Star Rating */}
+                    <div className="flex justify-center mb-3 shrink-0">
+                      {renderStars(product.rating)}
+                    </div>
+
+                    {/* Price */}
+                    <div className="text-center mb-4 shrink-0">
+                      {product.originalPrice !== product.discountedPrice && (
+                        <span className="text-gray-400 line-through mr-2">
+                          {product.originalPrice}
+                        </span>
+                      )}
+                      <span className="text-[#54b3e3] font-bold text-lg">
+                        {product.discountedPrice}
+                      </span>
+                    </div>
+
+                    {/* Add to Cart Button */}
+                    <div className="mt-auto shrink-0">
+                      <AddToCartButton
+                        productId={product.id}
+                        variant="full-width"
+                        buyNow={true}
+                      />
+                    </div>
                   </div>
                 </div>
-              </div>
-            );
-          })}
+              );
+            })}
           </div>
         )}
       </div>

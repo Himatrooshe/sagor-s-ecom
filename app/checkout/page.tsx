@@ -79,16 +79,16 @@ export default function CheckoutPage() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    
+
     // Validate city is selected
     if (!formData.city || !bangladeshCities.includes(formData.city)) {
       alert('Please select a valid city from the dropdown');
       return;
     }
-    
+
     setIsProcessing(true);
     setError(null);
-    
+
     // Generate order ID
     const newOrderId = generateOrderId();
     setOrderId(newOrderId);
@@ -103,7 +103,7 @@ export default function CheckoutPage() {
         quantity: item.quantity,
         originalPrice: item.originalPrice,
         selectedSize: item.selectedSize,
-        selectedColor: item.selectedColor,
+
         image: item.image,
         slug: item.slug,
       }));
@@ -122,7 +122,7 @@ export default function CheckoutPage() {
       // Store order ID and total in sessionStorage for order success page (before sending to Sheets)
       sessionStorage.setItem('lastOrderId', newOrderId);
       sessionStorage.setItem('lastOrderTotal', total.toFixed(2));
-      
+
       // Send to Google Sheets (non-blocking - order proceeds even if this fails)
       const result = await sendOrderToGoogleSheets(orderData);
 
@@ -167,7 +167,7 @@ export default function CheckoutPage() {
   return (
     <div className="min-h-screen bg-white">
       <Header />
-      
+
       {/* Page Header */}
       <div className="bg-gray-50 py-8 md:py-12 border-b border-gray-200">
         <div className="container mx-auto px-4">
@@ -182,7 +182,7 @@ export default function CheckoutPage() {
           <div className="lg:col-span-2">
             <div className="bg-white border border-gray-200 rounded-lg p-6 mb-6">
               <h2 className="text-2xl font-bold text-black mb-6">Billing Details</h2>
-              
+
               <div className="mb-4">
                 <label className="block text-sm font-semibold text-black mb-2">
                   Full Name *
@@ -257,11 +257,11 @@ export default function CheckoutPage() {
                   autoComplete="off"
                   className="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:outline-none focus:border-[#54b3e3] transition-colors placeholder:text-gray-500 text-black"
                 />
-                
+
                 {showCityDropdown && (
                   <>
-                    <div 
-                      className="fixed inset-0 z-10" 
+                    <div
+                      className="fixed inset-0 z-10"
                       onClick={() => setShowCityDropdown(false)}
                     ></div>
                     <div className="absolute z-20 w-full mt-1 bg-white border-2 border-[#54b3e3] rounded-lg shadow-xl max-h-64 overflow-y-auto">
@@ -290,7 +290,7 @@ export default function CheckoutPage() {
             {/* Payment Method */}
             <div className="bg-white border border-gray-200 rounded-lg p-6">
               <h2 className="text-2xl font-bold text-black mb-6">Payment Method</h2>
-              
+
               <div className="space-y-3">
                 <label className="flex items-center gap-3 p-4 border-2 border-gray-200 rounded-lg cursor-pointer hover:border-[#54b3e3] transition-colors">
                   <input
@@ -328,11 +328,11 @@ export default function CheckoutPage() {
           <div className="lg:col-span-1">
             <div className="bg-gray-50 border border-gray-200 rounded-lg p-6 sticky top-4">
               <h2 className="text-2xl font-bold text-black mb-6">Order Summary</h2>
-              
+
               {/* Cart Items */}
               <div className="space-y-3 mb-6 max-h-64 overflow-y-auto">
                 {cart.map((item) => (
-                  <div key={item.cartItemId || `${item.id}-${item.selectedSize}-${item.selectedColor}`} className="flex gap-3 pb-3 border-b border-gray-200">
+                  <div key={item.cartItemId || `${item.id}-${item.selectedSize}`} className="flex gap-3 pb-3 border-b border-gray-200">
                     <div className="relative w-16 h-16 bg-white rounded">
                       <Image
                         src={item.image}
@@ -400,7 +400,7 @@ export default function CheckoutPage() {
           </div>
         </form>
       </div>
-      
+
       <Footer />
     </div>
   );

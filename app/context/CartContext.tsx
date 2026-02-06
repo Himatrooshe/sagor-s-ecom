@@ -11,7 +11,6 @@ interface CartItem {
   image: string;
   slug: string;
   selectedSize?: string;
-  selectedColor?: string;
   cartItemId?: string; // Unique identifier for cart items
   originalPrice?: number; // For tracking discount
 }
@@ -55,7 +54,7 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
       const itemWithSku = { ...item, sku };
       
       // Create unique cart item ID using SKU for better tracking
-      const cartItemId = `${item.id}-${sku}-${item.selectedSize || 'no-size'}-${item.selectedColor || 'no-color'}`;
+      const cartItemId = `${item.id}-${sku}-${item.selectedSize || 'no-size'}`;
       const itemWithId = { ...itemWithSku, cartItemId };
 
       const existingItem = prevCart.find(

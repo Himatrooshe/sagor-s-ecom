@@ -8,10 +8,10 @@ import ScrollToTop from '../../components/ScrollToTop';
 
 export default async function CategoryPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
-  
+
   // Find the category
   const category = categoriesData.categories.find(cat => cat.slug === slug);
-  
+
   // Filter products by category
   const categoryProducts = productsData.products.filter(
     product => product.category === category?.name
@@ -37,7 +37,7 @@ export default async function CategoryPage({ params }: { params: Promise<{ slug:
     <div className="min-h-screen bg-white">
       <ScrollToTop />
       <Header />
-      
+
       {/* Category Header */}
       <div className="bg-gradient-to-r from-gray-50 to-gray-100 py-12 border-b border-gray-200">
         <div className="container mx-auto px-4">
@@ -79,13 +79,7 @@ export default async function CategoryPage({ params }: { params: Promise<{ slug:
               >
                 {/* Product Image */}
                 <div className="relative h-64 bg-gray-50">
-                  {product.badge && (
-                    <div className="absolute top-3 left-3 z-10">
-                      <span className="bg-[#54b3e3] text-white text-xs font-semibold px-3 py-1 rounded-full">
-                        {product.badge}
-                      </span>
-                    </div>
-                  )}
+                  {/* Badge removed */}
                   <Image
                     src={product.image}
                     alt={product.name}
@@ -99,7 +93,7 @@ export default async function CategoryPage({ params }: { params: Promise<{ slug:
                   <h3 className="text-lg font-bold text-black mb-2 group-hover:text-[#54b3e3] transition-colors line-clamp-2">
                     {product.name}
                   </h3>
-                  
+
                   {/* Rating */}
                   <div className="flex items-center gap-1 mb-3">
                     {[1, 2, 3, 4, 5].map((star) => {
@@ -107,35 +101,31 @@ export default async function CategoryPage({ params }: { params: Promise<{ slug:
                       return (
                         <svg
                           key={star}
-                          className={`w-4 h-4 ${
-                            star <= fullStars
-                              ? 'text-[#54b3e3] fill-current'
-                              : 'text-gray-300'
-                          }`}
+                          className={`w-4 h-4 ${star <= fullStars
+                            ? 'text-[#54b3e3] fill-current'
+                            : 'text-gray-300'
+                            }`}
                           viewBox="0 0 24 24"
                         >
                           <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
                         </svg>
                       );
                     })}
-                    <span className="text-xs text-gray-500 ml-1">({product.reviews})</span>
+                    <span className="text-xs text-gray-500 ml-1">({product.rating})</span>
                   </div>
 
                   {/* Price */}
                   <div className="flex items-center gap-2">
-                    {product.discount > 0 && (
-                      <span className="text-sm text-gray-400 line-through">
-                        ৳{product.originalPrice}
+                    <div className="flex items-center gap-2">
+                      {product.originalPrice !== product.price && (
+                        <span className="text-sm text-gray-400 line-through">
+                          ৳{product.originalPrice}
+                        </span>
+                      )}
+                      <span className="text-xl font-bold text-[#54b3e3]">
+                        ৳{product.price}
                       </span>
-                    )}
-                    <span className="text-xl font-bold text-[#54b3e3]">
-                      ৳{product.discountedPrice}
-                    </span>
-                    {product.discount > 0 && (
-                      <span className="text-xs bg-red-100 text-red-600 px-2 py-0.5 rounded">
-                        -{product.discount}%
-                      </span>
-                    )}
+                    </div>
                   </div>
 
                   {/* Stock Status */}
@@ -202,7 +192,7 @@ export default async function CategoryPage({ params }: { params: Promise<{ slug:
           </div>
         </div>
       </div>
-      
+
       <Footer />
     </div>
   );
