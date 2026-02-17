@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef } from 'react';
 import Lenis from 'lenis';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
@@ -9,17 +9,8 @@ gsap.registerPlugin(ScrollTrigger);
 
 export default function SmoothScrolling({ children }: { children: React.ReactNode }) {
   const lenisRef = useRef<Lenis | null>(null);
-  const [isHydrated, setIsHydrated] = useState(false);
 
   useEffect(() => {
-    // Wait for hydration to complete
-    setIsHydrated(true);
-  }, []);
-
-  useEffect(() => {
-    if (!isHydrated) return;
-
-    // Initialize Lenis after hydration
     const lenis = new Lenis({
       duration: 1.2,
       easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
@@ -51,9 +42,8 @@ export default function SmoothScrolling({ children }: { children: React.ReactNod
     // Cleanup
     return () => {
       lenis.destroy();
-      gsap.ticker.remove(raf);
     };
-  }, [isHydrated]);
+  }, []);
 
   return <>{children}</>;
 }

@@ -40,11 +40,6 @@ export default function Header() {
     };
   }, []);
 
-  // Close mobile menu on route change
-  useEffect(() => {
-    setIsMobileMenuOpen(false);
-  }, [router]);
-
   const categories = categoriesData.categories;
 
   // Handle search

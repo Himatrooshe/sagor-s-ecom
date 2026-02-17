@@ -17,6 +17,7 @@ function OrderSuccessContent() {
     const sessionOrderId = typeof window !== 'undefined' ? sessionStorage.getItem('lastOrderId') : null;
     const sessionTotal = typeof window !== 'undefined' ? sessionStorage.getItem('lastOrderTotal') : null;
     
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setOrderId(urlOrderId || sessionOrderId);
     setOrderTotal(sessionTotal);
   }, [searchParams]);
@@ -36,7 +37,7 @@ function OrderSuccessContent() {
 
           <h1 className="text-2xl md:text-4xl font-bold text-black mb-3 md:mb-4">Order Placed Successfully!</h1>
           <p className="text-sm md:text-lg text-gray-600 mb-4 md:mb-6">
-            Thank you for your order. We'll contact you shortly to confirm your order details.
+            Thank you for your order. We&apos;ll contact you shortly to confirm your order details.
           </p>
 
           {/* Order Details */}
@@ -67,28 +68,28 @@ function OrderSuccessContent() {
 
           {/* Order Info */}
           <div className="bg-gray-50 rounded-lg p-4 md:p-6 mb-6 md:mb-8">
-            <h2 className="text-lg md:text-xl font-bold text-black mb-3 md:mb-4">What's Next?</h2>
+            <h2 className="text-lg md:text-xl font-bold text-black mb-3 md:mb-4">What&apos;s Next?</h2>
             <div className="space-y-2 md:space-y-3 text-left">
               <div className="flex items-start gap-2 md:gap-3">
-                <div className="w-5 h-5 md:w-6 md:h-6 bg-[#54b3e3] text-white rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
+                <div className="w-5 h-5 md:w-6 md:h-6 bg-[#54b3e3] text-white rounded-full flex items-center justify-center shrink-0 mt-0.5">
                   <span className="text-xs md:text-sm font-bold">1</span>
                 </div>
-                <p className="text-sm md:text-base text-gray-700">We'll call you to confirm your order and delivery address</p>
+                <p className="text-sm md:text-base text-gray-700">We&apos;ll call you to confirm your order and delivery address</p>
               </div>
               <div className="flex items-start gap-2 md:gap-3">
-                <div className="w-5 h-5 md:w-6 md:h-6 bg-[#54b3e3] text-white rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
+                <div className="w-5 h-5 md:w-6 md:h-6 bg-[#54b3e3] text-white rounded-full flex items-center justify-center shrink-0 mt-0.5">
                   <span className="text-xs md:text-sm font-bold">2</span>
                 </div>
                 <p className="text-sm md:text-base text-gray-700">Your order will be carefully packaged</p>
               </div>
               <div className="flex items-start gap-2 md:gap-3">
-                <div className="w-5 h-5 md:w-6 md:h-6 bg-[#54b3e3] text-white rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
+                <div className="w-5 h-5 md:w-6 md:h-6 bg-[#54b3e3] text-white rounded-full flex items-center justify-center shrink-0 mt-0.5">
                   <span className="text-xs md:text-sm font-bold">3</span>
                 </div>
                 <p className="text-sm md:text-base text-gray-700">Delivery within 3-5 business days</p>
               </div>
               <div className="flex items-start gap-2 md:gap-3">
-                <div className="w-5 h-5 md:w-6 md:h-6 bg-[#54b3e3] text-white rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
+                <div className="w-5 h-5 md:w-6 md:h-6 bg-[#54b3e3] text-white rounded-full flex items-center justify-center shrink-0 mt-0.5">
                   <span className="text-xs md:text-sm font-bold">4</span>
                 </div>
                 <p className="text-sm md:text-base text-gray-700">Pay cash on delivery when you receive your order</p>

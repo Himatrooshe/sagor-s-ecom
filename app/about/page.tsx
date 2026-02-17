@@ -1,6 +1,5 @@
 import Header from '../components/Header';
 import Footer from '../components/Footer';
-import Image from 'next/image';
 
 export default function AboutPage() {
   return (
@@ -77,7 +76,7 @@ export default function AboutPage() {
           {/* Contact Info */}
           <div className="bg-[#54b3e3] text-white rounded-lg p-6 md:p-8 text-center">
             <h3 className="text-xl md:text-2xl font-bold mb-3 md:mb-4">Get in Touch</h3>
-            <p className="text-sm md:text-base mb-4 md:mb-6">Have questions? We'd love to hear from you!</p>
+            <p className="text-sm md:text-base mb-4 md:mb-6">Have questions? We&apos;d love to hear from you!</p>
             <div className="flex flex-col sm:flex-row justify-center gap-3 md:gap-4">
               <a href="tel:01335550839" className="flex items-center justify-center gap-2 bg-white text-[#54b3e3] px-4 md:px-6 py-2 md:py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors text-sm md:text-base">
                 <svg className="w-4 h-4 md:w-5 md:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">

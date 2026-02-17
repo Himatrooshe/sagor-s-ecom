@@ -105,7 +105,7 @@ export default function HeroSection() {
                   priority={index === 0}
                 />
                 {/* Overlay for better text readability */}
-                <div className="absolute inset-0 bg-gradient-to-r from-black/60 via-black/40 to-black/60"></div>
+                <div className="absolute inset-0 bg-linear-to-r from-black/60 via-black/40 to-black/60"></div>
 
                 {/* Banner Content */}
                 {(slide.title || slide.subtitle) && (
@@ -113,7 +113,7 @@ export default function HeroSection() {
                     <div className="text-center px-4 sm:px-6 md:px-8 max-w-4xl mx-auto">
                       {slide.title && (
                         <h2 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-extrabold text-white mb-4 sm:mb-6 drop-shadow-2xl leading-tight tracking-tight">
-                          <span className="bg-gradient-to-r from-white via-white to-[#54b3e3] bg-clip-text text-transparent">
+                          <span className="bg-linear-to-r from-white via-white to-[#54b3e3] bg-clip-text text-transparent">
                             {slide.title}
                           </span>
                         </h2>
@@ -193,7 +193,7 @@ export default function HeroSection() {
                 <div className="p-3 sm:p-4 flex flex-col grow">
                   {/* Product Name */}
                   <Link href={`/product/${product.slug}`}>
-                    <h3 className="text-black font-medium text-xs sm:text-sm mb-2 group-hover:text-[#54b3e3] transition-colors line-clamp-2 min-h-[2.5rem]">
+                    <h3 className="text-black font-medium text-xs sm:text-sm mb-2 group-hover:text-[#54b3e3] transition-colors line-clamp-2 min-h-10">
                       {product.name}
                     </h3>
                   </Link>

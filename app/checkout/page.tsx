@@ -34,7 +34,6 @@ export default function CheckoutPage() {
   const [isProcessing, setIsProcessing] = useState(false);
   const [citySearch, setCitySearch] = useState('');
   const [showCityDropdown, setShowCityDropdown] = useState(false);
-  const [orderId, setOrderId] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
 
   // Calculate shipping cost based on city
@@ -91,7 +90,6 @@ export default function CheckoutPage() {
 
     // Generate order ID
     const newOrderId = generateOrderId();
-    setOrderId(newOrderId);
 
     try {
       // Format cart items for order submission

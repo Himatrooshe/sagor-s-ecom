@@ -27,10 +27,7 @@ export default function ProductDetails({ slug }: ProductDetailsProps) {
   // Scroll to top when component loads or slug changes
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
-    if (product?.sizes && product.sizes.length > 0) {
-      setSelectedSize(product.sizes[0]);
-    }
-  }, [slug, product]);
+  }, [slug]);
 
   // If no product found, show error
   if (!product) {
@@ -61,30 +58,6 @@ export default function ProductDetails({ slug }: ProductDetailsProps) {
     }));
 
   const productImages = product.images;
-
-  const testimonials = [
-    {
-      id: 1,
-      text: 'Donec ligula mauris, posuere sed tincidunt a, facilisis id enim. Class aptent taciti sociosqu ad litora torquent per conubia.',
-      author: 'Tom Milikin',
-      role: 'CFO/Founder Apple',
-      avatar: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&h=100&fit=crop&crop=face',
-    },
-    {
-      id: 2,
-      text: 'Excellent product quality and fast shipping. Highly recommended!',
-      author: 'Sarah Johnson',
-      role: 'Marketing Director',
-      avatar: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=100&h=100&fit=crop&crop=face',
-    },
-    {
-      id: 3,
-      text: 'Amazing customer service and beautiful products. Will definitely shop again!',
-      author: 'Michael Chen',
-      role: 'Business Owner',
-      avatar: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=100&h=100&fit=crop&crop=face',
-    },
-  ];
 
   const youMayAlsoLike = productDetailsData.productDetails
     .filter(p => p.id !== product.id)
@@ -496,7 +469,7 @@ export default function ProductDetails({ slug }: ProductDetailsProps) {
                         />
                       </svg>
                     </button>
-                    <span className="px-4 py-2 font-bold text-[#54b3e3] min-w-[3rem] text-center">
+                    <span className="px-4 py-2 font-bold text-[#54b3e3] min-w-12 text-center">
                       {quantity}
                     </span>
                     <button
@@ -644,14 +617,6 @@ export default function ProductDetails({ slug }: ProductDetailsProps) {
                           <div className="flex justify-center gap-0.5 mb-3">
                             {[1, 2, 3, 4, 5].map((star) => {
                               const fullStars = Math.floor(product.rating);
-                              const hasHalfStar = product.rating % 1 >= 0.5;
-                              let fillType = 'none';
-                              if (star <= fullStars) {
-                                fillType = 'currentColor';
-                              } else if (star === fullStars + 1 && hasHalfStar) {
-                                fillType = 'half';
-                              }
-
                               return (
                                 <svg
                                   key={star}

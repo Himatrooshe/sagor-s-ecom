@@ -26,16 +26,10 @@ export default function ProductListing({ searchQuery = '' }: ProductListingProps
   const [activeTab, setActiveTab] = useState<TabType>('all');
   const [showScrollTop, setShowScrollTop] = useState(false);
 
-  // Reset to bestseller tab when search query changes
-  useEffect(() => {
-    if (searchQuery) {
-      setActiveTab('all');
-    }
-  }, [searchQuery]);
-
   // Get products from JSON data
   const getProductsByTab = (): Product[] => {
     let filteredProducts = productsData.products;
+    const effectiveTab: TabType = searchQuery ? 'all' : activeTab;
 
     // First, filter by search query if provided
     if (searchQuery) {
@@ -48,7 +42,7 @@ export default function ProductListing({ searchQuery = '' }: ProductListingProps
 
     // Then apply tab filtering/sorting
     if (!searchQuery) {
-      switch (activeTab) {
+      switch (effectiveTab) {
         case 'all':
           // Default order
           break;
@@ -198,7 +192,8 @@ export default function ProductListing({ searchQuery = '' }: ProductListingProps
             </svg>
             <h3 className="text-2xl font-montserrat font-bold text-slate-800 mb-3">No Products Found</h3>
             <p className="text-gray-600 font-inter mb-6">
-              We couldn't find any products matching "<span className="font-semibold text-[#54b3e3]">{searchQuery}</span>"
+              We couldn&apos;t find any products matching{' '}
+              <span className="font-semibold text-[#54b3e3]">“{searchQuery}”</span>
             </p>
             <a
               href="/shop"

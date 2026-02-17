@@ -23,7 +23,7 @@ export default function CartPage() {
             </div>
             <h1 className="text-3xl font-bold text-black mb-4">Your Cart is Empty</h1>
             <p className="text-gray-600 mb-8">
-              Looks like you haven't added anything to your cart yet.
+              Looks like you haven&apos;t added anything to your cart yet.
             </p>
             <Link
               href="/shop"
@@ -63,7 +63,7 @@ export default function CartPage() {
                 <div key={item.cartItemId || `${item.id}-${item.selectedSize}`} className="bg-white border border-gray-200 rounded-lg p-3 md:p-4">
                   <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
                     {/* Product Image */}
-                    <Link href={`/product/${item.slug}`} className="relative w-full sm:w-24 h-24 flex-shrink-0 bg-gray-50 rounded overflow-hidden">
+                    <Link href={`/product/${item.slug}`} className="relative w-full sm:w-24 h-24 shrink-0 bg-gray-50 rounded overflow-hidden">
                       <Image
                         src={item.image}
                         alt={item.name}
@@ -82,7 +82,7 @@ export default function CartPage() {
                         </Link>
                         <button
                           onClick={() => removeFromCart(item.cartItemId || `${item.id}-${item.selectedSize}`)}
-                          className="text-red-500 hover:text-red-700 transition-colors flex-shrink-0"
+                          className="text-red-500 hover:text-red-700 transition-colors shrink-0"
                           aria-label="Remove item"
                         >
                           <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -112,7 +112,7 @@ export default function CartPage() {
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M20 12H4" />
                               </svg>
                             </button>
-                            <span className="px-2 md:px-3 py-1 font-bold text-[#54b3e3] min-w-[2rem] text-center text-sm">
+                            <span className="px-2 md:px-3 py-1 font-bold text-[#54b3e3] min-w-8 text-center text-sm">
                               {item.quantity}
                             </span>
                             <button
@@ -180,18 +180,18 @@ export default function CartPage() {
                   </svg>
                   <span>Fast Delivery</span>
                 </div>
-                <div className="flex items-center gap-2">
+                {/* <div className="flex items-center gap-2">
                   <svg className="w-5 h-5 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                   </svg>
                   <span>30-Day Returns</span>
-                </div>
-                <div className="flex items-center gap-2">
+                </div> */}
+                {/* <div className="flex items-center gap-2">
                   <svg className="w-5 h-5 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                   </svg>
                   <span>Secure Payment</span>
-                </div>
+                </div> */}
               </div>
             </div>
           </div>

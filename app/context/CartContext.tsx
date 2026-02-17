@@ -35,6 +35,7 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
   useEffect(() => {
     const savedCart = localStorage.getItem('cart');
     if (savedCart) {
+      // eslint-disable-next-line react-hooks/set-state-in-effect
       setCart(JSON.parse(savedCart));
     }
     setIsHydrated(true);
