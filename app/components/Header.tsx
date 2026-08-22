@@ -63,11 +63,11 @@ export default function Header() {
             {/* Logo */}
             <Link href="/" className="shrink-0">
               <Image
-                src="https://res.cloudinary.com/dp0la6xmd/image/upload/v1767873510/logo_-removebg-preview_obslin.png"
-                alt="Store Logo"
-                width={140}
-                height={40}
-                className="h-8 sm:h-9 md:h-10 w-auto"
+                src="/INBD_logo.png"
+                alt="INBD — International Business Development"
+                width={160}
+                height={160}
+                className="h-11 sm:h-12 md:h-14 w-auto rounded-md object-contain"
                 priority
               />
             </Link>

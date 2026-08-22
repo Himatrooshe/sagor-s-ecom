@@ -20,9 +20,9 @@ export const metadata: Metadata = {
   title: "inbd - Premium Online Shopping in Bangladesh",
   description: "Your premier online shopping destination in Bangladesh. Shop perfumes, shoes, and more with fast delivery and cash on delivery available.",
   icons: {
-    icon: '/favicon.png',
-    shortcut: '/favicon.png',
-    apple: '/favicon.png',
+    icon: '/INBD_logo.png',
+    shortcut: '/INBD_logo.png',
+    apple: '/INBD_logo.png',
   },
 };
 
