@@ -81,6 +81,20 @@
       "hoverImage": "https://res.cloudinary.com/dp0la6xmd/image/upload/v1768126280/Dior_Savage_50ml_fflij7.png",
       "rating": 5,
       "inStock": true
+    },
+    {
+      "id": 7,
+      "sku": "INBD-FS-007",
+      "name": "Friday Special",
+      "slug": "friday-special",
+      "category": "Perfume & Fragrance",
+      "price": 599,
+      "originalPrice": 699,
+      "image": "/products/friday-special.png",
+      "hoverImage": "/products/friday-special.png",
+      "rating": 5,
+      "isNew": true,
+      "inStock": true
     }
   ]
 }

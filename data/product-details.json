@@ -158,6 +158,28 @@
         4,
         5
       ]
+    },
+    {
+      "id": 7,
+      "slug": "friday-special",
+      "name": "Friday Special",
+      "category": "Perfume & Fragrance",
+      "sku": "INBD-FS-007",
+      "price": 599,
+      "originalPrice": 699,
+      "inStock": true,
+      "stockQuantity": 12,
+      "rating": 5,
+      "reviews": 0,
+      "images": [
+        "/products/friday-special.png"
+      ],
+      "shortDescription": "A limited Friday Special fragrance from our Perfume & Fragrance collection.",
+      "fullDescription": "Friday Special is a standout fragrance from our Perfume & Fragrance collection. With a ৳100 savings off the original price, this new arrival is ready to ship while stock lasts.",
+      "relatedProducts": [
+        1,
+        4
+      ]
     }
   ]
 }
