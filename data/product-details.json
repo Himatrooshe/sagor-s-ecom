@@ -23,7 +23,7 @@
       ],
       "relatedProducts": [
         2,
-        3
+        7
       ]
     },
     {
@@ -49,36 +49,7 @@
       ],
       "relatedProducts": [
         1,
-        3
-      ]
-    },
-    {
-      "id": 3,
-      "slug": "crocs-classic-clogs",
-      "name": "Crocs Classic Clogs",
-      "category": "Shoes Collection",
-      "sku": "INBD-CC-CLASSIC-003",
-      "price": 1099,
-      "originalPrice": 1299,
-      "inStock": true,
-      "stockQuantity": 50,
-      "rating": 4.7,
-      "reviews": 234,
-      "images": [
-        "https://res.cloudinary.com/dp0la6xmd/image/upload/v1767873196/shoe_h0j8oy.jpg",
-        "https://res.cloudinary.com/dp0la6xmd/image/upload/v1767873196/shoe_h0j8oy.jpg"
-      ],
-      "shortDescription": "Comfortable and iconic lightweight clogs.",
-      "fullDescription": "Crocs Classic Clogs are the original and most recognizable style from Crocs. Loved for their comfort, versatility, and fun style, these clogs feature lightweight Croslite™ material construction that cushions your feet and offers amazing comfort all day long. The ventilation ports add breathability and help shed water and debris. Perfect for indoor and outdoor use, these clogs are easy to clean and quick to dry, making them ideal for any casual activity.",
-      "sizes": [
-        "M7/W9",
-        "M8/W10",
-        "M9/W11",
-        "M10/W12"
-      ],
-      "relatedProducts": [
-        1,
-        2
+        7
       ]
     },
     {

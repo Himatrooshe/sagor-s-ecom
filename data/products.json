@@ -29,20 +29,6 @@
       "inStock": true
     },
     {
-      "id": 3,
-      "sku": "INBD-CC-CLASSIC-003",
-      "name": "Crocs Classic Clogs",
-      "slug": "crocs-classic-clogs",
-      "category": "Shoes Collection",
-      "price": 1099,
-      "originalPrice": 1299,
-      "image": "https://res.cloudinary.com/dp0la6xmd/image/upload/v1767873196/shoe_h0j8oy.jpg",
-      "hoverImage": "https://res.cloudinary.com/dp0la6xmd/image/upload/v1767873196/shoe_h0j8oy.jpg",
-      "rating": 4.7,
-      "isNew": false,
-      "inStock": true
-    },
-    {
       "id": 4,
       "sku": "INBD-GG-30ML-004",
       "name": "Good girl - Inspired Version 30ML",
